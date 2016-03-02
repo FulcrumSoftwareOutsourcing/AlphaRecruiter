@@ -1,4 +1,5 @@
-﻿'use strict';
+﻿
+'use strict';
 function BUploadDlg()
 {
     BusinessLayer.call(this);
