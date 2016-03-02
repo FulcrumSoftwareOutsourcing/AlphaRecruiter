@@ -1,0 +1,17 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--css file: WorkspaceDialog.css-->
+
+<script type="text/html" id="Workspaces/WorkspaceDialogTemplate">
+
+    <div id="WorkspaceDialogHolder" class="WorkspaceDialog unselectable" data-bind="foreach: Workspaces">
+        
+            <div class="Item" type="text" data-bind="text: Name, css: Selected() ? 'selected' : '', attr:{id: 'wrksp_' + WorkspaceId()}, click: $parent.OnItemClicked"></div>
+        
+    </div>
+
+</script>
+

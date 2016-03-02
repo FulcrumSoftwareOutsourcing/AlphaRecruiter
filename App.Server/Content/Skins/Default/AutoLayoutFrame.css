@@ -1,0 +1,121 @@
+﻿.AutoLayoutFrame {
+    background-color:#d8d8dd;
+    width: 100%;
+    
+}
+
+.AutoLayoutFrame table tr td {
+    background-color:transparent;
+   
+}
+
+
+
+
+
+.TabGrip {
+    height: 32px;
+    border: 1px solid #535353;
+    
+    padding:5px; 
+    display:inline-block;
+    color: black;
+    background-color: white;
+    color: #535353;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 0px;
+    padding: 0 25px 0 25px;
+    line-height: 32px;
+}
+
+.TabGripSelected {
+    color: white;
+    background-color: #09335d;
+    border-bottom: 1px solid #09335d !important;
+}
+
+.TabGripSelected_Child {
+     
+     background-color: #4F6887;
+    border-bottom: 1px solid #4F6887 !important;
+}
+
+
+
+
+.TabGrip:hover {
+    
+     color: white;
+    background-color: #24518a;
+    cursor: pointer;
+}
+
+.FieldSet {
+
+    border: 1px solid #8995a2; 
+    border-radius: 6px;
+    position: relative;
+    padding: 15px 5px 5px 5px;
+    margin: 15px 5px 5px 5px;
+}
+
+.FieldSetNoBorder {
+   
+    
+    
+}
+
+.FieldSetText {
+    color: #0056d5;
+    position:absolute;
+    top:-10px;
+    left: 20px;
+    background-color:#d8d8dd;
+    padding: 0 6px 0 6px;
+}
+
+.TabContent
+{
+    
+    width: 100% !important;
+   
+}
+
+.PanelTable {
+        width: 100%;
+        padding:0;
+        margin:0;
+}
+
+.ControlColumn {
+    padding-right: 20px !important;
+   
+}
+
+.EmptyLayoutCol
+{
+    padding:0;
+    margin: 0;
+    width: 0;
+}
+
+
+
+.ChildFrameHolder 
+{
+    width: 100%;
+    margin-bottom:40px; 
+}
+
+.HighlightedAttributeStyle {
+    background-color: lightyellow !important;
+        /*:white !important;*/
+    font-weight:bold;
+    color:darkblue;
+}
+
+.RequiredStar {
+     font-size:1.1em;
+     font-weight:bold;
+     
+}

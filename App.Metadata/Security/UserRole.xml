@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="UserRole"
+          plural_caption="User Roles"
+          single_caption="User Role"
+          operations="ivud"
+          entity_class_id="BASE_ENTITY"
+          db_object="v_Framework_UserRoles_Edit"
+          group_name="Administration"
+          security_entity_usage_id="UserRole"
+          image_id="TreeItem_Users">
+
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from v_Framework_UserRoles_Assigned t
+      ]]>
+    </sql_select>
+
+    <attributes>
+      <attribute id="UserRoleId"
+                 caption="UserRoleId"
+                 type="int"
+                 primary_key="true"
+                 max_length="10"
+                 visible="false"
+                 storable="false"
+      />
+      <attribute id="UserId"
+                 caption="User"
+                 type="int"
+                 alternative_key="true"
+                 max_length="10"
+                 nullable="false"
+                 visible="false"
+                 row_source_id="User_Lookup"
+                 text_attr_id="UserLogin"
+      />
+      <attribute id="UserLogin"
+                 caption="User Login"
+                 type="string"
+                 storable="false"
+                 visible="false"
+                 grid_width="200"
+      />
+      <attribute id="UserName"
+                 caption="User Name"
+                 type="string"
+                 storable="false"
+                 visible="false"
+                 grid_width="200"
+                 read_only="true"
+      />
+      <attribute id="RoleId"
+                 caption="Role"
+                 type="int"
+                 alternative_key="true"
+                 max_length="10"
+                 nullable="false"
+                 visible="false"
+                 editable="true"
+                 filterable="true"
+                 row_source_id="Role_Lookup"
+                 text_attr_id="RoleName"
+      />
+      <attribute id="RoleName"
+                 caption="Role"
+                 type="string"
+                 storable="false"
+                 editable="false"
+                 filterable="false"
+                 grid_width="300"
+                 display_name="true"
+                 sorting="asc"
+      />
+      <attribute id="RoleSpecialCategory"
+                 caption="Role Category"
+                 type="string"
+                 visible="false"
+                 storable="false"
+                 editable="false"
+                 filterable="false"
+      />
+      <attribute id="IsUserActive"
+                 caption="Active User"
+                 type="boolean"
+                 visible="false"
+                 storable="false"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="UserRole"
+                entity_id="UserRole">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="UserRole_ChildOf_User"
+                inherited_entity_usage_id="UserRole"
+                single_caption="Role"
+                plural_caption="Roles"
+                entity_id="UserRole">
+    <join_condition>
+      UserId = :UserId
+    </join_condition>
+    <attribute_usages>
+      <attribute_usage id="UserId"
+                       default="=Parent.User.UserId"
+      />
+    </attribute_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="UserRole_ChildOf_Role"
+                entity_id="UserRole"
+                single_caption="User"
+                plural_caption="Users">
+    <join_condition>
+      RoleId = :RoleId
+    </join_condition>
+
+    <grid_visible_order>
+      UserLogin, UserName
+    </grid_visible_order>
+
+    <edit_order>
+      UserId
+    </edit_order>
+
+    <filter_order>
+      UserLogin, UserName
+    </filter_order>
+
+    <attribute_usages>
+      <attribute_usage id="RoleId"
+                       default="=PARENT.Role.RoleId"
+      />
+      <attribute_usage id="RoleName"
+                       sorting=""
+                       display_name="false"
+      />
+      <attribute_usage id="UserLogin"
+                       sorting="asc"
+                       display_name="true"
+      />
+      <attribute_usage id="UserName"
+                       caption="Name"
+      />
+      <attribute_usage id="UserId"
+                       read_only="false"
+      />
+    </attribute_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

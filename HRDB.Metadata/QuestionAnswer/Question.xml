@@ -1,0 +1,278 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="QuestionsAnsvers">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_QuestionCategory"
+          single_caption="Question Category"
+          plural_caption="Question Categories"
+          sl_multiple_grid_edit="true"
+          operations="ivud"
+          sl_edit_frame_id="QuestionCategory_Layout"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          image_id="QuestionCategories"
+          db_object="HR_QuestionCategory"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from HR_QuestionCategory t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="HR_QuestionCategoryCd"
+                 caption="Category Code"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 grid_width="110"
+      />
+      <attribute id="Name"
+                 caption="Category Name"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 grid_width="150"
+      />
+      <attribute id="DisplayOrder"
+                 caption="Display Order"
+                 type="int"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="100"
+      />
+      <attribute id="SLImageId"
+           caption="Category Image"
+           type="string"
+           sorting="asc"
+           nullable="true"
+           grid_width="100"
+      />
+      
+      
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_QuestionCategory"
+                entity_id="HR_QuestionCategory">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_QuestionCategory_Lookup"
+              entity_usage_id="HR_QuestionCategory"
+              image_attr_id="SLImageId"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Question"
+          single_caption="Question"
+          plural_caption="Questions"
+          operations="ivfud"
+          sl_multiple_grid_edit="true"
+          entity_class_id="IDENTITY_PK_ENTITY"
+          db_object="HR_Question"
+          image_id="AllQuestions"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from HR_Question t
+      ]]>
+    </sql_select>
+    <parent_entities>
+      <parent_entity id="HR_QuestionCategory"
+                     entity_usage_id="HR_QuestionCategory">
+        <where_clause>
+          HR_QuestionCategoryCd = :HR_QuestionCategoryCd
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+    <attributes>
+      <attribute id="HR_QuestionId"
+                 caption="HR_QuestionId"
+                 type="int"
+                 primary_key="true"
+                 max_length="50"
+                 display_name="true"
+                 storable="false"
+      />
+      <attribute id="HR_QuestionCategoryCd"
+                 caption="Category Code"
+                 type="string"
+                 max_length="50"
+                 row_source_id="HR_QuestionCategory_Lookup"
+                 default="=PARENT.HR_QuestionCategory.HR_QuestionCategoryCd"
+                 nullable="false"
+                 grid_width="110"
+      />
+      <attribute id="Question"
+                 caption="Question"
+                 type="string"
+                 max_length="2000"
+                 nullable="false"
+                 grid_width="500"
+                 sl_control="memo"
+                 control_height="100"
+                 sl_control_width="5"
+      />
+      <attribute id="PossibleAnswer"
+                 caption="Answer"
+                 type="string"
+                 max_length="2000"
+                 grid_width="500"
+                 sl_control="memo"
+                 control_height="600"
+                 sl_control_width="5"
+      />
+      <attribute id="DisplayOrder"
+                 caption="Display Order"
+                 type="int"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="100"
+                 local_expression="SQL.select IsNull(max(DisplayOrder), 0) + 1
+                                         from HR_Question
+                                        where HR_QuestionCategoryCd = :HR_QuestionCategoryCd"
+                 />
+      
+      <attribute id="ComplexityLevel"
+                 caption="Complexity Level"
+                 row_source_id="HR_ComplexityLevel_Lookup"
+                 default="3"
+                 type="int"
+                 grid_width="150"
+                 />
+      
+      <attribute id="IsActive"
+                 caption="Is Active"
+                 default="1"
+                 type="boolean"
+                 grid_width="90"
+                 _filter_default="1"
+                 />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Question"
+                sl_filter_on_start="true"
+                sl_edit_frame_id="Question_Layout"
+                entity_id="HR_Question">
+    <grid_visible_order>
+      ,HR_QuestionCategoryCd
+      ,Question
+      ,PossibleAnswer
+      ,ComplexityLevel
+      ,IsActive
+      ,ComplexityLevel
+      ,DisplayOrder
+    </grid_visible_order>
+    <edit_order>
+      ,HR_QuestionCategoryCd
+      ,DisplayOrder
+      ,ComplexityLevel
+      ,Question
+      ,PossibleAnswer
+      ,IsActive
+    </edit_order>
+    <filter_order>
+      HR_QuestionCategoryCd
+      ,IsActive
+      ,Question
+      ,PossibleAnswer
+      ,ComplexityLevel
+      ,DisplayOrder
+    </filter_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Question_for_Category"
+                sl_filter_on_start="false"
+                inherited_entity_usage_id="HR_Question"
+                entity_id="HR_Question">
+    <grid_visible_order>
+      ,Question
+      ,PossibleAnswer
+      ,ComplexityLevel 
+      ,DisplayOrder
+    </grid_visible_order>
+    <where_clause>
+      HR_QuestionCategoryCd = :HR_QuestionCategoryCd
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Questions_Statistics_AverageAnswerResult"
+          single_caption="Average Answer Result"
+          plural_caption="Average Answer Results"
+          operations="vf"
+          entity_class_id="BASE_ENTITY"
+          image_id="AverageAnswerResult"
+          db_object="v_HR_QuestionAverageAnswerResult"
+          >
+      <attributes>
+      <attribute id="Question"
+                 caption="Question"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 storable="false"
+                 _grid_word_wrap="true"
+      />
+      <attribute id="AverageAnswerResult"
+                 caption="Average Answer's Result"
+                 type="float"
+                 scale="2" 
+                 max_length="50"
+                 grid_width="200"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Questions_Statistics_AverageAnswerResult"
+        entity_id="HR_Questions_Statistics_AverageAnswerResult">
+    
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Questions_Statistics_QuestionTimesAsked"
+          single_caption="Question Times Asked"
+          plural_caption="Questions Times Asked"
+          image_id="TimesAsked"
+          operations="vf"
+          entity_class_id="BASE_ENTITY"
+          db_object="v_HR_QuestionTimesAsked"
+          >
+    <attributes>
+      <attribute id="Question"
+                 caption="Question"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 storable="false"
+                 _grid_word_wrap="true"
+      />
+      <attribute id="TimesAsked"
+                 caption="Question Times Asked"
+                 type="int"
+                 max_length="50"
+                 grid_width="200"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Questions_Statistics_QuestionTimesAsked"
+        entity_id="HR_Questions_Statistics_QuestionTimesAsked">
+
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ComplexityLevel_Lookup">
+    <rows>
+      <row key="1" value="Elementary" image_id="Quest_Complex_Elementary" />
+      <row key="2" value="Low" image_id="Quest_Complex_Low"  />
+      <row key="3" value="Middle" image_id="Quest_Complex_Middle"  />
+      <row key="4" value="Hight" image_id="Quest_Complex_Higth"  />
+      <row key="5" value="Extreme" image_id="Quest_Complex_Extreme"  />
+    </rows>
+  </row_source>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = null;
+}
+
+<!--css file: UploadDlgTemplate.css-->
+
+<script type="text/html" id="UploadDlg/UploadDlgTemplate">
+
+    <div id="UploadDlgHolder" class="UploadDlg unselectable" >
+        <div class="FileName" data-bind="text: FileName"></div>
+        <div class="UploadProgress" id="progressBar">
+            <div class="UploadProgressColorBar" id="progressColorBar" style="width: 0"></div>
+            <span data-bind="text: UploadPercent" class="UploadPercent"></span>
+        </div>
+        
+        <div data-bind="text: UploadedText"></div>
+        <div data-bind="text: UploadedSpeed"></div>
+
+    </div>
+
+</script>

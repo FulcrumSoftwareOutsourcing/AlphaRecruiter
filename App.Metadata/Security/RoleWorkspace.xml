@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="RoleWorkspace"
+          plural_caption="Role Workspaces"
+          single_caption="Role Workspace"
+          operations="ivud"
+          entity_class_id="BASE_ENTITY"
+          db_object="Framework_RoleWorkspaces"
+          group_name="Administration"
+          security_entity_usage_id="RoleWorkspace"
+          available_workspace_filter="false"
+          current_workspace_filter="false">
+
+
+    <sql_delete>
+      <![CDATA[
+        DELETE FROM Framework_RoleWorkspaces
+          WHERE RoleId = :RoleId and WorkspaceId = :WorkspaceId
+      ]]>
+    </sql_delete>
+
+    <attributes>
+      <attribute id="RoleId"
+                 caption="Role Id"
+                 type="int"
+                 primary_key="true"
+                 max_length="10"
+                 visible="false"
+      />
+      <attribute id="WorkspaceId"
+                 caption="Workspace"
+                 type="int"
+                 max_length="10"
+                 primary_key="true"
+                 nullable="false"
+                 visible="true"
+                 row_source_id="Workspace_Lookup_List"
+      />
+    </attributes>
+  </entity>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="RoleWorkspace"
+                entity_id="RoleWorkspace">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="RoleWorkspace_ChildOf_Role"
+                inherited_entity_usage_id="RoleWorkspace"
+                single_caption="Workspace"
+                plural_caption="Workspaces"
+                entity_id="RoleWorkspace">
+    <join_condition>
+      RoleId = :RoleId
+    </join_condition>
+    <attribute_usages>
+      <attribute_usage id="RoleId"
+                       default="=Parent.Role.RoleId"
+      />
+    </attribute_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                       Applicants by Years                           -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Reports_Applicants_by_Years"
+          single_caption="Applicants by Years"
+          plural_caption="Applicants by Years"
+          filter_enabled="false"
+          paging_enabled="false"
+          display_all_records_without_footer="true"
+          entity_class_id="BASE_ENTITY">
+    <sql_select>
+      <![CDATA[
+          with PivotTable
+                    as
+                    (
+                      SELECT m AS [Month], [2011], [2012], [2013], [2014], [2015], [2016]
+                          ,isnull([2011], 0) + isnull([2012], 0) + isnull([2013], 0) + 
+                           isnull([2014], 0) + isnull([2015], 0) + isnull([2016], 0) as [YearTotal]
+                        FROM
+                        (
+                        select year(ap.CreationDate) y, month(ap.CreationDate) m, count(*) cnt
+                          from HR_Applicant ap
+                         group by year(ap.CreationDate), month(ap.CreationDate)
+                        ) AS SourceTable
+                        PIVOT
+                        (
+                        sum(cnt)
+                        FOR y IN ([2011], [2012], [2013], [2014], [2015], [2016])
+                        ) AS PivotT
+                  )
+                  select PivotTable.*
+                    from PivotTable
+                   union all
+                  select 0 as Month, 
+                         sum([2011]) as [2011], 
+                         sum([2012]) as [2012], 
+                         sum([2013]) as [2013], 
+                         sum([2014]) as [2014], 
+                         sum([2015]) as [2015], 
+                         sum([2016]) as [2016],
+                         Sum(YearTotal) as [YearTotal]
+                    from PivotTable      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="Month"
+                 caption="Month"
+                 type="string"
+                 primary_key="true"
+                 row_source_id="Months_Name_with_Total_Lookup"
+                 grid_width="120"
+      />
+      <attribute id="2011"
+                 caption="2011"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="2012"
+                 caption="2012"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="2013"
+                 caption="2013"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="2014"
+                 caption="2014"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="2015"
+                 caption="2015"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="2016"
+                 caption="2016"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="YearTotal"
+                 caption="&lt;B&gt;Years Total&lt;/B&gt;"
+                 type="int"
+                 grid_width="120"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Reports_Applicants_by_Years"
+                entity_id="Reports_Applicants_by_Years">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                       Applicants by Week-days                       -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Reports_Applicants_by_Week_days"
+          single_caption="Applicants by Week days"
+          plural_caption="Applicants by Week days"
+          filter_enabled="true"
+          operations="f"
+          paging_enabled="false"
+          display_all_records_without_footer="true"
+          grid_hint="Please select Year you are interested in; Report will be shown automatically."
+          entity_class_id="BASE_ENTITY">
+    <sql_select>
+      <![CDATA[
+         with PivotTable
+          as
+          (
+             SELECT m AS [Month], 
+                   [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday]
+                  ,isnull(Monday, 0) + isnull(Tuesday, 0) + isnull(Wednesday, 0) + isnull(Thursday, 0) + isnull(Friday, 0) + isnull(Saturday, 0) + isnull(Sunday, 0) as [WeekTotal]
+              FROM
+              (
+              select month(ap.CreationDate) m,  DATENAme(dw,ap.CreationDate) dw, count(*) cnt
+                from HR_Applicant ap
+               where year(ap.CreationDate) = :f_Year_Filter_0 
+               group by month(ap.CreationDate),  DATENAme(dw,ap.CreationDate)
+               ) AS SourceTable
+              PIVOT
+              (
+              sum(cnt)
+              FOR dw IN ([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday])
+              ) AS PivotT      
+          )
+          select PivotTable.*
+            from PivotTable
+           union all
+          select 0 as Month, 
+                Sum([Monday]) as Monday, Sum([Tuesday]) as Tuesday, Sum([Wednesday]) as Wednesday, Sum([Thursday]) as Thursday, Sum([Friday]) as Friday, Sum([Saturday]) as Saturday, Sum([Sunday]) as Sunday
+                ,Sum(WeekTotal) as [WeekTotal]
+            from PivotTable
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="Month"
+                 caption="Month"
+                 type="string"
+                 primary_key="true"
+                 row_source_id="Months_Name_with_Total_Lookup"
+                 grid_width="120"
+      />
+      <attribute id="Monday"
+                 caption="Monday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Tuesday"
+                 caption="Tuesday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Wednesday"
+                 caption="Wednesday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Thursday"
+                 caption="Thursday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Friday"
+                 caption="Friday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Saturday"
+                 caption="Saturday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Sunday"
+                 caption="Sunday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="WeekTotal"
+                 caption="&lt;B&gt;Month Total&lt;/B&gt;"
+                 type="int"
+                 grid_width="120"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Reports_Applicants_by_Week_days"
+                sl_filter_on_start="true"
+                entity_id="Reports_Applicants_by_Week_days">
+    <filter_order>
+      Year_Filter
+    </filter_order>
+    <attribute_usages>
+      <attribute_usage id="Year_Filter"
+                       caption="Year"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Years5_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+    <grid_visible_order>
+      Month
+      Monday
+      Tuesday
+      Wednesday
+      Thursday
+      Friday
+      Saturday
+      Sunday
+      WeekTotal
+    </grid_visible_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                       Applicants by Ads                             -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Reports_Applicants_by_Ads"
+          single_caption="Applicants by Advertisings"
+          plural_caption="Applicants by Advertising"
+          filter_enabled="true"
+          operations="f"
+          paging_enabled="false"
+          grid_hint="Please select Year(s) you are interested in; Report will be shown automatically."
+          display_all_records_without_footer="true"
+          entity_class_id="BASE_ENTITY">
+    <sql_select>
+      <![CDATA[
+         with PivotTable
+          as
+          (
+            SELECT PivotT.AdvertisingTypeCd, 
+                   [1]  as 'January', 
+                   [2]  as 'February', 
+                   [3]  as 'March',  
+                   [4]  as 'April',  
+                   [5]  as 'May',  
+                   [6]  as 'June',  
+                   [7]  as 'July',   
+                   [8]  as 'August',   
+                   [9]  as 'September',  
+                   [10] as 'October',  
+                   [11] as 'November',   
+                   [12] as 'December'
+                  ,isnull([1], 0) + isnull([2], 0) + isnull([3], 0) + 
+                   isnull([4], 0) + isnull([5], 0) + isnull([6], 0) + 
+                   isnull([7], 0) + isnull([8], 0) + isnull([9], 0) + 
+                   isnull([10], 0) + isnull([11], 0) + isnull([12], 0) as [YearTotal]
+              FROM
+              (
+              select ap.AdvertisingTypeCd, month(ap.CreationDate) m, count(*) cnt
+                from HR_Applicant ap
+               where year(ap.CreationDate) between isnull(:f_Year1_Filter_0, year(ap.CreationDate))  and isnull(:f_Year2_Filter_0, year(ap.CreationDate))
+               group by ap.AdvertisingTypeCd, month(ap.CreationDate)
+               ) AS SourceTable
+              PIVOT
+              (
+              sum(cnt)
+              FOR m IN ([1], [2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12])
+              ) AS PivotT
+          )
+          select PivotTable.*,
+                 Ads.DisplayOrder
+            from PivotTable
+              inner join HR_AdvertisingType Ads on  PivotTable.AdvertisingTypeCd = Ads.AdvertisingTypeCd
+           union all
+          select 'Total' as AdvertisingTypeCd, 
+                  Sum(January) as 'January', 
+                  Sum(February) as 'February', 
+                  Sum(March) as 'March',  
+                  Sum(April) as 'April',  
+                  Sum(May) as 'May',  
+                  Sum(June) as 'June',  
+                  Sum(July) as 'July',   
+                  Sum(August) as 'August',   
+                  Sum(September) as 'September',  
+                  Sum(October) as 'October',  
+                  Sum(November) as 'November',   
+                  Sum(December) as 'December',
+                  Sum(YearTotal) as [YearTotal],
+                  9999999 as DisplayOrder
+             FROM PivotTable
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="AdvertisingTypeCd"
+                 caption="Advertising"
+                 type="string"
+                 primary_key="true"
+                 row_source_id="HR_AdvertisingType_with_Total_Lookup"
+                 grid_width="250"
+      />
+      <attribute id="DisplayOrder"
+                 caption="DisplayOrder"
+                 sorting="asc"
+                 type="int"
+      />
+      <attribute id="January"
+                 caption="January"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="February"
+                 caption="February"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="March"
+                 caption="March"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="April"
+                 caption="April"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="May"
+                 caption="May"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="June"
+                 caption="June"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="Jule"
+                 caption="Jule"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="August"
+                 caption="August"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="September"
+                 caption="September"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="October"
+                 caption="October"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="November"
+                 caption="November"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="December"
+                 caption="December"
+                 type="int"
+                 grid_width="80"
+      />
+      <attribute id="YearTotal"
+                 caption="&lt;B&gt;Year Total&lt;/B&gt;"
+                 type="int"
+                 grid_width="120"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Reports_Applicants_by_Ads"
+                sl_filter_on_start="true"
+                entity_id="Reports_Applicants_by_Ads">
+    <filter_order>
+      Year1_Filter
+      Year2_Filter
+    </filter_order>
+    <attribute_usages>
+      <attribute_usage id="Year1_Filter"
+                       caption="Year From"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Years5_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Year2_Filter"
+                       caption="Year To"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Years5_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+    <grid_visible_order>
+      AdvertisingTypeCd
+      January
+      February
+      March
+      April
+      May
+      June
+      July
+      August
+      September
+      October
+      November
+      December
+      YearTotal
+    </grid_visible_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                       Activitie by Week-days                        -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Reports_Activities_by_Month_Day"
+          single_caption="Activities by Month/Day"
+          plural_caption="Applicants by Month/Day"
+          filter_enabled="true"
+          operations="f"
+          paging_enabled="true"
+          grid_hint="Please select Year and Month you are interested in; Report will be shown automatically. Day-selection is optional."
+          display_all_records_without_footer="true"
+          entity_class_id="BASE_ENTITY">
+    <sql_select>
+      <![CDATA[
+          with PivotTable
+          as
+          (
+      
+            SELECT ActivityTypeCD, 
+                  [Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday]
+                  ,isnull(Monday, 0) + isnull(Tuesday, 0) + isnull(Wednesday, 0) + isnull(Thursday, 0) + isnull(Friday, 0) + isnull(Saturday, 0) + isnull(Sunday, 0) as [WeekTotal]
+              FROM
+              (
+              select ap.ActivityTypeCD, DATENAme(dw,ap.CreationDate) d, count(*) cnt
+                from HR_Activity ap
+               where year(ap.CreationDate) = :f_Year_Filter_0 
+                 and month(ap.CreationDate) = :f_Month_Filter_0 
+                 and day(ap.CreationDate) between isnull(:f_Day_From_Filter_0, day(ap.CreationDate)) and isnull(:f_Day_To_Filter_0, day(ap.CreationDate))
+               group by ap.ActivityTypeCD, DATENAme(dw,ap.CreationDate)
+               ) AS SourceTable
+              PIVOT
+              (
+              sum(cnt)
+              FOR d IN ([Monday], [Tuesday], [Wednesday], [Thursday], [Friday], [Saturday], [Sunday])
+              ) AS PivotT
+            
+           )
+           select *
+             from PivotTable
+           union all
+          select 'Total' as ActivityTypeCD, 
+                Sum([Monday]) as Monday, Sum([Tuesday]) as Tuesday, Sum([Wednesday]) as Wednesday, Sum([Thursday]) as Thursday, Sum([Friday]) as Friday, Sum([Saturday]) as Saturday, Sum([Sunday]) as Sunday
+                ,Sum(WeekTotal) as [WeekTotal]
+            FROM PivotTable
+            ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="ActivityTypeCD"
+                 caption="Activity"
+                 type="string"
+                 primary_key="true"
+                 row_source_id="HR_ActivityType_withTotal_Lookup"
+                 grid_width="150"
+      />
+      <attribute id="Monday"
+                 caption="Monday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Tuesday"
+                 caption="Tuesday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Wednesday"
+                 caption="Wednesday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Thursday"
+                 caption="Thursday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Friday"
+                 caption="Friday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Saturday"
+                 caption="Saturday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Sunday"
+                 caption="Sunday"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="WeekTotal"
+                 caption="&lt;B&gt;Week Total&lt;/B&gt;"
+                 type="int"
+                 grid_width="120"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Reports_Activities_by_Month_Day"
+                sl_filter_on_start="true"
+                entity_id="Reports_Activities_by_Month_Day">
+    <filter_order>
+      Year_Filter
+      Month_Filter
+      Day_From_Filter
+      Day_To_Filter
+    </filter_order>
+    <attribute_usages>
+      <attribute_usage id="Year_Filter"
+                       caption="Year"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Years5_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Month_Filter"
+                       caption="Month"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Months_Name_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Day_From_Filter"
+                       caption="Day From"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="MonthDay_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Day_To_Filter"
+                       caption="Day To"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="MonthDay_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+    <grid_visible_order>
+      ActivityTypeCD
+      Monday
+      Tuesday
+      Wednesday
+      Thursday
+      Friday
+      Saturday
+      Sunday
+      WeekTotal
+    </grid_visible_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                       Activitie by Users                           -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Reports_Activities_by_Users"
+          single_caption="Activities by Users"
+          plural_caption="Applicants by Users"
+          filter_enabled="true"
+          operations="f"
+          paging_enabled="true"
+          grid_hint="Please select Year and Month you are interested in; Report will be shown automatically. Day-selection is optional."
+          display_all_records_without_footer="true"
+          entity_class_id="BASE_ENTITY">
+    <sql_select>
+      <![CDATA[
+          with PivotTable
+          as
+          (
+          
+            SELECT AssignedToUserId, 
+                   [INTERVIEW_Phone], [INTERVIEW_Office], [Security_Control], [JobOffer_Issue], [INTERVIEW_External]
+                   ,isnull([INTERVIEW_Phone], 0) + isnull([INTERVIEW_Office], 0) + isnull([Security_Control], 0) + isnull([JobOffer_Issue], 0) + isnull([INTERVIEW_External], 0) as [Total]
+              FROM
+              (
+              select ap.AssignedToUserId, ap.ActivityTypeCD d, count(*) cnt
+                from HR_Activity ap
+               where year(ap.CreationDate) = :f_Year_Filter_0 
+                 and month(ap.CreationDate) = :f_Month_Filter_0 
+                 and day(ap.CreationDate) between isnull(:f_Day_From_Filter_0, day(ap.CreationDate)) and isnull(:f_Day_To_Filter_0, day(ap.CreationDate))
+                 and ap.AssignedToUserId is not null
+                group by ap.AssignedToUserId, ap.ActivityTypeCD
+                ) AS SourceTable
+              PIVOT
+              (
+              sum(cnt)
+              FOR d IN ([INTERVIEW_Phone], [INTERVIEW_Office], [Security_Control], [JobOffer_Issue], [INTERVIEW_External])
+              ) AS PivotT
+      
+           )
+           select *
+             from PivotTable
+           union all
+          select -100 as AssignedToUserId, 
+                Sum([INTERVIEW_Phone]) as INTERVIEW_Phone, Sum([INTERVIEW_Office]) as INTERVIEW_Office, Sum([Security_Control]) as Security_Control, Sum([JobOffer_Issue]) as JobOffer_Issue, Sum([INTERVIEW_External]) as INTERVIEW_External
+                ,Sum(Total) as [Total]
+            FROM PivotTable
+            ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="AssignedToUserId"
+                 caption="Activity Owner"
+                 type="int"
+                 primary_key="true"
+                 row_source_id="User_with_Total_Lookup"
+                 grid_width="150"
+      />
+      <attribute id="INTERVIEW_Phone"
+                 caption="Interview Phone"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="INTERVIEW_Office"
+                 caption="Interview Office"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Security_Control"
+                 caption="Security Control"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="JobOffer_Issue"
+                 caption="Job Offer"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="INTERVIEW_External"
+                 caption="External Interview"
+                 type="int"
+                 grid_width="120"
+      />
+      <attribute id="Total"
+                 caption="&lt;B&gt;Total&lt;/B&gt;"
+                 type="int"
+                 grid_width="120"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Reports_Activities_by_Users"
+                sl_filter_on_start="true"
+                entity_id="Reports_Activities_by_Users">
+    <filter_order>
+      Year_Filter
+      Month_Filter
+      Day_From_Filter
+      Day_To_Filter
+    </filter_order>
+    <attribute_usages>
+      <attribute_usage id="Year_Filter"
+                       caption="Year"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Years5_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Month_Filter"
+                       caption="Month"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="Months_Name_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Day_From_Filter"
+                       caption="Day From"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="MonthDay_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+      <attribute_usage id="Day_To_Filter"
+                       caption="Day To"
+                       type="int"
+                       storable="false"
+                       filter_operation="Equal"
+                       enabled_filter_operations="Equal"
+                       row_source_id="MonthDay_Lookup"
+                       autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              1=1
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+    <grid_visible_order>
+      AssignedToUserId
+      INTERVIEW_Phone
+      INTERVIEW_Office
+      INTERVIEW_External
+      Security_Control
+      JobOffer_Issue
+      Total
+    </grid_visible_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+</fw:entities>

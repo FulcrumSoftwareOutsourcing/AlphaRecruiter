@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="ImageLibraryCategory"
+            entity_usage_id="ImageLibraryCategoryPlainList"
+            rows_height="auto, 550"
+            rows_count="2" >
+    <sl_panel id="pnDefault"
+              row="0"
+              text="General" />
+    <sl_tab_control id="tcComponentType" row="1">
+      <sl_tab id="tImages"
+                 text="Images">
+        <sl_frame id="frImages"
+                  text="Images"
+                  frame_class_id="CxGridFrame"
+                  entity_usage_id="Image_Child_Of_Category" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</sl_frames>

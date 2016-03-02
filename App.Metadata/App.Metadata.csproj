@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F753A870-31B2-4A2D-8CE7-A64353D0D7BA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>App.Metadata</RootNamespace>
+    <AssemblyName>App.Metadata</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CxSlMetadata.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Metadata\Framework.Metadata.csproj">
+      <Project>{67D8B794-8D8D-413B-9F87-4C370D642671}</Project>
+      <Name>Framework.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Remote\Framework.Remote.csproj">
+      <Project>{0819E5BA-7B06-4622-9410-E1728B8E9569}</Project>
+      <Name>Framework.Remote</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Entity\Framework.Entity.csproj">
+      <Project>{EBC7FF13-387F-4C86-A72F-B970EBB0CD93}</Project>
+      <Name>Framework.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ConfigSl.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MetadataProject.xml" />
+    <EmbeddedResource Include="Security.xml" />
+    <EmbeddedResource Include="FramesSl.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Portal.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\Role.xml" />
+    <EmbeddedResource Include="Security\User.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Assemblies.xml" />
+    <EmbeddedResource Include="Classes.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\Workspace.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Commands.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\FramesSl.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\UserRole.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\EntityPermission.xml" />
+    <EmbeddedResource Include="Security\ObjectPermission.xml" />
+    <EmbeddedResource Include="Security\SubsystemPermission.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\RowSources.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\Images.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lookups\BooleanLookup.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Security\RoleWorkspace.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationDictionary.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LocalizationValue.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Languages.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SlSkins.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageLibrary\ImageLibrary.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageLibrary\ImageLibraryCategory.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="ImageLibrary\ImageLibraryCategoryLayout.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SlDashboads.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Lookups\YearMonthLookup.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

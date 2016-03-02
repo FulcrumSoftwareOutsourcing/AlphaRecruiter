@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <include file="Assemblies.xml" />
+  <include file="Classes.xml" />
+  <include file="Commands.xml" />
+  <include file="Images.xml" />
+  <include file="IconSet.xml" />  
+  <include file="IconSet32.xml" />
+  <include file="RowSources.xml" />
+
+  <include file="Applicant\Applicant.xml" />
+  <include file="Applicant\Applicant_New.xml" />
+  <include file="Applicant\Activity.xml" />
+  <include file="Applicant\Attachment.xml" />
+  <include file="Applicant\WorkExpirience.xml" />
+  <include file="Applicant\FramesSl.xml" />
+
+  <include file="Marketing\Reports.xml" />
+
+  <include file="Settings\Speciality.xml" />
+  <include file="Settings\AdvertisingType.xml" />
+  <include file="Settings\ActivityType.xml" />
+  <include file="Settings\AttachmentType.xml" />
+  <include file="Settings\Skill.xml" />
+  <include file="Settings\FramesSl.xml" />
+
+  <include file="Vacancy\Vacancy.xml" />
+  <include file="Vacancy\ApplicantVacancy.xml" />
+  <include file="Vacancy\FramesSl.xml" />
+
+  <include file="Portal.xml" />
+  <include file="Dashboard.xml" />
+</files>

@@ -1,0 +1,256 @@
+﻿
+ 
+
+.DataGrid {
+    border:none;
+    border-collapse: collapse;
+    overflow:auto;
+    width: 100%;
+    display:grid;
+    table-layout:fixed;
+}
+
+.DataGrid tr {
+    background-color: transparent;
+     height:25px;
+}
+
+.DataGrid td
+ {
+     border-left: 1px solid #c9caca; 
+     overflow:hidden;
+     
+}
+.DataGrid td:first-child 
+{
+     border-left: none; 
+    
+}
+
+
+
+
+.DataColHeader {
+    
+background: rgb(251,251,251); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(251,251,251,1) 0%, rgba(216,220,225,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(251,251,251,1)), color-stop(100%,rgba(216,220,225,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(251,251,251,1) 0%,rgba(216,220,225,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(251,251,251,1) 0%,rgba(216,220,225,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(251,251,251,1) 0%,rgba(216,220,225,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(251,251,251,1) 0%,rgba(216,220,225,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfbfb', endColorstr='#d8dce1',GradientType=0 ); /* IE6-9 */
+padding-right: 0 !important;
+ 
+}
+
+.DataColHeader span
+{
+     
+}
+
+.DataColHeader svg path
+{
+     fill:#706e6e
+}
+
+.DataColHeader:hover {
+  
+background: rgb(251,252,251); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(251,252,251,1) 0%, rgba(169,202,230,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(251,252,251,1)), color-stop(100%,rgba(169,202,230,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(251,252,251,1) 0%,rgba(169,202,230,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(251,252,251,1) 0%,rgba(169,202,230,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(251,252,251,1) 0%,rgba(169,202,230,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(251,252,251,1) 0%,rgba(169,202,230,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fbfcfb', endColorstr='#a9cae6',GradientType=0 ); /* IE6-9 */
+
+    
+}
+
+.DataColHeader:first-child {
+    height: 26px;
+   
+    
+}
+
+
+.NoDataInGrid {
+    background-color: transparent !important;
+}
+
+.NoDataInGrid:hover {
+    background-color: transparent !important;
+}
+
+.NoDataInGrid td div {
+     margin: auto;
+    width: 20%;
+    font-style:italic;
+    
+    padding:8px 0 8px 0;
+}
+
+.DataGrid tr:hover {
+    background-color:#D1E2ED ;
+    
+}
+
+/*.DataGrid tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+.DataGrid tr:nth-child(even):hover {
+    background-color:aliceblue;
+}*/
+
+.DataGrid tr td {
+    padding:0 5px 0 5px;
+}
+
+.DataGrid .SelectedRow 
+{
+    
+    background-color : #B1CEE6 !important;
+}
+
+.DataGrid .AlterRow {
+    background-color:#f4f2e8
+}
+
+.CursorColumn {
+    width: 24px !important;
+    max-width: 22px;
+}
+
+.GridCursor {
+    width: 22px !important;
+    height: 24px !important;
+     display: inline-block;
+     position: relative;
+    
+}
+
+.GridCursor svg {
+   position: absolute;
+   top: 5px;
+   left: 2px;
+   fill:black;
+   stroke: black;
+  
+}
+
+
+
+
+
+
+.ColResizeGrip 
+{
+    width: 5px;
+    background-color:transparent;
+    height: 25px;
+    cursor:e-resize;
+    position:absolute;
+    top: 0;
+}
+
+.CursorHeaderTemplate {
+
+}
+
+.CursorHeaderTemplate td{
+    max-width: 24px;
+    min-width : 24px;
+    
+}
+
+.CursorHeaderTemplate div{
+    width: 24px;
+    height: 24px;
+    position: relative;
+}
+
+.CursorHeaderTemplate img{
+
+    width: 20px;
+    height : 20px;
+    position: absolute;
+   
+    opacity:0.4;
+   
+   
+}
+
+.CursorHeaderTemplate:hover img{
+
+    opacity:0.6;
+}
+
+.GridColMenu {
+    position: absolute;
+    top: 7px;
+    left: 7px;
+    padding-top: 10px;
+    background-color: white;
+    box-shadow: 0 1px 15px rgba(0,0,0,.4);
+    display: none;
+}
+
+/*.GridCursor img {
+     width: 20px;
+    height : 20px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    opacity:0.4;
+    display: none;
+}*/
+
+.DataGrid tr:hover td   img[c-type="round-img"] {
+    
+    opacity:0.4;
+    
+}
+
+.GridCursor img[c-type="round-img"] {
+     width: 21px;
+    height : 21px;
+    position: absolute;
+    left: -1px;
+    top: 3px;
+    opacity:0;
+    
+}
+
+.GridCursor img[c-type="checked-hover-img"] {
+     width: 12px;
+    height : 12px;  
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    opacity:0;
+    
+}
+
+.GridCursor img[c-type="row-sel-img"] {
+     width: 12px;
+    height : 12px;  
+    position: absolute;
+    left: 4px;
+    top: 8px;
+    opacity:0.8;
+    display: none;
+}
+
+.GridCursor:hover img {
+     
+    opacity:0.4;
+    
+}
+
+/*.GridCursor:hover img[c-type="round-img"]  {
+    
+    opacity:0.7;
+    
+}*/

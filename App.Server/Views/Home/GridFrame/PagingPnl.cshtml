@@ -1,0 +1,85 @@
+﻿
+@{
+    Layout = null;
+}
+
+<script type="text/html" id="GridFrame/PagingPnl">
+    <table class="PagingPnlRoot" cellpadding="0" cellspacing="0" border="0" id="%id%">
+        <tr>
+            <td>
+
+                <span style="margin-left: 15px; margin-right:10px" ctrl-type="rows_pp_lbl"></span>
+
+                <div class="RsPaging" ctrl-type="rs-paging">
+                    <span ctrl-type="p-sel-text"></span>
+                    &nbsp;
+                    <svg width="7" height="7">
+                        <path d="M0 0 l7 0 L3.5 5 z" />
+                    </svg>
+
+                    <div class="RsPagingPopup unselectable" ctrl-type="paging-popup" style="display: none;">
+                        <div class="RsPagingItem">
+                            <span ctrl-type="p-item-text">25</span>
+                        </div>
+                        <div class="RsPagingItem">
+                            <span ctrl-type="p-item-text">50</span>
+                        </div>
+                        <div class="RsPagingItem">
+                            <span ctrl-type="p-item-text">100</span>
+                        </div>
+                        <div class="RsPagingItem">
+                            <span ctrl-type="p-item-text">200</span>
+                        </div>
+                        <div class="RsPagingItem" c-type="item_500">
+                            <span ctrl-type="p-item-text">500</span>
+                        </div>
+                    </div>
+                </div>
+
+            </td>
+
+
+            <td width="100%" >
+            <div  class="PagingPnl" style="text-align:center; height: 28px;">
+                &nbsp;&nbsp;&nbsp;
+               
+                <div class="PagingBtn"  ctrl-type="first">
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_first_page.png")" />
+                </div>
+                <div class="PagingBtn" ctrl-type="back" >
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_back.png")" />
+                </div>
+                &nbsp;&nbsp;&nbsp;
+                <span ctrl-type="pages_info"></span>
+                
+                <div class="PagingBtn" ctrl-type="next">
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_next.png")" />
+                </div>
+                <div class="PagingBtn" ctrl-type="last">
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_last_page.png")" />
+                </div>
+
+                
+                
+               
+               
+            </div>
+</td>
+            <td>
+                <div id="%id_rp%" class="PangRightPart">
+                    <span ctrl-type="total_rec_lbl"></span>
+                </div>
+            </td>
+            <td>
+                <div class="CmdBtn  " id="%exp_id%"  >
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/export_to_excel_16x16.png")"  />
+                </div> 
+                &nbsp;
+                &nbsp;
+            </td>
+
+        </tr>
+    </table>
+
+    
+    </script>

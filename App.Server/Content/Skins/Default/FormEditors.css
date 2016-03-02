@@ -1,0 +1,162 @@
+﻿
+
+.Form_StringEditor_View
+{
+     border: 1px solid #6a7d8e;
+     height:22px;
+    padding: 0 5px 0 5px;
+   width: 100%;
+   font-size: 1em;
+   margin: 0;
+   background-color:transparent;
+}
+
+.Form_StringEditor_Edit    
+{
+    border: 1px solid #6a7d8e;
+     height:22px;
+    padding: 0 5px 0 5px;
+   width: 100%;
+   font-size: 1em;
+   margin: 0;
+   
+   
+}
+
+.Form_RowSource_Edit {
+     width: 100%; 
+    position: relative;
+     border-radius:4px;
+     padding: 0 5px 0 5px;
+     border: 1px solid #6a7d8e;
+     height:22px;
+    line-height: 22px;
+    
+    
+background: #ffffff; /* Old browsers */
+background: -moz-linear-gradient(top,  #ffffff 0%, #cfd5da 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#cfd5da)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #ffffff 0%,#cfd5da 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #ffffff 0%,#cfd5da 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #ffffff 0%,#cfd5da 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #ffffff 0%,#cfd5da 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#cfd5da',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+.RsImageHolder {
+    width: 22px;
+    height: 16px;
+    position: relative;
+    display:inline-block;
+}
+
+.RsImageHolder img
+{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 3px;
+    left: 4px;
+}
+
+.Form_RowSource_Edit svg
+{
+   float:right; 
+   position:relative;
+   margin: 10px 5px 0 0;
+}
+
+.Form_RowSource_Edit span
+{
+    
+    display: inline-block;
+ 
+       
+}
+
+.Form_RowSource_View {
+  
+
+
+
+
+
+     width: 100%; 
+    position: relative;
+     
+     padding: 0 5px 0 5px;
+     border: 1px solid #6a7d8e;
+     height:22px;
+    line-height: 22px;
+    
+    
+
+
+}
+
+
+
+
+.Form_MemoEditor_Edit
+{
+    font-size: 1em;
+    width: 100%;
+    font-family: inherit;
+     border: 1px solid #6a7d8e;
+     margin: 0;
+     resize: none;
+        overflow:auto;
+        padding: 0 5px 0 5px;
+}
+
+.Form_MemoEditor_View
+{
+    font-size: 1em;
+    width: 100%;
+    font-family: inherit;
+     border: 1px solid #6a7d8e;
+     margin: 0;
+    
+     resize: none;
+     background-color: transparent;
+     overflow:auto;
+     padding: 0 5px 0 5px;
+}
+
+.Form_BoolEditor_Edit 
+{
+    position: relative;
+    height: 20px;
+    padding: 0 5px 0 5px;
+}
+
+
+
+.Form_BoolEditor_Edit input[type=checkbox]
+{
+    position: absolute;
+    top: 3px;
+    left: 0;
+    padding: 0 5px 0 5px;
+}
+
+.Thumb {
+    vertical-align:middle;
+     }
+
+.Thumb img {
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.Thumb a {
+    margin-top: 50%;
+    margin-bottom: 50%;
+}
+
+.Thumb div[t=plh] {
+  height:24px;
+}
+

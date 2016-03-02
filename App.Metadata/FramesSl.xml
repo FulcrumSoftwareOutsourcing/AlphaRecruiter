@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+
+  <sl_frame id="DefaultDetailsLayout" rows_height="auto">
+    <sl_panel id="pnDefault" text="General"  />
+  </sl_frame>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</sl_frames>

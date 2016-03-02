@@ -1,0 +1,1030 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="ApplicantView"
+           text="Open Applicant"
+           entity_usage_id="HR_Applicant"
+           is_entity_instance_required="true"
+           target_command_id="View"
+           image_id="Command_View">
+  </command>
+
+  <command id="Client_View"
+       />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Applicant"
+          single_caption="Applicant"
+          plural_caption="Applicants"
+          operations="fvu"
+          image_id="Applicants"
+          filter_enabled="true"
+          entity_class_id="SlEntity"
+          sl_multiple_grid_edit="true"
+          multiple_grid_selection="true"
+          in_security="true"
+          db_object="v_HR_Applicant_Temp_dbObj"
+          _record_count_limit="true"
+          paging_enabled="true"
+          _display_all_records_without_footer="true"
+          >
+    <sql_select>
+      <![CDATA[
+        select * from  v_HR_Applicant
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="ApplicantId"
+                 caption="Applicant Id"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 control_modifiers="U"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=@sequence"
+      />
+
+<!-- *******************    pnPersonalInfo  --> 
+      <attribute id="LastName"
+                 display_name="true"
+                 caption="Last Name"
+                 type="string"
+                 max_length="50"
+                 grid_width="150"
+                 nullable="false"
+                 sl_control_placement="pnPersonalInfo"
+                 js_control_css_class="HighlightedAttributeStyle"
+      />
+      <attribute id="FirstName"
+                 caption="First Name"
+                 type="string"
+                 max_length="50"
+                 grid_width="150"
+                 nullable="false"
+                 sl_control_placement="pnPersonalInfo"
+                 js_control_css_class="HighlightedAttributeStyle"
+                 
+      />
+      <attribute id="MiddleName"
+                 caption="Middle Name"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sl_control_placement="pnPersonalInfo"
+                 filter_advanced="true"
+      />
+      <attribute id="Phone"
+                 caption="Phone"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_placement="pnPersonalInfo"
+                 filter_advanced="true"
+      />
+      <attribute id="Email"
+                 caption="Email"
+                 type="string"
+                 grid_width="250"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_placement="pnPersonalInfo"
+      />
+
+      <attribute id="BirthDate"
+                 caption="Birth Date"
+                 type="date"
+                 storable="true"
+                 sl_control_placement="pnPersonalInfo"
+                 filter_advanced="true"
+     />
+
+
+<!-- *******************    pnResume  -->
+      
+      <attribute id="EmploymentStatusCD"
+                caption="Status"
+                type="string"
+                max_length="50"
+                read_only="true" 
+                nullable="false"
+                row_source_id="HR_Applicant_EmploymentStatus_Lookup"
+                default="OK"
+                sl_control_placement="pnResume"
+      />
+
+
+      <attribute id="SpecialityCD"
+                 caption="Speciality"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_Speciality_Lookup"
+                sl_control_placement="pnResume"
+                 grid_width="200"
+                 _autofilter="true" 
+      />
+      <attribute id="Location"
+                caption="Location"
+                type="string"
+                max_length="50"
+                nullable="true"
+                sl_control_placement="pnResume"
+      />
+
+
+      <attribute id="SalaryExpectationsUSD"
+                 caption="Min. Salary"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <attribute id="Position"
+                 caption="Position"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <attribute id="TotalWorkExperience"
+                 caption="Work Experience"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <!-- *******************    Resume file data  -->
+      <attribute id="FileContent"
+                 caption="Resume"
+                 type="file"
+                 storable="false"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_width="3"
+                 blob_file_name_attribute_id="FileName"
+                 blob_file_size_attribute_id="FileSize"
+                 sl_control_placement="pnResume"
+                
+      />
+        <attribute id="FileContentState"
+                   type="string"
+                   visible="false"
+                   storable="false"
+                   read_only="true"
+                   filterable="false"
+        />
+
+        <attribute id="FileName"
+                    caption="File"
+                    type="string"
+                    storable="false"
+                    nullable="true"
+                    read_only="true"
+        />
+        <attribute id="FileSize"
+                   caption="Length"
+                   type="int"
+                   nullable="true"
+                   storable="false"
+                   read_only="true"
+                   />
+
+      <!-- Photo -->
+      <attribute id="PhotoFileContent"
+                 caption="Photo"
+                 type="photo"
+                 storable="false"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_width="3"
+                 blob_file_name_attribute_id="PhotoFileName"
+                 blob_file_size_attribute_id="PhotoFileSize"
+                 sl_control_placement="pnResume"
+                 thumbnail_width="80"
+                 thumbnail_height="80"
+      />
+      <attribute id="PhotoFileContentState"
+                 type="string"
+                 visible="false"
+                 storable="false"
+                 read_only="true"
+                 filterable="false"
+        />
+
+      <attribute id="PhotoFileName"
+                  caption="File"
+                  type="string"
+                  storable="false"
+                  nullable="true"
+                  read_only="true"
+        />
+      <attribute id="PhotoFileSize"
+                 caption="Length"
+                 type="int"
+                 nullable="true"
+                 storable="false"
+                 read_only="true"
+                 />
+
+      <!-- *******************   Marketing -->
+      
+      <attribute  id="AdvertisingTypeCd"
+                  caption="Advertising Source"
+                  type="string"
+                  row_source_id="HR_AdvertisingType_Lookup"
+                  max_length="50"
+                  nullable="true"
+                  sl_control_placement="pnMarketing"
+      />
+      <attribute id="RecruiterName"
+                 caption="Recruiter Name"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 filter_advanced="true"
+                 visible="true"
+                 editable="true"
+                 sl_control_placement="pnMarketing"
+      />
+      
+
+<!-- *******************   pnEducation -->
+      <attribute id="Edu_University_Name"
+                 caption="University"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_University_Speciality"
+                 caption="Field of Study"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_University_FinishYear"
+                 caption="Graduation Year"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_EnglishLevelCD"
+                 caption="English Level"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_ForeignLanguage_Level_Lookup"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+                 />
+      <attribute id="Edu_Degree"
+                 caption="Degree"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_Education_Degree_Lookup"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+                 />
+
+      <attribute id="PassedInterviewTypeCD"
+                 caption="Passed Interview"
+                 type="string"
+                 visible="true"
+                 row_source_id="HR_PassedInterviewType_Lookup"
+                 storable="false"
+                 read_only="true"
+                 filter_advanced="true"
+      />      
+      
+      <attribute id="CurrentActivityTypeCD"
+               caption="Current Activity"
+               type="string"
+               visible="true"
+               row_source_id="HR_ActivityType_Lookup"
+               storable="false"
+               read_only="true"
+               grid_width="200"     
+               filter_advanced="true"                 
+       />
+
+      <attribute id="CurrentActivityResultCD"
+               caption="Result"
+               type="string"
+               visible="true"
+               row_source_id="HR_ActivityResult_Lookup"
+               storable="false"
+               read_only="true"
+               filter_advanced="true"
+               grid_width="90"
+       />
+
+      <attribute id="CurrentActivityDate"
+                 caption="Current Activity Date"
+                 type="datetime"
+                 storable="false"
+                 read_only="true"
+                 sorting="asc"
+                 grid_width="140"     
+                 filter_advanced="true"                 
+     />
+
+      <attribute id="IsCurrentActivityCompleted"
+              caption="Clompleted"
+              type="boolean"
+                 
+              filterable="true"
+              storable="false"
+              row_source_id="Boolean_Lookup"
+                filter_advanced="true"                 
+      />
+      <attribute id="CurrentActivitySubject"
+               caption="Activity Description"
+               type="string"
+               visible="true"
+               storable="false"
+               read_only="true"
+       />
+
+      <attribute id="CurrentActivityUserId"
+                 caption="Activity Assigned To"
+                 storable="false"
+                 type="int"
+                 visible="false"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 filter_advanced="true"
+      />
+      <!-- *******************   Log data -->      
+
+      <attribute id="CreationDate"
+                 caption="Creation Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 default="=@NOW"
+                 read_only="true"
+                 sl_control_placement="pnHistory"
+                 filter_advanced="true"
+      />
+      <attribute id="CreatedByUserId"
+                 caption="Created By"
+                 type="int"
+                 max_length="10"
+                 default="=Application$UserId"
+                 visible="false"
+                 editable="true"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 sl_control_placement="pnHistory"
+                 filter_advanced="true"
+      />
+      <attribute id="ModificationDate"
+                 visible="true"
+                 caption="Modification Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 default="=@NOW"
+                 read_only="true"
+                 sl_control_placement="pnHistory"
+                 filter_advanced="true"
+      />
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By"
+                 type="int"
+                 max_length="10"
+                 default="=Application$UserId"
+                 visible="false"
+                 editable="true"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 sl_control_placement="pnHistory"
+                 filter_advanced="true"
+      />
+<!-- *******************  CALCULATED columns -->
+      <attribute id="FullName"
+                 caption="Full Name"
+                 type="string"
+                 storable="false"
+                 filterable="false"
+                 read_only="true"
+                 visible="false"
+      />
+
+      
+      <attribute id="AgeYears"
+                 caption="Age"
+                 type="int"
+                 storable="false"
+                 read_only="true"
+                 sl_control_placement="pnPersonalInfo"
+                 filter_advanced="true"
+                 local_expression="SQL.select DATEDIFF(year, :BirthDate, GETDATE())"
+     />
+      
+
+      <attribute id="OwnerId"
+                 caption="Owner"
+                 type="int"
+                 max_length="10"
+                 visible="false"
+                 storable="true"
+                 row_source_id="User_Lookup"
+                 default="=Application$UserId"                 
+	  />
+    </attributes>
+    <grid_visible_order>
+      EmploymentStatusCD
+      LastName
+      FirstName
+      SpecialityCD
+      CurrentActivityTypeCD
+      CurrentActivityDate
+      IsCurrentActivityCompleted
+      Email
+      Phone
+      FileContent
+      PhotoFileContent
+    </grid_visible_order>
+    <commands>
+      <command id="View"
+               entity_usage_id="HR_Applicant"
+               text="Open Applicant"               
+      />
+      <command id="Edit"
+               entity_usage_id="HR_Applicant_Edit"
+               text="Edit Details"
+      />
+      <command id="New"
+               entity_usage_id="HR_Applicant_New"
+               text="Add New Applicant"
+      />    
+    </commands>
+      <command_order>
+      View,
+      Edit
+    </command_order>
+  
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant"
+                entity_id="HR_Applicant"
+                sl_edit_frame_id="HR_Applicant_Frame"
+                sl_filter_on_start="true">
+    <edit_order>
+      LastName
+      FirstName
+      MiddleName
+      BirthDate
+      Phone
+      Email
+      AgeYears
+
+
+      EmploymentStatusCD
+      SpecialityCD
+      Location
+      SalaryExpectationsUSD
+      Position
+      TotalWorkExperience
+
+      FileContent
+      PhotoFileContent
+
+      Edu_University_Name
+      Edu_University_Speciality
+      Edu_University_FinishYear
+      Edu_EnglishLevelCD
+      Edu_Degree
+
+      InterviewTextResults
+
+      FileName
+      FileSize
+
+      CreationDate
+      CreatedByUserId
+      ModificationDate
+      ModifiedByUserId
+
+      AdvertisingTypeCd
+      RecruiterName
+
+    </edit_order>
+    <!-- 
+        SmartApplicant_Filter
+      SpecialityCD
+
+      LastCompletedActivityTypeCD
+      NextOpenActivityTypeCD_Filter
+      LastCompletedActivityDate
+      NextOpenActivityDate
+
+      SalaryExpectationsUSD
+      LastInterviewAverageResult
+      PayAttention
+      RecruiterName
+      EmploymentStatusCD  
+  
+  -->
+  
+  </entity_usage>
+
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_Search"
+          plural_caption="Search Applicants by Speciality"                
+                entity_id="HR_Applicant"
+                 inherited_entity_usage_id="HR_Applicant">
+    <filter_order>
+      SpecialityCD
+      Location
+      Skill_1
+      Skill_2
+      Vacancy_Filter
+      Position
+      Email
+      AgeYears
+
+      LastName
+      FirstName
+
+      Phone
+
+      CurrentActivityTypeCD
+      CurrentActivityDate
+      _IsCurrentActivityCompleted
+      _CurrentActivityUserId
+      PassedInterviewTypeCD
+      _RecruiterName
+      _AdvertisingTypeCd
+      _Edu_University_Name
+    </filter_order>
+
+    <grid_visible_order>
+      LastName
+      FirstName
+      SpecialityCD
+      CurrentActivityDate
+      CurrentActivityTypeCD
+      CurrentActivityResultCD
+      FileContent
+      PhotoFileContent
+    </grid_visible_order>
+
+    <!-- where_clause>
+      <![CDATA[
+        EmploymentStatusCd='OK' 
+      ]]>
+    </where_clause -->
+
+
+    <attribute_usages>
+      <attribute_usage id="LastName"
+                        type="hyperlink"
+                        hyperlink_command_id="View"/>
+
+      <!-- *******************   FILTERS columns -->
+
+      <attribute_usage id="Skill_1"
+                 caption="Skill 1"
+                 type="int"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 row_source_id="HR_SkillWithArea_Lookup"
+                 visible="false">
+        <filter_condition>
+          <![CDATA[
+            ApplicantId in ( select ApplicantId
+                               from HR_ApplicantSkill
+                              where SkillId = :f_Skill_1_0)
+          ]]>
+        </filter_condition>
+      </attribute_usage>
+
+      <attribute_usage id="Skill_2"
+                 caption="Skill 2"
+                 type="int"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 row_source_id="HR_SkillWithArea_Lookup"
+                 visible="false">
+        <filter_condition>
+          <![CDATA[
+            ApplicantId in ( select ApplicantId
+                               from HR_ApplicantSkill
+                              where SkillId = :f_Skill_2_0)
+          ]]>
+        </filter_condition>
+      </attribute_usage>
+
+
+      <attribute_usage id="Skill_4"
+                 caption="Skill 4"
+                 type="int"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 row_source_id="HR_SkillWithArea_Lookup"
+                 visible="false">
+        <filter_condition>
+          <![CDATA[
+            ApplicantId in ( select ApplicantId
+                               from HR_ApplicantSkill
+                              where SkillId = :f_Skill_4_0)
+          ]]>
+        </filter_condition>
+      </attribute_usage>
+
+      <attribute_usage id="SmartApplicant_Filter"
+               caption="Custom Applicant Search"
+               type="string"
+               storable="false"
+               filter_operation="Like"
+               enabled_filter_operations="Like"
+               visible="false">
+        <filter_condition>
+          (
+          ApplicantId IN (SELECT ApplicantId FROM dbo.udf_SmartApplicantFilter(:f_SmartApplicant_Filter_0))
+          )
+        </filter_condition>
+      </attribute_usage>
+
+      <attribute_usage id="NextOpenActivityTypeCD_Filter"
+                 caption="Open Activity"
+                 type="string"
+                 visible="false"
+                 row_source_id="HR_ActivityType_Lookup"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 filter_advanced="true">
+        <filter_condition>
+          NextOpenActivityTypeCD = :f_NextOpenActivityTypeCD_Filter_0
+        </filter_condition>
+      </attribute_usage>
+
+    </attribute_usages>
+    
+  </entity_usage>
+
+
+    <entity_usage id="HR_Applicant_SearchAndAdd"
+                entity_id="HR_Applicant"
+                sl_edit_frame_id="HR_Applicant_Frame"
+                sl_filter_on_start="true">
+
+    <filter_order>
+      LastName
+      FirstName
+      MiddleName
+      BirthDate
+      Email
+      Phone
+      Location
+      AgeYears
+    </filter_order>
+    <grid_visible_order>
+      LastName
+      FirstName
+      Age
+      Email
+      Phone
+      EmploymentStatusCD
+      SpecialityCD
+      CurrentActivityTypeCD
+      FileContent
+      PhotoFileContent
+    </grid_visible_order>
+    <commands>
+      <command id="New"
+               text="New Applicant"
+               entity_usage_id="HR_Applicant_New"
+      />      
+      <command id="Edit"
+               visible="false"
+      />
+
+      <command id="Client_View"
+         dynamic_entity_usage_attr_id="HR_APPLICANT"
+         dynamic_command_attr_id="View"
+         is_entity_instance_required="true"
+               visible="false"/>
+      
+    </commands>
+
+      <attribute_usages>
+        <attribute_usage id="LastName"
+                         type="hyperlink"
+                         hyperlink_command_id="View"/>       
+      </attribute_usages>
+
+      <command_order>
+        New,
+        View,
+        Client_View
+      </command_order>
+  </entity_usage>
+
+
+
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_Employed"
+                entity_id="HR_Applicant"
+          plural_caption="Employeed Applicants"                
+                 inherited_entity_usage_id="HR_Applicant_Search"
+                   >
+    <filter_order>
+      SpecialityCD
+      Location
+      LastName
+      FirstName
+    </filter_order>
+
+    <where_clause>
+      <![CDATA[
+        EmploymentStatusCd='Employed' 
+      ]]>
+    </where_clause>
+  </entity_usage>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_BlackList"
+                entity_id="HR_Applicant"
+          plural_caption="Black List - Applicants"                
+                
+                 inherited_entity_usage_id="HR_Applicant_Search">
+    <where_clause>
+      <![CDATA[
+        EmploymentStatusCd='BLACK_LIST' 
+      ]]>
+    </where_clause>
+  </entity_usage>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_Deleted"
+                entity_id="HR_Applicant"
+          plural_caption="Deleted Applicants"                
+                 inherited_entity_usage_id="HR_Applicant_Search">
+    <where_clause>
+      <![CDATA[
+        EmploymentStatusCd='DELETED' 
+      ]]>
+    </where_clause>
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_LindedTo_Vacancy"
+                entity_id="HR_Applicant"
+                plural_caption="Search Applicants by linked Vacancy"                
+                inherited_entity_usage_id="HR_Applicant_Search">
+    <filter_order>
+      Vacancy_Filter
+    </filter_order>
+    <attribute_usages>
+      <attribute_usage id="Vacancy_Filter"
+                 caption="Vacancy Filter"
+                 type="int"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 row_source_id="HR_Vacancy_Lookup"
+                 autofilter="true">
+        <filter_condition>
+          <![CDATA[
+              ApplicantId in ( select ApplicantId
+                                 from HR_ApplicantVacancy
+                                where VacancyId = :f_Vacancy_Filter_0)
+            ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+
+
+  </entity_usage>
+
+
+
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_Edit"
+                sl_edit_frame_id="HR_Applicant_Edit_Frame"                
+                db_object="v_HR_Applicant_Temp_dbObj"
+                entity_id="HR_Applicant">
+    <sql_select>
+      <![CDATA[
+        select * from  v_HR_Applicant_Temp_dbObj
+      ]]>
+    </sql_select>
+    <sql_update>
+      <![CDATA[
+        UPDATE v_HR_Applicant
+           SET LASTNAME = :LASTNAME,
+               FIRSTNAME = :FIRSTNAME,
+               MIDDLENAME = :MIDDLENAME,
+               PHONE = :PHONE,
+               EMAIL = :EMAIL,
+               BIRTHDATE = :BIRTHDATE,
+               EMPLOYMENTSTATUSCD = :EMPLOYMENTSTATUSCD,
+               SPECIALITYCD = :SPECIALITYCD,
+               LOCATION = :LOCATION,
+               SALARYEXPECTATIONSUSD = :SALARYEXPECTATIONSUSD,
+               POSITION = :POSITION,
+               TOTALWORKEXPERIENCE = :TOTALWORKEXPERIENCE,
+               ADVERTISINGTYPECD = :ADVERTISINGTYPECD,
+               RECRUITERNAME = :RECRUITERNAME,
+               EDU_UNIVERSITY_NAME = :EDU_UNIVERSITY_NAME,
+               EDU_UNIVERSITY_SPECIALITY = :EDU_UNIVERSITY_SPECIALITY,
+               EDU_UNIVERSITY_FINISHYEAR = :EDU_UNIVERSITY_FINISHYEAR,
+               EDU_ENGLISHLEVELCD = :EDU_ENGLISHLEVELCD,
+               EDU_DEGREE = :EDU_DEGREE,
+               CREATIONDATE = :CREATIONDATE,
+               CREATEDBYUSERID = :CREATEDBYUSERID,
+               MODIFICATIONDATE = :MODIFICATIONDATE,
+               MODIFIEDBYUSERID = :MODIFIEDBYUSERID,
+               OWNERID = :OWNERID
+         WHERE APPLICANTID = :APPLICANTID      
+         
+         
+        begin
+            declare @LastPhotoId     int
+            declare @AttachmentId    int,
+                    @FileSizeCURRENT bigint,
+                    @FileNameCURRENT nvarchar(150)
+            
+            select @LastPhotoId = LastPhotoId,
+                   @FileSizeCURRENT = PhotoFileSize,
+                   @FileNameCURRENT = PhotoFileName
+              from v_HR_Applicant
+             where ApplicantId = :ApplicantId
+            
+            --//----------- update photo
+            if (@LastPhotoId is not null and :PhotoFileContent is not null and :PHOTOFILECONTENTSTATE = 'BLOB_PRESENT_IN_DB')
+              begin
+                update HR_Attachment
+                   set FileDate         = :CreationDate,
+                       FileName         = :PhotoFileName,
+                       FileContent      = :PhotoFileContent,
+                       FileSize         = :PhotoFileSize,
+                       FileContentState = :PhotoFileContentState,
+                       ModificationDate = :ModificationDate,
+                       ModifiedByUserId = :ModifiedByUserId
+                 where AttachmentId = @LastPhotoId
+              end
+            --//----------- delete photo
+            else if (@LastPhotoId is not null and :PhotoFileContent is null)
+              begin
+                if (isnull(:PhotoFileSize, 0) = 0 and isnull(:PhotoFileName, '') = '')
+                  begin
+                    delete from HR_Attachment
+                    where AttachmentId = @LastPhotoId
+                  end
+              end
+            --//----------- insert photo
+            else if (@LastPhotoId is null and :PhotoFileContent is not null)
+              begin
+                exec p_GetFrameworkSequenceNextValue @NextValue = @AttachmentId output
+            
+                insert into HR_Attachment
+                (AttachmentId, ApplicantID, FileDate, FileName, FileContent,FileSize, FileContentState,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId, AttachmentTypeCD)
+                values
+                (@AttachmentId, :ApplicantID, :CreationDate, :PhotoFileName, :PhotoFileContent,:PhotoFileSize, :PhotoFileContentState,  :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId, 'APPLICANT_PHOTO')
+              end
+        end
+      ]]>
+    </sql_update>
+    <edit_order>
+      LastName
+      FirstName
+      MiddleName
+      BirthDate
+      Phone
+      Email
+      AgeYears
+
+      EmploymentStatusCD
+      SpecialityCD
+      Location
+      SalaryExpectationsUSD
+      Position
+      TotalWorkExperience
+      PhotoFileContent
+
+      Edu_University_Name
+      Edu_University_Speciality
+      Edu_University_FinishYear
+      Edu_EnglishLevelCD
+      Edu_Degree
+
+      AdvertisingTypeCd
+    </edit_order>
+  
+  </entity_usage>
+
+  
+  
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                             Row Sources                             -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Applicant_EmploymentStatus_Lookup">
+    <rows>
+      <row key="OK" value="OK"  _image_id="ico16_op_pawn_glass_green"    />
+      <row key="BLACK_LIST" value="Black list"  image_id="ico16_op_pawn_glass_red"  />
+      <row key="STOPPED" value="Stopped"  image_id="ico16_op_pawn_glass_red"  />
+      <row key="DUPLICATED" value="Duplicated"   image_id="ico16_op_pawn_glass_yellow" />
+      <row key="EMPLOYED" value="Employed"  image_id="ico16_op_pawn_glass_blue" />
+    </rows>
+  </row_source>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_PassedInterviewType_Lookup">
+    <rows>
+      <row key="" value=""  />
+      <row key="OFFICE" value="Office" image_id="Passed_Inter_Office" />
+      <row key="PHONE" value="Phone" image_id="Passed_Inter_Phone" />
+    </rows>
+  </row_source>
+  
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ForeignLanguage_Level_Lookup">
+    <rows>
+      <row key="Beginner"           value="Beginner"           image_id="Engl_Beginner" />
+      <row key="Pre Intermediate"   value="Pre Intermediate"   image_id="Engl_PreInterm" />
+      <row key="Intermediate"       value="Intermediate"       image_id="Engl_Interm" />
+      <row key="Upper Intermediate" value="Upper Intermediate" image_id="Engl_UppInterm" />
+      <row key="Advanced"           value="Advanced"           image_id="Engl_Advanced" />
+      <row key="Native Speaker"     value="Native Speaker"     image_id="Engl_Advanced" />
+    </rows>
+  </row_source>
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Education_Degree_Lookup">
+    <rows>
+      <row key="SecondaryEducation" value="Secondary Education"  />
+      <row key="Student" value="Student"  />
+      <row key="Bachelor" value="Bachelor"  />
+      <row key="Master" value="Master"  />
+      <row key="Doctoral" value="Doctoral"  />
+    </rows>
+  </row_source>
+
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_Custom_Frame_Example"
+                entity_id="HR_Applicant"
+          plural_caption="Employeed Applicants"
+                 inherited_entity_usage_id="HR_Applicant_Search"
+                   >
+    <filter_order>
+      LastName
+      FirstName
+    </filter_order>
+    <grid_visible_order>
+      LastName
+      FirstName
+      
+    </grid_visible_order>
+
+    <!--<sql_select>
+      <![CDATA[
+        select LastName, FirstName  from  HR_Applicant
+      ]]>
+    </sql_select>-->
+    
+    
+    
+  </entity_usage>
+
+
+
+
+
+
+</fw:entities>

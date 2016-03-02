@@ -1,0 +1,153 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+  group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="ObjectPermission"
+          plural_caption="Object Permissions"
+          single_caption="Object Permission"
+          operations="ouv"
+          entity_class_id="ObjectPermissionEntity"
+          filter_enabled="false"
+          db_object=""
+          _frame_class_id="ObjectPermissionFrame"
+          _win_edit_controller_class_id="ObjectPermissionEditController"
+          _image_id="folder"
+          paging_enabled="false"
+          disable_bookmarks_and_recent_items="true"
+          image_id="TreeItem_Roles">
+    <!--<commands>
+      <command id="Security_AssignPermissions" />
+    </commands>-->
+
+    <command_groups>
+      <command_group id="Edit"
+                     included_commands="">
+        <disable_conditions>
+          <condition error_text="Administrator permissions cannot be changed." >
+            <expression>
+              <![CDATA[
+                SQL.exists (select 1
+                              from Framework_Roles r
+                             where r.RoleId = :RoleId
+                               and r.SpecialCategory = 'Administrator')
+              ]]>
+            </expression>
+          </condition>
+        </disable_conditions>
+      </command_group>
+    </command_groups>
+
+    <attributes>
+      <attribute id="ObjectId"
+                 type="string"
+                 caption="ID"
+                 primary_key="true"
+                 read_only="true"
+      />
+      <attribute id="ObjectGroup"
+                 type="string"
+                 caption="Subsystem"
+                 read_only="true"
+                 sorting="asc"
+      />
+      <attribute id="ObjectName"
+                 type="string"
+                 caption="Name"
+                 read_only="true"
+                 sorting="asc"
+                 display_name="true"
+      />
+      <attribute id="ObjectCount"
+                 type="int"
+                 caption="Object Count"
+                 read_only="true"
+      />
+      <attribute id="GroupId_View"
+                 type="string"
+                 caption="View"
+                 grid_width="100"
+                 row_source_id="AllowOwnerDeny_Lookup"
+                 _win_control="dropdown_image"
+      />
+      <attribute id="GroupId_Edit"
+                 type="string"
+                 caption="Edit"
+                 grid_width="100"
+                 row_source_id="AllowOwnerDeny_Lookup"
+                 _win_control="dropdown_image"
+      />
+      <attribute id="GroupId_Attribute"
+                 type="string"
+                 caption="Columns"
+                 grid_width="100"
+                 row_source_id="AllowCustom_Lookup"
+                 _win_control="dropdown_image"
+      />
+      <attribute id="GroupId_Execute"
+                 type="string"
+                 caption="Execute"
+                 row_source_id="AllowOwnerDeny_Lookup"
+                 _win_control="dropdown_image"
+      />
+      <attribute id="GroupId_Access"
+                 type="string"
+                 caption="Access"
+                 row_source_id="AllowDeny_Lookup"
+                 win_control="dropdown_image"
+      />
+      <attribute id="GroupOverrideCount_View"
+                 type="int"
+                 caption="Override Count"
+                 read_only="true"
+      />
+      <attribute id="GroupOverrideCount_Edit"
+                 type="int"
+                 caption="Override Count"
+                 read_only="true"
+      />
+      <attribute id="GroupIsOverridden_View"
+                 type="boolean"
+                 caption="Overridden"
+                 read_only="true"
+      />
+      <attribute id="GroupIsOverridden_Edit"
+                 type="boolean"
+                 caption="Overridden"
+                 read_only="true"
+      />
+      <attribute id="MetadataObjectType"
+                 type="string"
+                 read_only="true"
+      />
+      <attribute id="SecurityObjectType"
+                 type="string"
+                 read_only="true"
+      />
+      <attribute id="RoleId"
+                 type="int"
+                 read_only="true"
+                 default="=Parent.Role.RoleId"
+      />
+      <attribute id="ObjectInstance"
+                 read_only="true"
+      />
+      <attribute id="EntityMetadataInstance"
+                 read_only="true"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="ObjectPermission"
+                entity_id="ObjectPermission">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="ObjectPermissionEntity"
+         assembly_id="Framework.Entity"
+         name="CxSecurityObjectPermissionEntity"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

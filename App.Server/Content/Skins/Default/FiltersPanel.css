@@ -1,0 +1,89 @@
+﻿.FiltersPanel {
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#eef1fd+0,fcdc67+100 */
+background: #eef1fd; /* Old browsers */
+background: -moz-linear-gradient(top,  #eef1fd 0%, #fcdc67 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eef1fd), color-stop(100%,#fcdc67)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #eef1fd 0%,#fcdc67 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #eef1fd 0%,#fcdc67 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #eef1fd 0%,#fcdc67 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #eef1fd 0%,#fcdc67 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eef1fd', endColorstr='#fcdc67',GradientType=0 ); /* IE6-9 */
+
+
+min-height: 26px;
+overflow-y: visible;
+
+}
+
+.FiltersExpander {
+    width: 100%;
+    height: 26px;
+    line-height: 26px;
+
+}
+
+.FiltersExpander:hover {
+   
+background: #ffe6a0; /* Old browsers */
+
+
+}
+
+.FiltersExpander img {
+    width: 13px;
+    height: 13px;
+    margin: 0 10px -2px 20px;
+}
+
+.FilterTable {
+  
+}
+
+.FiltersPanel .Filters {
+  
+  
+    width: 100%;
+}
+
+.FiltersPanel table {
+   
+    padding: 0;
+     margin: 0 10px 0 10px;
+     padding-bottom: 10px;
+}
+
+.FilterLabel
+{
+    margin-right: 10px;
+}
+
+.FilterPanelBtn {
+    margin: 5px 0 0 30px;
+}
+
+    .FilterPanelBtn input[type=button] 
+    {
+        width:75px;
+    }
+
+    .FilterPanelBtn input[c-type=btnFilter] 
+    {
+        background-color: #39b549;
+    }
+
+    .FilterPanelBtn input[c-type=btnReset] 
+    {
+        background-color: #bfbfbf;
+    }
+
+.RowsLimitInfo {
+    color: #d31c1c;
+    margin: 0 5px 0 20px;
+    font-size: 0.9em;
+      /*word-break: break-all;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;*/
+    white-space: normal !important;
+    
+}

@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Workspace"
+          plural_caption="Workspaces"
+          single_caption="Workspace"
+          operations="iudv"
+          entity_class_id="BASE_ENTITY"
+          db_object="Framework_Workspaces"
+          current_workspace_filter="false"
+          available_workspace_filter="false"
+          image_id="Workspace">
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from v_Framework_Workspaces t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="WorkspaceId"
+                 primary_key="true"
+                 visible="false"
+                 editable="false"
+                 storable="false"
+                 type="int"
+                 max_length="10"
+                 
+      />
+      <attribute id="Code"
+                 caption="Code"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 control_modifiers="U"
+      />
+      <attribute id="Name"
+                 caption="Name"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 grid_width="200"
+      />
+      <attribute id="Priority"
+                 caption="Priority"
+                 type="int"
+                 nullable="false"
+                 sorting="asc"
+                 default="=SQL.select isnull(max(fw.WorkspaceId), 0) + 1 from Framework_Workspaces fw"
+      />
+      <attribute id="f_has_children"
+                 caption="f_has_children"
+                 type="boolean"
+                 visible="false"
+                 storable="false"
+      />
+      <attribute id="IsAvailable"
+                 caption="Available"
+                 type="boolean"
+                 max_length="1"
+                 row_source_id="Boolean_Lookup"
+                 nullable="false"
+                 default="1"
+      />
+      
+    </attributes>
+    <commands>
+      <command id="View"
+               target_page_id="Workspace_View_Page" />
+    </commands>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace"
+                entity_id="Workspace">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace_All"
+                entity_id="Workspace">
+    <sql_select>
+      <![CDATA[
+       select w.WorkspaceId,
+              w.Code,
+              w.Name,
+              w.Priority,
+              w.IsAvailable,
+              cast (case
+               when exists (select 1
+                              from Framework_RoleWorkspaces rw
+                             where rw.WorkspaceId = w.WorkspaceId)
+               then 1
+               else 0
+             end as bit) as f_has_children
+      from Framework_Workspaces w
+      where w.WorkspaceId > 0
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace_List"
+                entity_id="Workspace">
+    <child_entity_usages>
+      <child_entity_usage id="Assigned_To_Roles"
+                          entity_usage_id="RoleWorkspace_Assigned_Child_Of_Workspace">
+      </child_entity_usage>
+    </child_entity_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace_Lookup_List"
+                inherited_entity_usage_id="Workspace_All"
+                entity_id="Workspace">
+    <grid_order>
+      WorkspaceId, Name, Code, Priority
+    </grid_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace_Lookup"
+                entity_id="Workspace">
+    <grid_order>
+      WorkspaceId, Name, Code, Priority
+    </grid_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Workspace_Available_Lookup"
+                inherited_entity_usage_id="Workspace_Lookup"
+                entity_id="Workspace">
+    <sql_select>
+      <![CDATA[
+        select distinct 
+                 w.WorkspaceId, 
+                 w.Name,
+                 w.Code,
+                 w.Priority,
+                 case 
+                   when u.DefaultWorkspaceId = w.WorkspaceId
+                   then 0
+                   else 1
+                 end as DefaultOrder
+            from Framework_UserRoles ur
+           inner join Framework_RoleWorkspaces rw
+              on ur.RoleId = rw.RoleId
+           inner join v_Framework_Workspaces w
+              on rw.WorkspaceId = w.WorkspaceId
+           inner join Framework_Users u
+              on ur.UserId = u.UserId
+           where ur.UserId = :Application$UserId
+             and w.WorkspaceId > 0
+             and w.IsAvailable = 1
+           union
+           select 
+                 w.WorkspaceId, 
+                 w.Name,
+                 w.Code,
+                 w.Priority,
+                 0 as DefaultOrder
+           from Framework_Workspaces w
+           inner join Framework_Users u
+              on u.DefaultWorkspaceId = w.WorkspaceId
+           where u.UserId = :UserId
+             and w.WorkspaceId > 0
+             and w.IsAvailable = 1
+           order by 5, 4      ]]>
+    </sql_select>
+    <grid_order>
+      WorkspaceId, Name, Code, Priority
+    </grid_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!-- 
+    Entity usage is used by Framework.Metadata C# code to get attributes of the workspace 
+  -->
+  <entity_usage id="Workspace_AvailableForUser_Lookup"
+                entity_id="Workspace">
+    <grid_order>
+      WorkspaceId, Name, Code, Priority, DefaultOrder
+    </grid_order>
+    <attribute_usages>
+      <attribute_usage id="Priority"
+                       sorting="asc"
+                       sort_order="2"
+      />
+      <attribute_usage id="DefaultOrder"
+                       type="int"
+                       visible="false"
+                       storable="false"
+                       sorting="asc"
+                       sort_order="1"
+      />
+    </attribute_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Workspace_Lookup"
+              entity_usage_id="Workspace_Lookup"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Workspace_Available_Lookup"
+              entity_usage_id="Workspace_Available_Lookup"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  
+  <row_source id="Workspace_Lookup_List"
+              entity_usage_id="Workspace_Lookup_List"
+  />
+</fw:entities>

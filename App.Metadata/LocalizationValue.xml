@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="LocalizationValue"
+          plural_caption="Localization Items"
+          single_caption="Localization Item"
+          command_category_caption="Localization"
+          operations="ouvcf"
+          entity_class_id="BASE_ENTITY"
+          db_object="v_Framework_LocalizationValues_Edit"
+          hint_grid="Please enter translated text to translate particular occurrency or dictionary text to translate all occurrences of the same text. Please use 'Reset Cache' menu item to apply changes to the user interface."
+          hint_edit="Please enter translated text to translate particular occurrency or dictionary text to translate all occurrences of the same text. Please use 'Reset Cache' menu item to apply changes to the user interface."
+          group_name="Administration"
+          insert_on_update="true">
+
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from v_Framework_LocalizationValues t
+      ]]>
+    </sql_select>
+
+    <!--<commands>
+      <command id="Localization_ResetCache" />
+      <command id="Localization_ExportNotTranslated" />
+      <command id="Localization_ImportTranslated" />
+    </commands>-->
+
+    <attributes>
+      <attribute id="ApplicationCd"
+                 type="string"
+                 primary_key="true"
+                 default="=Application$ApplicationCode"
+                 max_length="50"
+                 nullable="false"
+                 visible="false"
+      />
+      <attribute id="ApplicationName"
+                 caption="Application"
+                 type="string"
+                 storable="false"
+                 visible="false"
+                 read_only="true"
+      />
+      <attribute id="ObjectName"
+                 caption="Object Name"
+                 type="string"
+                 primary_key="true"
+                 max_length="500"
+                 nullable="false"
+                 read_only="true"
+                 sorting="asc"
+                 sort_order="2"
+                 control_width="1"
+                 grid_width="150"
+      />
+      <attribute id="ObjectTypeCd"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 visible="false"
+      />
+      <attribute id="ObjectTypeName"
+                 caption="Object Type"
+                 type="string"
+                 storable="false"
+                 read_only="true"
+                 sorting="asc"
+                 sort_order="2"
+      />
+      <attribute id="PropertyCd"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 visible="false"
+      />
+      <attribute id="PropertyName"
+                 caption="Property Name"
+                 type="string"
+                 storable="false"
+                 read_only="true"
+                 sorting="asc"
+                 sort_order="3"
+      />
+      <attribute id="LanguageCd"
+                 caption="Language"
+                 type="string"
+                 primary_key="true"
+                 max_length="3"
+                 nullable="false"
+                 visible="false"
+      />
+      <attribute id="OriginalValue"
+                 caption="Original Text"
+                 type="longstring"
+                 storable="false"
+                 read_only="true"
+                 display_name="true"
+                 control_width="1"
+                 grid_width="200"
+      />
+      <attribute id="TranslatedValue"
+                 caption="Translated Text"
+                 type="longstring"
+                 control_width="1"
+                 grid_width="200"
+      />
+      <attribute id="DictionaryValue"
+                 caption="Dictionary Text"
+                 type="longstring"
+                 control_width="1"
+                 grid_width="200"
+      />
+      <attribute id="IsNotSynchronized"
+                 caption="Not Synchronized"
+                 type="boolean"
+      />
+      <attribute id="IsNotUsed"
+                 caption="Not Used"
+                 type="boolean"
+                 read_only="true"
+                 storable="false"
+      />
+      <attribute id="ModificationDate"
+                 caption="Modification Date"
+                 type="datetime"
+                 read_only="true"
+                 storable="false"
+                 editable="false"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="LocalizationValue"
+                entity_id="LocalizationValue">
+  </entity_usage>
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

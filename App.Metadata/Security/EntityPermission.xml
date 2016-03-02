@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entity_usages xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+  group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="EntityPermission"
+                entity_id="ObjectPermission"
+                single_caption="Entity Permission"
+                plural_caption="Entity Permissions"
+                frame_class_id="EntityPermissionFrame"
+                _win_edit_controller_class_id="EntityPermissionEditController"
+                SECURITY_OBJECT="entity"
+                image_id="TreeItem_Roles">
+
+    <!--<commands>
+      <command id="Open"
+               entity_usage_id="EntityPermission_View"
+      />
+    </commands>-->
+
+    <grid_visible_order>
+      ObjectId,
+      ObjectGroup,
+      ObjectName,
+      GroupId_View,
+      GroupId_Edit,
+      GroupId_Attribute
+    </grid_visible_order>
+
+    <edit_order>
+      ObjectId,
+      ObjectGroup,
+      ObjectName,
+      GroupId_View,
+      GroupId_Edit,
+      GroupId_Attribute
+    </edit_order>
+
+    <attribute_usages>
+      <attribute_usage id="GroupId_View"
+                       nullable="false"
+                       new_line="true"
+      />
+      <attribute_usage id="GroupId_Edit"
+                       nullable="false"
+      />
+      <attribute_usage id="GroupId_Attribute"
+                       nullable="false"
+      />
+    </attribute_usages>
+  </entity_usage>
+</fw:entity_usages>

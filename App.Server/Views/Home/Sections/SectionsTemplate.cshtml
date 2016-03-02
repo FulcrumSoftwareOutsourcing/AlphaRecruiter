@@ -1,0 +1,27 @@
+﻿@{
+    Layout = null;
+}
+
+<!--css file: Sections.css-->
+
+<script type="text/html" id="Sections/SectionsTemplate">
+    <div data-bind="foreach: Sections">
+
+        @*css: SectionClassName,*@
+        <div data-bind="event:{ click: $parent.OnSectionClick}, css: Selected() ?  'SectionHover': 'Section' ">
+            @*<div class="SectionHoverBack" data-bind="attr:{ id: 'hoverBack_' + Id()  }"></div>*@
+            <img data-bind="attr: { src: ImageUrl }" />
+            @*css: ImageClassName*@
+            <span data-bind="text: Text"></span>
+
+        </div>
+
+
+        <div class="SectionDivider"></div>
+
+
+
+    </div>
+
+
+</script>

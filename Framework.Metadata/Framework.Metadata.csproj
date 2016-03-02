@@ -1,0 +1,447 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{67D8B794-8D8D-413B-9F87-4C370D642671}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Framework.Metadata</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Framework.Metadata</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>http://localhost/Framework.Metadata/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Framework.Common\Framework.Common.csproj">
+      <Project>{7F54A8D3-63CC-4014-A195-4420EBC6C18E}</Project>
+      <Name>Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
+      <Name>Framework.Utils</Name>
+      <Project>{BAD39340-A936-43B2-ADDC-ED74E068D4AA}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Db\Framework.Db.csproj">
+      <Name>Framework.Db</Name>
+      <Project>{A40FECDC-593B-4239-9C30-60229072289E}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CriteriaOperator\CxAttributeOperand.cs" />
+    <Compile Include="Customization\Attribute\CxAttributeCustomizerData.cs" />
+    <Compile Include="Customization\Attribute\CxAttributeCustomizerLocalization.cs" />
+    <Compile Include="Customization\CxCustomizationManager.cs" />
+    <Compile Include="Customization\CxCustomizationUtils.cs" />
+    <Compile Include="Customization\CxCustomizerBase.cs" />
+    <Compile Include="Customization\CxStorableInIdOrderList.cs" />
+    <Compile Include="Customization\ChildEntity\CxChildEntityCustomizer.cs" />
+    <Compile Include="Customization\Entity\CxEntityCustomizerData.cs" />
+    <Compile Include="Customization\CxOrderAttribute.cs" />
+    <Compile Include="Customization\CxOrderItem.cs" />
+    <Compile Include="Customization\CxEditOrderPanel.cs" />
+    <Compile Include="Customization\Entity\CxEntityCustomizer.cs" />
+    <Compile Include="Customization\CxFilterOrderPanel.cs" />
+    <Compile Include="Customization\Attribute\CxAttributeCustomizer.cs" />
+    <Compile Include="Customization\Attribute\CxAttributeCustomizerList.cs" />
+    <Compile Include="Customization\Entity\CxEntityCustomizerLocalization.cs" />
+    <Compile Include="Customization\Form\CxFormCustomizer.cs" />
+    <Compile Include="Customization\Form\CxFormCustomizerData.cs" />
+    <Compile Include="Customization\Form\CxFormCustomizerLocalization.cs" />
+    <Compile Include="Customization\IxCustomizationContext.cs" />
+    <Compile Include="Customization\IxCustomizer.cs" />
+    <Compile Include="Customization\IxStorableInIdOrder.cs" />
+    <Compile Include="Customization\Lookup\CxLookupCustomizer.cs" />
+    <Compile Include="Customization\Lookup\CxLookupCustomizerData.cs" />
+    <Compile Include="Customization\Lookup\CxLookupCustomizerLocalization.cs" />
+    <Compile Include="Customization\Panel\CxPanelCustomizer.cs" />
+    <Compile Include="Customization\Panel\CxPanelCustomizerData.cs" />
+    <Compile Include="Customization\Panel\CxPanelCustomizerList.cs" />
+    <Compile Include="Customization\Panel\CxPanelCustomizerLocalization.cs" />
+    <Compile Include="Customization\Section\CxWinSectionCustomizer.cs" />
+    <Compile Include="Customization\Section\CxWinSectionCustomizerData.cs" />
+    <Compile Include="Customization\Section\CxWinSectionCustomizerLocalization.cs" />
+    <Compile Include="Customization\Section\CxWinSectionsCustomizer.cs" />
+    <Compile Include="Customization\Section\CxWinSectionsCustomizerData.cs" />
+    <Compile Include="Customization\Tab\CxTabCustomizer.cs" />
+    <Compile Include="Customization\Tab\CxTabCustomizerData.cs" />
+    <Compile Include="Customization\Tab\CxTabCustomizerList.cs" />
+    <Compile Include="Customization\Tab\CxTabCustomizerLocalization.cs" />
+    <Compile Include="CxAssembliesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxAssemblyMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxAttributeMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxAttributeOrder.cs" />
+    <Compile Include="CxAttributesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxAttributeTypePresenter.cs" />
+    <Compile Include="CxAttributeUsageMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxAttributeUsagesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxChildEntityUsageMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxChildEntityUsageOrder.cs" />
+    <Compile Include="CxClassesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxClassMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxCommandGroupMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxCommandMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxCommandsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxCommandStateInfo.cs" />
+    <Compile Include="CxConfigMetadata.cs" />
+    <Compile Include="CxConstraintsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxCustomDbMetadataProvider.cs" />
+    <Compile Include="CxEntitiesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxEntityCommandsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="NxChildEntityUsageOrderType.cs" />
+    <Compile Include="NxSortingDirection.cs" />
+    <Compile Include="NxTextHorzAlignment.cs" />
+    <Compile Include="PlaceholderManager\CxEntityUsagePlaceholderManager.cs" />
+    <Compile Include="PlaceholderManager\CxGlobalPlaceholderManager.cs" />
+    <Compile Include="CxLookupUsage.cs" />
+    <Compile Include="CxNonInheritablePropertyRegistry.cs" />
+    <Compile Include="PlaceholderManager\CxMetadataPlaceholderManager.cs" />
+    <Compile Include="PlaceholderManager\CxPlaceholderManagerBase.cs" />
+    <Compile Include="CxXmlRenderedObject.cs" />
+    <Compile Include="NxEntityDataCache.cs" />
+    <Compile Include="PlaceholderManager\CxPlaceholderPosition.cs" />
+    <Compile Include="Security\CxUserInfo.cs" />
+    <Compile Include="Silverlight\CxSlDashboardItemMetadata.cs" />
+    <Compile Include="Silverlight\CxSlDashboardMetadata.cs" />
+    <Compile Include="Silverlight\CxSlDashboardsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlFrameMetadata.cs" />
+    <Compile Include="Silverlight\CxSlFramesMetadata.cs" />
+    <Compile Include="Silverlight\CxSlHintMetadata.cs" />
+    <Compile Include="Silverlight\CxSlLayoutElementMetadata.cs" />
+    <Compile Include="Silverlight\CxSlLayoutElementsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlPanelMetadata.cs" />
+    <Compile Include="Silverlight\CxSlPanelsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlSectionMetadata.cs" />
+    <Compile Include="Silverlight\CxSlSectionsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlSkinMetadata.cs" />
+    <Compile Include="Silverlight\CxSlSkinsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTabControlMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTabControlsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTabMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTabsMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTreeItemMetadata.cs" />
+    <Compile Include="Silverlight\CxSlTreeItemsMetadata.cs" />
+    <Compile Include="IxSlTreeItemsProvider.cs" />
+    <Compile Include="Multilanguage\CxMultilanguageItemList.cs" />
+    <Compile Include="NxAttributeContext.cs" />
+    <Compile Include="NxColumnFixed.cs" />
+    <Compile Include="Utils\CxWinControlNames.cs" />
+    <Compile Include="EntityJoinResolver\CxEntityJoin.cs" />
+    <Compile Include="EntityJoinResolver\CxEntityJoinResolver.cs" />
+    <Compile Include="CxEntityMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxEntityUsageMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxEntityUsagesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxEntityUsageToEditMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxErrorConditionMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxFolderMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxImageMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxImagesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxMainMenuItemMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxMainMenuMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxMetadataCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxMetadataHolder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxMetadataObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Multilanguage\CxMultilanguage.cs" />
+    <Compile Include="Multilanguage\CxMultilanguageItem.cs" />
+    <Compile Include="CxPageMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxPagesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxParentEntityMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxPortalMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxPortalSkinMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxPortalSkinsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxPortalsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxReportMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxReportsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxRowSourceItem.cs" />
+    <Compile Include="CxRowSourceMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxRowSourcesMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxTabMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxTabsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxTreeItemMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxTreeItemsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxUserMetadataCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxWebPartMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxWebPartsCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxWebPartsMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WinForms\CxWinFormMetadata.cs" />
+    <Compile Include="WinForms\CxWinFormsMetadata.cs" />
+    <Compile Include="WinForms\CxWinPanelMetadata.cs" />
+    <Compile Include="WinForms\CxWinSectionMetadata.cs" />
+    <Compile Include="WinForms\CxWinSectionOrder.cs" />
+    <Compile Include="WinForms\CxWinSectionsMetadata.cs" />
+    <Compile Include="WinForms\CxWinTabMetadata.cs" />
+    <Compile Include="WinForms\CxWinTabOrderManager.cs" />
+    <Compile Include="WinForms\CxWinTreeItemMetadata.cs" />
+    <Compile Include="WinForms\CxWinTreeItemsMetadata.cs" />
+    <Compile Include="EntityJoinResolver\CxEntityJoinSet.cs" />
+    <Compile Include="EntityJoinResolver\CxEntityJoinSetList.cs" />
+    <Compile Include="Exceptions\ExMetadataException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Exceptions\ExTooManyRowsException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IxCommandStateHandler.cs" />
+    <Compile Include="Customization\IxCustomMetadataProvider.cs" />
+    <Compile Include="IxEntity.cs" />
+    <Compile Include="IxEntityUsageChooser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IxMultilanguageItemProvider.cs" />
+    <Compile Include="IxRowSourceOwner.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IxWinTreeItemsProvider.cs" />
+    <Compile Include="NxCommandState.cs" />
+    <Compile Include="NxCommandStateRequest.cs" />
+    <Compile Include="Security\CxEntityGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxEntityGroupCondition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxEntityRuleCache.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxPermission.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxPermissionGroup.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxPermissionRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxSecurityMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxSecurityObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxUserPermissionProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\CxWorkspaceAvailableForUserRowSourceMetadata.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Security\IxUserPermissionProvider.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

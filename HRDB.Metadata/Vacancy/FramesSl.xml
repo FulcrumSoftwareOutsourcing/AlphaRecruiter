@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  
+  <sl_frame id="HR_Vacancy_Frame"
+          entity_usage_id="HR_Vacancy">
+    <sl_tab_control id="tcMain"
+                    row="0" >
+      
+      <sl_tab id="tbDefault"
+              text="Applicants Suitable for Vacancy"
+              rows_height="auto"
+              rows_count="2">
+        
+        <sl_panel id="VacancyInfo"
+                  row="0"
+                  columns_count="4"
+                  text="Vacancy Info" />
+        
+        
+        <!--<sl_panel id="pnEnglish"
+             row="1"
+             columns_count="4"
+             text="English Skills" />
+  
+        <sl_panel id="pnSummaryCpp"
+           row="2"
+           columns_count="4"
+           text="Needed C++ Skills" />
+      
+        <sl_panel id="pnSummaryNet"
+                  row="3"
+                  columns_count="4"
+                  text="Needed Net Skills" />-->
+
+
+        <!--<sl_tab_control id="frApplicant_And_Vacancy_" row="2">
+          
+          <sl_tab id="tDetails"
+                  text="Applicants Suitable for Vacancy"
+                  columns_count="1"
+                 >
+            <sl_frame id="frApplicant_Assigned_to_Vacancy1"
+                      column="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="HR_Suitable_Applicant_Vacancy" />
+
+          </sl_tab>
+        </sl_tab_control>-->
+
+      </sl_tab>
+      <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+      <!--<sl_tab id="tbLinkVacanciesApplicants"
+          text="Link Vacancy and Applicants Manually"
+          entity_usage_id="HR_Vacancy"
+          rows_height="auto"
+          rows_count="2">
+
+        <sl_hint row="0"
+                 text="To assign applicant to vacancy find him first in the left bottom grid, select one or some and click on 'Assign to Vacancy' command."/>
+        <sl_panel id="VacancyInfo_"
+                  row="0"
+                  columns_count="3"
+                  text="Vacancy" />
+
+
+        <sl_tab_control id="frApplicant_And_Vacancy" row="1">
+          <sl_tab id="tDetails_"
+                  text="To assign applicant to vacancy find him first in the left bottom grid, select one or some and click on 'Assign to Vacancy' command" 
+                  columns_count="2"
+                  columns_width="auto, 600">
+            <sl_frame id="frApplicant_Free_Vacancy"
+                      column="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="HR_Free_Applicant_Vacancy" />
+            
+            <sl_frame id="frApplicant_Assigned_to_Vacancy2"
+                      frame_class_id="CxGridFrame"
+                      column="1"
+                      entity_usage_id="HR_Assigned_Applicant_Vacancy" />
+          </sl_tab>
+        </sl_tab_control>
+ 
+      </sl_tab>-->    
+
+    </sl_tab_control>
+  </sl_frame>
+  
+  <sl_frame id="HR_ApplicantVacancy_Frame"
+        entity_usage_id="HR_ApplicantVacancy">
+    <sl_tab_control id="tcMain"
+                    row="0" >
+
+      <sl_tab id="tbDefault"
+              text="Vacancies Suitable for Applicant"
+              rows_height="auto"
+              rows_count="2">
+
+        <sl_panel id="VacancyInfo"
+                  row="0"
+                  columns_count="4"
+                  text="Vacancy Info" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+
+</sl_frames>

@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:sl_sections xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="Administration"
+           text="Administration"
+              image_id="Section_Administration">
+    <tree_item id="Security"
+               _image_id="TreeItem_Security"
+               text="Advanced Security"
+               frame_class_id="LinkedFrame"
+               display_order="50"
+               expanded="true">
+
+      <tree_item id="Role"
+                 entity_usage_id="Role"
+                 _image_id="TreeItem_Roles"
+                 text="Roles and Permissions"
+                 default_selected="true">    
+          <!--<tree_item id="RoleEntities"
+                   entity_usage_id="Role"
+                   item_provider_class_id="TreeItemProviderEntityList"
+                   item_provider_replacement="true"
+                   visible="false"
+                   _frame_class_id="GridSubDetailFrame"
+                   _depends_on_entity_usage_ids="Role_New, Role_List"
+        />-->
+      </tree_item>
+      
+      <tree_item id="Workspace"
+                 entity_usage_id="Workspace_All"
+                 text="Workspaces"
+                 _image_id="Workspace"/>
+    </tree_item>
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <tree_item id="Users"
+           text="User"
+           frame_class_id="LinkedFrame"
+           display_order="50"
+           expanded="true">
+      <tree_item id="User"
+               entity_usage_id="User_Edit"
+               sl_is_default="true"
+               text="Users">
+      </tree_item>
+    </tree_item>
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <tree_item id="Localization"
+               text="Localization"
+               frame_class_id="LinkedFrame"
+               visible="true"
+               expanded="true">
+      <tree_item id="Localization_Items"
+                 entity_usage_id="LocalizationValue"
+                 text="Localization Items"
+                 frame_class_id="LocalizationFrame"/>
+      <tree_item id="LocalizationDictionary"
+                 entity_usage_id="LocalizationDictionary"
+                 text="Dictionary" />
+      <tree_item id="Localization_Languages"
+                 entity_usage_id="Languages"
+                 text="Languages" />
+    </tree_item >
+  </sl_section>
+  <!-- sl_section id="Development"
+              text="Development">
+    <tree_item id="SqlConsole"
+               text="Sql Console"
+               frame_class_id="SqlCnsoleFrame"
+               display_order="60"
+               expanded="true"/>
+     
+  </sl_section -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:sl_sections>

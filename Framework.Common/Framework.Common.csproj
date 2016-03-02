@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{7F54A8D3-63CC-4014-A195-4420EBC6C18E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.Utils</RootNamespace>
+    <AssemblyName>Framework.Common</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CxBaseTextLogger.cs" />
+    <Compile Include="CxBlobFile.cs" />
+    <Compile Include="CxBoolEx.cs" />
+    <Compile Include="CxComboItem.cs" />
+    <Compile Include="CxCommon.cs" />
+    <Compile Include="CxConfigurationHelper.cs" />
+    <Compile Include="CxDataRowValueProvider.cs" />
+    <Compile Include="CxDataTableReader.cs" />
+    <Compile Include="CxHashtable.cs" />
+    <Compile Include="CxLogger.cs" />
+    <Compile Include="CxProfiler.cs" />
+    <Compile Include="CxSettingsStorage.cs" />
+    <Compile Include="CxValueProviderCollection.cs" />
+    <Compile Include="CxWebService.cs" />
+    <Compile Include="Exceptions\ExAbortException.cs" />
+    <Compile Include="Exceptions\ExArgumentException.cs" />
+    <Compile Include="Exceptions\ExDbException.cs" />
+    <Compile Include="Exceptions\ExException.cs" />
+    <Compile Include="Exceptions\ExIncapsulatedException.cs" />
+    <Compile Include="Exceptions\ExInfoException.cs" />
+    <Compile Include="Exceptions\ExInsufficientPermissionException.cs" />
+    <Compile Include="Exceptions\ExInternalException.cs" />
+    <Compile Include="Exceptions\ExNullArgumentException.cs" />
+    <Compile Include="Exceptions\ExNullReferenceException.cs" />
+    <Compile Include="Exceptions\ExPlannedException.cs" />
+    <Compile Include="Exceptions\ExSilentValidationException.cs" />
+    <Compile Include="Exceptions\ExValidationException.cs" />
+    <Compile Include="Exceptions\ExWarningException.cs" />
+    <Compile Include="Exceptions\ExWebServiceException.cs" />
+    <Compile Include="IxDefinition.cs" />
+    <Compile Include="IxImageProvider.cs" />
+    <Compile Include="IxValueProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TProfiler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
+      <Project>{BAD39340-A936-43B2-ADDC-ED74E068D4AA}</Project>
+      <Name>Framework.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

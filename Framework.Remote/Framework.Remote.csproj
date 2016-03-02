@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{0819E5BA-7B06-4622-9410-E1728B8E9569}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Framework.Remote</RootNamespace>
+    <AssemblyName>Framework.Remote</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IsWebBootstrapper>true</IsWebBootstrapper>
+    <PublishUrl>http://localhost/Framework.Remote/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Web</InstallFrom>
+    <UpdateEnabled>true</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppServer\CxAppServer.AddToBookmarks.cs" />
+    <Compile Include="AppServer\CxAppServer.CalculateExpressions.cs" />
+    <Compile Include="AppServer\CxAppServer.ClearHistory.cs" />
+    <Compile Include="AppServer\CxAppServer.ClearSettings.cs" />
+    <Compile Include="AppServer\CxAppServer.cs" />
+    <Compile Include="AppServer\CxAppServer.ExecuteCommand.cs" />
+    <Compile Include="AppServer\CxAppServer.ExecuteMiltilanguageCsvOperations.cs" />
+    <Compile Include="AppServer\CxAppServer.ExportToCsv.cs" />
+    <Compile Include="AppServer\CxAppServer.F1.cs" />
+    <Compile Include="AppServer\CxAppServer.GetAssembly.cs" />
+    <Compile Include="AppServer\CxAppServer.GetChildEntityList.cs" />
+    <Compile Include="AppServer\CxAppServer.GetDashboardItems.cs" />
+    <Compile Include="AppServer\CxAppServer.GetEntityFromPk.cs" />
+    <Compile Include="AppServer\CxAppServer.GetEntityList.cs" />
+    <Compile Include="AppServer\CxAppServer.GetEntityMetadata.cs" />
+    <Compile Include="AppServer\CxAppServer.GetFilterFormRowSources.cs" />
+    <Compile Include="AppServer\CxAppServer.GetPortalMetadata.cs" />
+    <Compile Include="AppServer\CxAppServer.GetRowSource.cs" />
+    <Compile Include="AppServer\CxAppServer.GetSettings.cs" />
+    <Compile Include="AppServer\CxAppServer.GetSkin.cs" />
+    <Compile Include="AppServer\CxAppServer.Logout.cs" />
+    <Compile Include="AppServer\CxAppServer.Ping.cs" />
+    <Compile Include="AppServer\CxAppServer.RemoveAllBookmarks.cs" />
+    <Compile Include="AppServer\CxAppServer.RemoveBookmark.cs" />
+    <Compile Include="AppServer\CxAppServer.SaveSettings.cs" />
+    <Compile Include="AppServer\CxAppServer.Upload.cs" />
+    <Compile Include="AppServer\CxAppServerConsts.cs" />
+    <Compile Include="Commands\CxDbCommandHandler.cs" />
+    <Compile Include="CxSlImageLibraryEntity.cs" />
+    <Compile Include="Deployment\CxDbHelper.cs" />
+    <Compile Include="Deployment\CxDeploymentKeys.cs" />
+    <Compile Include="Deployment\CxDeploymentWizardContext.cs" />
+    <Compile Include="Deployment\ExModifyConfigException.cs" />
+    <Compile Include="Mobile\CxAssemblyContainer.cs" />
+    <Compile Include="Mobile\CxClientAttributeMetadata.Server.cs" />
+    <Compile Include="Exceptions\CxErrorPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AppServer\IxAppServer.cs" />
+    <Compile Include="Commands\CxCommandIDs.cs" />
+    <Compile Include="Commands\CxCommandController.cs" />
+    <Compile Include="Commands\CxCommandData.cs" />
+    <Compile Include="Commands\CxCommandHandler.cs" />
+    <Compile Include="Commands\IxCommandHandler.cs" />
+    <Compile Include="CxAppServerContext.cs" />
+    <Compile Include="Database\CxDbConnectionChecker.cs" />
+    <Compile Include="CxSlEntity.cs">
+    </Compile>
+    <Compile Include="Database\ExDbConnectionCheckException.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="FilesManagement\CxDefaultContentHandler.cs" />
+    <Compile Include="Database\CxDbConnectionMetadata.cs" />
+    <Compile Include="Database\CxDbConnections.cs" />
+    <Compile Include="Database\CxDbConnectionsSectionHandler.cs" />
+    <Compile Include="Database\ExDbConnectionReadException.cs" />
+    <Compile Include="Edit\CxEditController.cs" />
+    <Compile Include="Exceptions\IxErrorContainer.cs" />
+    <Compile Include="FilesManagement\CxUploadHandler.cs" />
+    <Compile Include="Login\CxBaseLoginPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CxSlMetadataHolder.cs" />
+    <Compile Include="Mobile\CxClientAssemblyMetadata.cs" />
+    <Compile Include="Mobile\CxClientAssemblyMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientAttributeMetadata.cs" />
+    <Compile Include="Mobile\CxClientClassMetadata.cs" />
+    <Compile Include="Mobile\CxClientClassMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientCommandMetadata.cs" />
+    <Compile Include="Mobile\CxClientCommandMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientDashboardData.cs" />
+    <Compile Include="Mobile\CxClientEntityMark.cs" />
+    <Compile Include="Mobile\CxClientEntityMark.Server.cs" />
+    <Compile Include="Mobile\CxClientEntityMarks.cs" />
+    <Compile Include="Mobile\CxClientEntityMarks.Server.cs" />
+    <Compile Include="Mobile\CxClientEntityMetadata.cs" />
+    <Compile Include="Mobile\CxClientEntityMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientImageMetadata.cs" />
+    <Compile Include="Mobile\CxClientImageMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientMultilanguageItem.cs" />
+    <Compile Include="Mobile\CxClientMultilanguageItem.Server.cs" />
+    <Compile Include="Mobile\CxClientParentEntity.cs" />
+    <Compile Include="Mobile\CxClientParentEntity.Server.cs" />
+    <Compile Include="Mobile\CxClientPortalMetadata.cs" />
+    <Compile Include="Mobile\CxClientPortalMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientRowSource.cs" />
+    <Compile Include="Mobile\CxClientRowSource.Server.cs" />
+    <Compile Include="Mobile\CxClientRowSourceItem.cs" />
+    <Compile Include="Mobile\CxClientRowSourceItem.Server.cs" />
+    <Compile Include="Mobile\CxClientSectionMetadata.cs" />
+    <Compile Include="Mobile\CxClientSectionMetadata.Server.cs" />
+    <Compile Include="Mobile\CxClientDashboardItem.cs" />
+    <Compile Include="Mobile\CxClientTreeItemMetadata.cs" />
+    <Compile Include="Mobile\CxClientTreeItemMetadata.Server.cs" />
+    <Compile Include="Mobile\CxCommandParameters.cs" />
+    <Compile Include="Mobile\CxDataItem.cs" />
+    <Compile Include="Mobile\CxExceptionDetails.cs" />
+    <Compile Include="Mobile\CxExceptionDetails.Server.cs" />
+    <Compile Include="Mobile\CxExportToCsvInfo.cs" />
+    <Compile Include="Mobile\CxExpressionResult.cs" />
+    <Compile Include="Mobile\CxExpressionResult.Server.cs" />
+    <Compile Include="Mobile\CxFilterItem.cs" />
+    <Compile Include="Mobile\CxFilterItem.Server.cs" />
+    <Compile Include="Mobile\CxJsClientData.cs" />
+    <Compile Include="Mobile\CxJsSettingsContainer.cs" />
+    <Compile Include="Mobile\CxLanguage.cs" />
+    <Compile Include="Mobile\CxLanguage.Server.cs" />
+    <Compile Include="Mobile\CxLayoutElement.cs" />
+    <Compile Include="Mobile\CxLayoutElement.Server.cs" />
+    <Compile Include="Mobile\CxMobileIds.cs" />
+    <Compile Include="Mobile\CxModel.cs" />
+    <Compile Include="Mobile\CxModel.Server.cs" />
+    <Compile Include="Mobile\CxQueryParams.cs" />
+    <Compile Include="Mobile\CxQueryParams.Server.cs" />
+    <Compile Include="Mobile\CxSettingsContainer.cs" />
+    <Compile Include="Mobile\CxSettingsContainer.Server.cs" />
+    <Compile Include="Mobile\CxSkin.cs" />
+    <Compile Include="Mobile\CxSkin.Server.cs" />
+    <Compile Include="Mobile\CxSortDescription.cs" />
+    <Compile Include="Mobile\CxUniformContainer.cs" />
+    <Compile Include="Mobile\CxUploadData.cs" />
+    <Compile Include="Mobile\CxUploadParams.cs" />
+    <Compile Include="Mobile\CxUploadResponse.cs" />
+    <Compile Include="Mobile\NxListSortDirection.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlConsole\CxCoumnDescriptor.cs" />
+    <Compile Include="SqlConsole\CxSqlResolver.cs" />
+    <Compile Include="Exceptions\OnAppStartErrorsChecker.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Framework.Common\Framework.Common.csproj">
+      <Project>{7F54A8D3-63CC-4014-A195-4420EBC6C18E}</Project>
+      <Name>Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Db\Framework.Db.csproj">
+      <Project>{A40FECDC-593B-4239-9C30-60229072289E}</Project>
+      <Name>Framework.Db</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Entity\Framework.Entity.csproj">
+      <Project>{EBC7FF13-387F-4C86-A72F-B970EBB0CD93}</Project>
+      <Name>Framework.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Metadata\Framework.Metadata.csproj">
+      <Project>{67D8B794-8D8D-413B-9F87-4C370D642671}</Project>
+      <Name>Framework.Metadata</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
+      <Project>{BAD39340-A936-43B2-ADDC-ED74E068D4AA}</Project>
+      <Name>Framework.Utils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Web.Utils\Framework.Web.Utils.csproj">
+      <Project>{BED37AD2-F536-44B8-A779-C5C79A42DB7B}</Project>
+      <Name>Framework.Web.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

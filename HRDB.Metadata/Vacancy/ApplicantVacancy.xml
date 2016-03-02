@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="AssignVacancyToApplicant"
+          text="Assign Vacancy"
+          image_id="ApplicantVacancyMatches"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+        if not exists (select 1
+                         from HR_ApplicantVacancy 
+                        where ApplicantId = :ApplicantId
+                          and VacancyId = :VacancyId)
+        begin
+          insert into HR_ApplicantVacancy(VacancyId, ApplicantId)
+          values(:VacancyId, :ApplicantId)
+        end
+      ]]>
+    </sql_command>
+  </command>
+
+  <command id="RemoveVacancyFromApplicant"
+          text="Remove Vacancy"
+          image_id="ApplicantVacancyFree"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+         delete from HR_ApplicantVacancy 
+          where VacancyId = :VacancyId
+            and ApplicantId = :ApplicantId
+       ]]>
+    </sql_command>
+  </command>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_ApplicantVacancy"
+          single_caption="Applicant's Vacanc"
+          plural_caption="Applicant's Vacancies"
+          entity_class_id="SlEntity"
+          db_object="HR_ApplicantVacancy"
+          >
+    <sql_select>
+      <![CDATA[
+       select *
+         from (
+               select app.*,
+                      vac.VacancyName,
+					  vac.IsActive,
+					  vac.MinWorkYears,
+					  vac.SalaryExpectationsUSDMin,
+					  vac.SalaryExpectationsUSDMax,
+                      vac.EnglishLevelCD
+                 from HR_ApplicantVacancy app
+                   left join HR_Vacancy vac on (vac.VacancyId = app.VacancyId)
+             ) as t
+      ]]>
+    </sql_select>
+
+    <attributes>
+      <attribute id="VacancyId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 row_source_id="HR_Vacancy_Lookup"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="VacancyName"
+                 caption="Vacancy Name"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 grid_width="200"
+                 storable="false"
+                 read_only="true"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="ApplicantId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=PARENT.Hr_Applicant.ApplicantId"
+      />
+      <attribute id="Priority"
+                 caption="Priority"
+                 type="int"
+                 max_length="50"
+                 grid_width="100"     
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="VacancyInfo"
+      />
+      <attribute id="IsActive"
+                 caption="Is Active"
+                 type="boolean"
+                 grid_width="80"
+                 storable="false"
+                 read_only="true"
+                 row_source_id="Boolean_Lookup"
+                 />
+      <attribute id="MinWorkYears"
+                 caption="Work Years"
+                 type="int"
+                 max_length="50"
+                 grid_width="120"     
+                 storable="false"
+                 read_only="true"
+      />
+      <attribute id="SalaryExpectationsUSDMin"
+                 caption="Min, $"
+                 type="int"
+                 grid_width="75"
+                 storable="false"
+                 read_only="true"
+      />
+
+      <attribute id="SalaryExpectationsUSDMax"
+                 caption="Max, $"
+                 type="int"
+                 grid_width="75"
+                 storable="false"
+                 read_only="true"
+                 />
+      <attribute id="EnglishLevelCD"
+                 caption="English Level"
+                 type="string"
+                 max_length="50"
+                 grid_width="150"     
+                 storable="false"
+                 read_only="true"
+                 />
+
+    </attributes>
+    <grid_visible_order>
+      ,VacancyName
+      ,Priority
+      ,IsActive
+      ,MinWorkYears
+      ,SalaryExpectationsUSDMin
+      ,SalaryExpectationsUSDMax
+      ,EnglishLevelCD
+    </grid_visible_order>
+    <commands>
+      <command id="AssignVacancyToApplicant"/>
+      <command id="RemoveVacancyFromApplicant"/>
+    </commands>
+    <command_order>
+      AssignVacancyToApplicant
+      RemoveVacancyFromApplicant
+    </command_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ApplicantVacancy"
+                entity_id="HR_ApplicantVacancy"
+                sl_edit_frame_id="HR_ApplicantVacancy_Frame">
+    <edit_order>
+      ,VacancyId
+      ,ApplicantId
+      ,Priority
+    </edit_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_Vacancy_Child_Of_Applicant"
+                entity_id="HR_ApplicantVacancy"
+                filter_enabled="false"
+                display_all_records_without_footer="true">
+    <sql_select>
+      <![CDATA[
+       select *
+         from (
+               select :ApplicantId as ApplicantId, 
+                      vac.VacancyId,
+                      case when av.ApplicantId is null then 0 else 1 end as Assigned, 
+                      vac.VacancyName,
+					            vac.IsActive,
+					            vac.MinWorkYears,
+					            vac.SalaryExpectationsUSDMin,
+					            vac.SalaryExpectationsUSDMax,
+                      vac.EnglishLevelCD
+                 from HR_Vacancy vac
+                   left join HR_ApplicantVacancy av on (vac.VacancyId = av.VacancyId and
+	                                                       av.ApplicantId = :ApplicantId)
+             ) as t
+      ]]>
+    </sql_select>
+    <grid_visible_order>
+      ,Assigned
+      ,VacancyName
+      ,Priority
+      ,IsActive
+      ,MinWorkYears
+      ,SalaryExpectationsUSDMin
+      ,SalaryExpectationsUSDMax
+      ,EnglishLevelCD
+    </grid_visible_order>
+    <attribute_usages>
+      <attribute_usage id="ApplicantId"
+                       default="=PARENT.Hr_Applicant.ApplicantId"
+                       />
+      <attribute_usage id="Assigned"
+                       caption="Assigned"
+                       type="int"
+                       visible="true"
+                       row_source_id="HR_Ok_Lookup"
+                       grid_width="120"     
+                       storable="false"
+                       read_only="true"
+                       sorting="desc"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        1 = 1
+      ]]>
+    </join_condition>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Ok_Lookup">
+    <rows>
+      <row key="0" value="" />
+      <row key="1" value="Yes" image_id="ico16_ab_check"/>
+    </rows>
+  </row_source>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

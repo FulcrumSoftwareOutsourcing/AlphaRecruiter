@@ -1,0 +1,91 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_AdvertisingType"
+          single_caption="Advertising Type"
+          plural_caption="Advertising Types"
+          sl_multiple_grid_edit="true"
+          operations="ivud"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_AdvertisingType"
+          cached="true"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from HR_AdvertisingType t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="AdvertisingTypeCD"
+                 caption="Advertising Type Code"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 grid_width="200"
+                 visible="false"
+                 editable="true"
+      />
+
+      <attribute id="Description"
+           caption="Description"
+           type="string"
+           max_length="50"
+           nullable="false"
+           grid_width="150"
+      />
+
+      <attribute id="Comment"
+                 caption="Comment"
+                 type="string"
+                 max_length="120"
+                 nullable="true"
+                 grid_width="300"
+      />
+      <attribute id="DisplayOrder"
+           caption="Display Order"
+           type="int"
+           sorting="asc"
+           nullable="false"
+           grid_width="100"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_AdvertisingType"
+                entity_id="HR_AdvertisingType">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_AdvertisingType_Lookup"
+              entity_usage_id="HR_AdvertisingType"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_AdvertisingType_with_Total"
+                entity_id="HR_AdvertisingType">
+    <sql_select>
+      <![CDATA[
+        select AdvertisingTypeCD,
+               Description,
+               DisplayOrder
+          from HR_AdvertisingType
+        union all  
+        select 'Total' as AdvertisingTypeCD,
+               '<B>Total</B>' as Description,
+               999999 as DisplayOrder
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_AdvertisingType_with_Total_Lookup"
+              entity_usage_id="HR_AdvertisingType_with_Total"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

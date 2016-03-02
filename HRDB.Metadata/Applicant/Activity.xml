@@ -1,0 +1,452 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Activity"
+          single_caption="Activity"
+          sl_edit_frame_id="Activity_Layout"
+          plural_caption="Activities"
+          operations="ivu"
+          filter_enabled="true"
+          image_id="Activities"
+          entity_class_id="SlEntity"
+          db_object="v_HR_Activity_with_Attacment"
+          in_security="true"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from v_HR_Activity as t
+       ]]>
+    </sql_select>
+    <sql_update>
+      <![CDATA[
+        update HR_Activity
+          set ApplicantId=:ApplicantId,
+              ActivityTypeCD=:ActivityTypeCD,
+              ActivityDate=:ActivityDate,
+              IsCompleted=:IsCompleted,
+              Subject=:Subject,
+              BodyText=:BodyText,
+              AssignedToUserId=:AssignedToUserId,
+              CreationDate=:CreationDate,
+              CreatedByUserId=:CreatedByUserId,
+              ModificationDate=:ModificationDate,
+              ActivityResultCd=:ActivityResultCd,
+              ModifiedByUserId=:ModifiedByUserId         
+          where ActivityId = :ActivityId
+         
+        if (:FileName is not null)
+          begin
+            if exists (select 1
+                        from HR_Attachment
+                       where AttachmentId=:AttachmentId)
+              begin
+                update HR_Attachment
+                   set AttachmentTypeCD=:AttachmentTypeCD,
+                       FileDate=getdate(),
+                       FileName=:FileName,
+                       FileContent=:FileContent,
+                       FileSize=:FileSize,
+                       FileContentState=:FileContentState,
+                       ModificationDate=getdate(),
+                       ModifiedByUserId=:ModifiedByUserId,
+                       FileType=:FileType
+                where AttachmentId=:AttachmentId
+              end
+            else
+              begin
+                exec p_GetFrameworkSequenceNextValue   @NextValue = :AttachmentId output
+
+                insert into HR_Attachment
+                (AttachmentId, ApplicantID, ActivityId, FileDate, FileName, FileContent,FileSize, FileContentState,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId, AttachmentTypeCD)
+                values
+                (@AttachmentId, :ApplicantID, :ActivityId, :ActivityDate, :FileName, :FileContent,:FileSize, :FileContentState,  :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId, isnull(:AttachmentTypeCD, 'OTHER'))
+              end
+          end
+       ]]>
+    </sql_update>
+    <sql_delete>
+      <![CDATA[
+        delete from HR_Attachment
+         where ActivityId = :ActivityId
+        
+        delete from HR_Activity
+         where ActivityId = :ActivityId
+       ]]>
+    </sql_delete>
+    <sql_insert>
+      <![CDATA[
+      begin
+        insert into HR_Activity
+        (
+          ActivityId,
+          ApplicantId,
+          ActivityTypeCD,
+          ActivityDate,
+          IsCompleted,
+          Subject,
+          BodyText,
+          AssignedToUserId, 
+          CreationDate,
+          CreatedByUserId,
+          ModificationDate,
+          ActivityResultCd,
+          ModifiedByUserId
+        )
+        values
+        (
+          :ActivityId,
+          :ApplicantId,
+          :ActivityTypeCD,
+          :ActivityDate,
+          :IsCompleted,
+          :Subject,
+          :BodyText,
+          :AssignedToUserId,
+          :CreationDate,
+          :CreatedByUserId,
+          :ModificationDate,
+          :ActivityResultCd,
+          :ModifiedByUserId
+        )
+        
+        if (:FileName is not null)
+          begin
+            declare @AttachmentId        UDT_OBJID
+            exec p_GetFrameworkSequenceNextValue   @NextValue = @AttachmentId output
+
+            insert into HR_Attachment
+            (AttachmentId, ApplicantID, ActivityId, FileDate, FileName, FileContent,FileSize, FileContentState,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId, AttachmentTypeCD)
+            values
+            (@AttachmentId, :ApplicantID, :ActivityId, :ActivityDate, :FileName, :FileContent,:FileSize, :FileContentState,  :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId, isnull(:AttachmentTypeCD, 'OTHER'))
+          end
+      end
+    ]]>
+    </sql_insert>
+    <attributes>
+      <attribute id="ActivityId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 read_only_for_update="true"
+                 visible="false"
+                 read_only="true"
+                 default="=@sequence"
+      />
+      <attribute id="ApplicantId"
+                 type="int"
+                 nullable="false"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=PARENT.Hr_Applicant.ApplicantId"
+      />
+      <attribute id="AttachmentId"
+                 type="int"
+                 visible="false"
+                 storable="false" 
+      />
+      <attribute id="ActivityTypeCD"
+                 caption="Activity Type"
+                 type="string"
+                 row_source_id="HR_ActivityType_Lookup"
+                 visible="true"
+                 nullable="false"
+                 read_only_for_update="true"
+                   default="INTEREST_Ask"
+                 
+      />
+      <attribute id="ActivityDate"
+                 caption="Activity Date"
+                 type="datetime"
+                 default="=@NOW"
+                 nullable="true"
+                 sorting="asc"
+      />
+
+      
+      <attribute id="IsCompleted"
+                 caption="Is Completed"
+                 type="boolean"
+                 row_source_id="Boolean_Lookup"
+                 nullable="false"
+                 default="1"
+                 visible="false"
+                 on_save_expression="SQL.select case when :ActivityResultCd is null then 0 else 1 end"
+                 __local_expression="SQL.select case when :ActivityResultCd is null then 0 else 1 end"
+                 _local_expression="SQL.select cast (1 ^ NotClosedOnCreation as bit)
+                                         from HR_ActivityType with (noLock)
+                                        where ActivityTypeCD = :ActivityTypeCD"
+      />
+      <attribute id="ActivityResultCd"
+                 caption="Activity Result"
+                 type="string"
+                 row_source_id="HR_ActivityResult2Types_Lookup"
+                 row_source_filter="ActivityTypeCD = :ActivityTypeCD"
+                 visible="true"
+                 sl_control_placement="pnResult"                 
+                 _read_only_for_update="true"
+                 local_expression="SQL.select top 1 ActivityResultCd from HR_ActivityTypeResult where HR_ActivityTypeResult.ActivityTypeCD = :ActivityTypeCD"
+      />
+      <attribute id="Subject"
+                 caption="Instructions"
+                 grid_width="450"
+                 type="string"
+                 visible="true"
+      />
+      <attribute id="BodyText"
+                 caption="Details"
+                 type="string"
+                 control_height="180"
+                 grid_width="200"
+                 sl_control="memo"
+                 max_length="2000"
+                 sl_control_placement="pnResult"                 
+      />
+
+      
+      <attribute id="AssignedToUserId"
+                 caption="Assigned To"
+                 type="int"
+                 nullable="true"
+                 row_source_id="User_Lookup"
+      />
+
+      <attribute id="CreationDate"
+                 caption="Creation Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+                 filter_advanced="true"
+                 visible="false"
+      />
+      <attribute id="CreatedByUserId"
+                 caption="Created By"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 default="=Application$UserId"
+                 visible="false"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 filter_advanced="true"
+      />
+      <attribute id="ModificationDate"
+                 visible="false"
+                 caption="Modification Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+                 filter_advanced="true"
+       />
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 default="=Application$UserId"
+                 visible="false"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 filter_advanced="true"
+      />
+      <!-- *******************    Resume file data  -->
+      <attribute id="FileContent"
+                 caption="Attachment"
+                 type="file"
+                 storable="false"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_width="3"
+                 blob_file_name_attribute_id="FileName"
+                 blob_file_size_attribute_id="FileSize"
+                 sl_control_placement="pnDetails"
+      />
+      <attribute id="FileName"
+                 caption="File"
+                 type="string"
+                 storable="false"
+                 nullable="true"
+                 visible="false"
+                 read_only="true"
+                 sl_control_placement="pnDetails"                 
+        />
+      <attribute id="FileSize"
+                 caption="Length"
+                 type="int"
+                 nullable="true"
+                 storable="false"
+                 visible="false"
+                 read_only="true"
+                 />
+      <attribute id="FileContentState"
+                 storable="false"
+                 type="string"
+                 visible="false"
+                 />
+      <attribute id="AttachmentTypeCD"
+                 storable="false"
+                 caption="Attachment Type"
+                 row_source_id="HR_AttachmentType_Lookup"
+                 type="string"
+                 visible="true"
+                 sl_control_placement="pnDetails"                 
+                 />
+    </attributes>
+    <commands>
+      <command id="New" text="New Activity" />
+      <command id="Edit" text="Edit Activity" />
+      <command id="View" text="View Activity" />
+    </commands>
+
+    <edit_order>
+      ActivityTypeCD
+      ActivityDate
+      Subject
+      AssignedToUserId
+      -------------------------
+      AttachmentTypeCD
+      FileContent
+
+      ----------------------
+      BodyText
+      ActivityResultCd
+
+
+    </edit_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Activity"
+                entity_id="HR_Activity">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityOpened"
+                entity_id="HR_Activity">
+    <sql_select>
+      <![CDATA[
+        select * from (
+		        select a.*, isnull(app.LastName, '') + ' ' + isnull(app.FirstName, '') as FullName
+                  from HR_ActivityOpened ao
+                    inner join v_HR_Activity a on (a.ActivityId = ao.ActivityId)
+                    inner join HR_Applicant app on a.ApplicantId = app.ApplicantId
+            ) t
+       ]]>
+    </sql_select>
+    <parent_entities>
+      <parent_entity id="HR_Applicant">
+        <where_clause>
+          <![CDATA[
+            ApplicantId = :ApplicantId
+          ]]>
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+
+    <filter_order>
+      AssignedToUserId
+    </filter_order>
+
+    <grid_visible_order>
+      ActivityDate,
+      ActivityTypeCD,
+      FullName,
+      AssignedToUserId
+
+    </grid_visible_order>
+    <attribute_usages>
+      <attribute_usage id="FullName"
+                       caption="Name"
+                       type="string">
+        
+      </attribute_usage>
+      <attribute_usage id="AssignedToUserId"
+                       autofilter="true"/>
+
+    </attribute_usages>
+    <command_order>ApplicantView</command_order>
+    <commands>
+      <command id="ApplicantView" visible="true" />
+    </commands>
+
+  </entity_usage>
+
+  
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityOpened_Today"
+                entity_id="HR_Activity"
+                 inherited_entity_usage_id="HR_ActivityOpened">
+
+    <where_clause>
+      <![CDATA[
+        DATEDIFF ( day, ActivityDate, GetDate() ) = 0 
+      ]]>
+    </where_clause>
+  </entity_usage>
+
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityOpened_Expired"
+                entity_id="HR_Activity"
+                 inherited_entity_usage_id="HR_ActivityOpened">
+    <where_clause>
+      <![CDATA[
+        ActivityDate < GetDate()
+      ]]>
+    </where_clause>    
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <entity_usage id="HR_ActivityOpened_My"
+                entity_id="HR_Activity"
+                 inherited_entity_usage_id="HR_ActivityOpened">
+    <where_clause>
+      <![CDATA[
+        AssignedToUserId = :Application$UserId
+      ]]>
+    </where_clause>
+
+    <filter_order>
+      ActivityDate
+    </filter_order>
+
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_Activity_Child_Of_Applicant"
+                entity_id="Hr_Activity"
+                inherited_entity_usage_id="Hr_Activity"
+                filter_enabled="false"
+                display_all_records_without_footer="true">
+    <attribute_usages>
+      <attribute_usage id="ApplicantId"
+                       default="=PARENT.Hr_Applicant.ApplicantId" 
+                       visible="false"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        t.ApplicantId = :ApplicantId
+      ]]>
+    </join_condition>
+    
+    <grid_visible_order>
+      ActivityDate,
+      ActivityTypeCD,
+      ActivityResultCd,
+      Subject,
+      AssignedToUserId,
+      FileContent
+    </grid_visible_order>
+  </entity_usage>
+</fw:entities>

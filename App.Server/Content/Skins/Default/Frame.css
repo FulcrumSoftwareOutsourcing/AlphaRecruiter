@@ -1,0 +1,217 @@
+﻿.FrameHolder {
+     
+    width:100%;
+    height:100%; 
+     background-color:#d8d8dd;
+     overflow:auto;
+     
+}
+
+
+
+
+.CommandsBar {
+    height: 34px;
+    width:100%;
+    white-space:normal !important;
+   
+
+ 
+background: #27538c; /* Old browsers */
+background: -moz-linear-gradient(top,  #27538c 0%, #204c84 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#27538c), color-stop(100%,#204c84)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #27538c 0%,#204c84 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #27538c 0%,#204c84 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#27538c', endColorstr='#204c84',GradientType=0 ); /* IE6-9 */
+
+
+}
+
+
+.CommandsBar_Child {
+    background: #4F6887; 
+}
+
+
+.MainCommands 
+{
+    display: inline-block;
+    margin-left: 20px;
+    height: 28px;
+    position: relative;
+    top: 3px
+}
+
+
+.CmdBtn {
+    height: 28px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-right: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.SaveCmd {
+    background-color: #39b549;
+    color: white;
+}
+
+
+
+.CmdBtnBottom {
+    border: 1px solid #8995a2;
+}   
+
+.CmdBtn:hover {
+    
+    background: rgb(254,250,239); /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(254,250,239,1) 0%, rgba(254,212,105,1) 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,250,239,1)), color-stop(100%,rgba(254,212,105,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(254,250,239,1) 0%,rgba(254,212,105,1) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(254,250,239,1) 0%,rgba(254,212,105,1) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(254,250,239,1) 0%,rgba(254,212,105,1) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(254,250,239,1) 0%,rgba(254,212,105,1) 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefaef', endColorstr='#fed469',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+.SaveCmd:hover {
+      background: #39b549; /* Old browsers */
+    background: -moz-linear-gradient(top,  rgba(254,250,239,1) 0%, #39b549 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#39b549), color-stop(100%,rgba(254,212,105,1))); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  rgba(254,250,239,1) 0%,#39b549 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgba(254,250,239,1) 0%,#39b549 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgba(254,250,239,1) 0%,#39b549 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgba(254,250,239,1) 0%,#39b549 100%); /* W3C */
+    
+}
+
+.DisabledCmd {
+    
+     background: rgb(131, 149, 180) !important;
+     cursor: default;
+}
+
+.DisabledCmd:hover {
+    
+     background: rgb(131, 149, 180) !important;
+     color: white !important;
+     cursor: default;
+}
+
+.DisabledCmd:hover span{
+    
+     
+     color: white !important;
+     cursor: default;
+}
+
+    .CmdBtn:hover img {
+        animation-name: pulse-animated;
+    animation-duration: 280ms;
+    }
+
+      .CmdBtn:hover span {
+        color: black;
+    }
+
+
+.CmdBtn img {
+    height: 20px;
+    width: 20px;
+    position: absolute;
+    top: 4px;
+    left: 5px;
+     margin-right: 5px;
+}
+
+.NoText {
+
+   padding-right: 5px; 
+    
+    }
+
+.NoText img{
+
+    position: relative;
+    
+    
+    }
+
+.CmdBtn div {
+    height: 20px;
+    width: 20px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+     margin-right: 5px;
+     display: inline-block
+}
+
+.CmdBtnBottom div {
+    
+}   
+
+
+.CmdBtn .NoImg {
+    height: 20px;
+    width: 1px;
+    position: relative;
+    top: 4px;
+    left: 5px;
+     margin-right: 5px;
+     display: inline-block
+}
+ 
+
+
+.CmdBtn span {
+    color: white;
+    margin-right: 8px;
+}
+
+.CmdBtnBottom span {
+    color: black !important;
+}
+
+
+.AdtCommands 
+{
+    display: inline-block;
+    height: 30px;
+   
+    position: relative;
+    float:right;
+   padding-left: 15px;
+   padding-top: 3px;
+  
+background: #27538c; /* Old browsers */
+background: -moz-linear-gradient(top,  #27538c 0%, #204c84 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#27538c), color-stop(100%,#204c84)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #27538c 0%,#204c84 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #27538c 0%,#204c84 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#27538c', endColorstr='#204c84',GradientType=0 ); /* IE6-9 */
+}
+
+.AdtCommandsBottom {
+    background: transparent !important;
+}
+
+.EditorLabel {
+    margin: 0 5px 0 5px;
+    
+}
+
+.EditorLabel span:first-child {
+    color:black;
+}
+
+.EditorLabel:last-child {
+    color:red;
+}

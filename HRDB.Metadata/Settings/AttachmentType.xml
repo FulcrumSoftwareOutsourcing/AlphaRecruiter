@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant">
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_AttachmentType"
+          single_caption="Attachment Type"
+          plural_caption="Attachment Types"
+          sl_multiple_grid_edit="true"
+          operations="ivud"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_AttachmentType"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from HR_AttachmentType t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="AttachmentTypeCd"
+                 caption="AttachmentType"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 grid_width="110"
+                 visible="false"
+                 editable="true"
+      />
+      <attribute id="Description"
+                 caption="Description"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 grid_width="150"
+      />
+      <attribute id="DisplayOrder"
+                 caption="Display Order"
+                 type="int"
+                 sorting="asc"
+                 nullable="false"
+      />
+      <attribute id="IconCd"
+                 caption="Icon Code"
+                 type="string"
+                 max_length="50"
+                 visible="false"
+                 editable="true"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_AttachmentType"
+                entity_id="HR_AttachmentType">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_AttachmentType_ForLookUp"
+                cached="true"
+                entity_id="HR_AttachmentType">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_AttachmentType_Lookup"
+              entity_usage_id="HR_AttachmentType_ForLookUp"
+              image_attr_id="IconCd"
+              />
+</fw:entities>

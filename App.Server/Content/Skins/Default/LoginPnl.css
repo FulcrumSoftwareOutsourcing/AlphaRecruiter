@@ -1,0 +1,64 @@
+﻿.LoginPanel {
+    _float:right;
+    color: white;
+       height:48px;
+    line-height:48px;       
+    cursor: pointer;
+  padding-left: 10px;
+
+}
+
+
+
+
+.UserName{
+    font-size: 1.5em;
+    display: inline-block;
+    float: right; 
+   margin: 0 20px 0 10px ;
+ 
+}
+
+.WorkingLogout {
+   width:16px;
+   height:16px;
+   line-height:42px;       
+    display: inline-block;
+   
+}
+
+.WorkingLogout div {
+   position:absolute !important;
+   top:4px !important;
+
+}
+
+
+.LoginPnlCmd {
+    cursor:pointer;
+    margin:0 0 0 10px;
+    color: white;
+    text-decoration:underline;
+    
+    padding:0 5px 0 5px;
+
+    
+
+}
+
+
+.UserIcon {
+     color:white;
+    float: right;
+    display:inline-block;
+    
+    line-height: 40px;
+
+     width: 50px;
+    height: 50px;
+}
+
+
+
+
+

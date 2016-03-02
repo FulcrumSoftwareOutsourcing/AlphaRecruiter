@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<groups>
+  <group id="Interface"
+         text="Interface"
+         windows_frame="Framework.Windows.Client.CxOptionsInterfaceFrame">
+    <group id="GridGlobal"
+           text="Global Grid Options"
+           windows_frame="Framework.Windows.Client.CxOptionsGridFrame" />
+    <group id="GridDefault"
+           text="Default Grid Options"
+           windows_frame="Framework.Windows.Client.CxOptionsGridFrame" />
+  </group>
+  <group id="AutoUpdate"
+         text="Automatic Updates"
+         windows_frame="Framework.Windows.Client.CxOptionsAutoUpdateFrame"
+  />
+</groups>

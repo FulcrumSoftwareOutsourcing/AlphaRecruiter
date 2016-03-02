@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:classes xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="BASE_ENTITY"
+       assembly_id="Framework.Entity"
+       name="CxBaseEntity"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="IDENTITY_PK_ENTITY"
+       assembly_id="Framework.Entity"
+       name="CxIdentityPkEntity"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="CxSecurityUserEntity"
+       assembly_id="Framework.Entity"
+       name="CxSecurityUserEntity"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="CxGridFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxGridFrame"
+       
+  >
+
+    
+    
+  </class>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="EMPTY_FRAME"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxEmptyFrame"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="SqlCnsoleFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxSqlConsoleFrame"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="DefaultSlCommandHandler"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxCommandHandler"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="DefaultCommandHandler"
+       assembly_id="Framework.Remote"
+       name="CxCommandHandler"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="DefaultImageProvider"
+         assembly_id="App.Silverlight.Client"
+         name="CxImageProvider" 
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="SlSaveCommandHandler"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxSaveCommandHandler"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="CxDashboardFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxDashboardFrame"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="SlEntity"
+       assembly_id="Framework.Remote"
+       name="CxSlEntity"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="SlImageLibraryEntity"
+       assembly_id="Framework.Remote"
+       name="CxSlImageLibraryEntity"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="HtmlFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxHtmlFrame"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="TreeItemProviderEntityList"
+         assembly_id="Framework.Remote"
+         name="CxSlTreeItemProviderEntityList" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="BaseMessageHandler"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxBaseMessageHandler"
+  />
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="LinkedFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxLinkedFrame"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="DashboardFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxDashboardFrame"
+  />
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="LocalizationFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxLocalizationFrame"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="Sl_LocalizationCommandHandler"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxLocalizationCommandHandler"
+  />
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="IMAGE_LIBRARY_CATEGORY_ENTITY"
+       assembly_id="Framework.Entity"
+       name="CxImageLibraryCategoryEntity"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="IMAGE_LIBRARY_ENTITY"
+       assembly_id="Framework.Entity"
+       name="CxImageLibraryEntity"
+  />
+
+  <class id="SECURITY_USER_ENTITY"
+       assembly_id="Framework.Entity"
+       name="CxSecurityUserEntity"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="SECURITY_ROLE_ENTITY"
+       assembly_id="Framework.Entity"
+         name="CxSecurityRoleEntity"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="ImageLibraryEntity"
+         assembly_id="App.Silverlight.Client"
+         name="CxImageLibraryEntity"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="PopupFrame"
+       assembly_id="Framework.Silverlight.Client"
+       name="CxPopupFrame"
+  />
+
+
+ 
+
+
+  
+
+
+</fw:classes>
+

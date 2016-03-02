@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<images>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="GeneralYes"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="GeneralYes.png"
+         index="50" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="GeneralNo"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="GeneralNo.png"
+         index="51" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="HR_TreeItem_Home"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="home_24x24.png"
+         index="402" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Applicants"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Applicants_24x24.png"
+         index="1000" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Applicant_Search_All"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Applicant_Search_All.png"
+         index="1001" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Created_Today"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Created_Today.png"
+         index="1002" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Modified_Today"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Modified_Today.png"
+         index="1003" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TODO_Contact"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="TODO_Contact.png"
+         index="1004" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TODO_Parse1"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="TODO_Parse1.png"
+         index="1005" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Delete_Applicant"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Delete_Applicant.png"
+         index="1006" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Pay_Attention"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Pay_Attention.png"
+         index="1007" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Applicant_Recruiters"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="ApplicantRecruiters.png"
+         index="10155" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Activities"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Activities.png"
+         index="1008" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Study"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Study.png"
+         index="1009" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Interviews"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Interviews.png"
+         index="1010" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Interview_Phone"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Interview_Phone.png"
+         index="1011" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="InterviewOffice"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="InterviewOffice.png"
+         index="1012" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Attachments"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Attachments.png"
+         index="1013" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="AllActivities"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="AllActivities.png"
+         index="1014" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="ActivityType_Question"
+           provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="question_and_answer_16x16.png"
+           index="13008" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="QuestionsAndAnswers"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+          file_name="question_and_answer_24x24.png"
+         index="1015" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="AllQuestions"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="QuestionsAndAnswers.png"
+         index="1016" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="QuestionCategories"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="QuestionCategories.png"
+         index="1017" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="QuestionsAndAnswers1"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="AllQuestions.png"
+         index="1018" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="QuestionsStatistics"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="QuestionsStatistics.png"
+         index="1019" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="AverageAnswerResult"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="AverageAnswerResult.png"
+         index="1020" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TimesAsked"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="TimesAsked.png"
+         index="1021" />
+
+  <image id="Vacancies"
+        provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="Vacancies.png"
+        index="1050" />
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Skill_None"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Scill_None.png"
+         index="2000" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Skill_Student"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Scill_Student.png"
+         index="2001" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Skill_Junior"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Scill_Junior.png"
+         index="2002" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Skill_Middle"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Scill_Middle.png"
+         index="2003" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Skill_Senior"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Scill_Senior.png"
+         index="2004" />
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume.png"
+         index="4000" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_BlackList"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_BlackList.png"
+         index="4001" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_Dublicated"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_Dublicated.png"
+         index="4002" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_OK"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_OK.png"
+         index="4003" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_OLD"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_OLD.png"
+         index="4004" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_WEAK"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_WEAK.png"
+         index="4005" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_Young"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_Young.png"
+         index="4006" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_Cool"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_Cool.png"
+         index="4007" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_ProfNet"
+         provider_class_id="Hr_ImageProvider"
+          folder="HR/LookUpsIcons"
+         file_name="Resume_ProfNet.png"
+         index="4008" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Resume_Study"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_Study.png"
+         index="4009" />
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Engl_Beginner"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Engl_Beginner.png"
+         index="4100" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Engl_PreInterm"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Engl_PreInterm.png"
+         index="4101" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Engl_Interm"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Engl_Interm.png"
+         index="4102" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Engl_UppInterm"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Engl_UppInterm.png"
+         index="4103" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Engl_Advanced"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Engl_Advanced.png"
+         index="4104" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_Developer"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_Developer.png"
+         index="4200" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_PM"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_PM.png"
+         index="4201" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_QA"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_QA.png"
+         index="4202" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_TechWriter"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_TechWriter.png"
+         index="4203" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_Developer_Other"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_Developer_Other.png"
+         index="4204" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Spec_Other"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Spec_Other.png"
+         index="4205" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Passed_Inter_Phone"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="receiver_16x16.png"
+         index="4300" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Passed_Inter_Office"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="office_chair_16x16.png"
+         index="4301" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_CCharp"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_CCharp.png"
+         index="4400" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_C++"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_CPP.png"
+         index="4401" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_CS_Theory"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_CS_Theory.png"
+         index="4402" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_Mathematics"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_Mathematics.png"
+         index="4403" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_RDB_SQL"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_RDB_SQL.png"
+         index="4404" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_WIN32_COM"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_WIN32_COM.png"
+         index="4405" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_OOP"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_OOP.png"
+         index="4406" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Cat_ASP"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Cat_ASP.png"
+         index="4407" />
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Complex_Elementary"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Complex_Elementary.png"
+         index="4500" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Complex_Low"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Complex_Low.png"
+         index="4501" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Complex_Middle"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Complex_Middle.png"
+         index="4502" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Complex_Higth"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Complex_Higth.png"
+         index="4503" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Complex_Extreme"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Complex_Extreme.png"
+         index="4504" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Quest_Two_Color"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Quest_Two_Color.png"
+         index="4505" />
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Attach_Type_Code"
+         provider_class_id="Hr_ImageProvider"
+          folder="HR/LookUpsIcons"
+         file_name="Attach_Type_Code.png"
+         index="4600" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Attach_Type_Other"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Attach_Type_Other.png"
+         index="4601" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Attach_Type_Resume"
+         provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Attach_Type_Resume.png"
+         index="4602"/>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Act_Type_BLACK_LIST" provider_class_id="Hr_ImageProvider"
+         folder="HR/LookUpsIcons"
+         file_name="Resume_BlackList.png"
+         index="4700" />
+  
+  <image id="Act_Type_COMPANY_Answer"	provider_class_id="Hr_ImageProvider" 
+         folder="HR\LookUpsIcons" 
+         file_name="Act_Type_COMPANY_Answer.png"
+         index="4701" />
+  <image id="Act_Type_COMPANY_Asked" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_COMPANY_Asked.png"
+         index="4702" />
+  <image id="Act_Type_CONTACT_Failed" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_CONTACT_Failed.png"
+         index="4703" />
+  <image id="Act_Type_INTEREST_Ask" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_INTEREST_Ask.png"
+         index="4704" />
+  <image id="Act_Type_INTEREST_NO"  provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_INTEREST_NO.png"
+         index="4705" />
+  <image id="Act_Type_INTEREST_YES"  provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_INTEREST_YES.png"
+         index="4706" />
+  <image id="Act_Type_INTERVIEW_Office" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="office_chair_16x16.png"
+         index="4707" />
+  <image id="Act_Type_INTERVIEW_Phone" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="receiver_16x16.png"
+         index="4708" />
+  <image id="Act_Type_JOB_Employed" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_JOB_Employed.png"
+         index="4709" />
+  <image id="Act_Type_JOB_Left_Company" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_JOB_Left_Company.png"
+         index="4710" />
+  <image id="Act_Type_JOB_Offer_Refused" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_JOB_Offer_Refused.png"
+         index="4711" />
+  <image id="Act_Type_OTHER_Attachment" provider_class_id="Hr_ImageProvider" 
+         folder="HR\LookUpsIcons"
+         file_name="Attach_Type_Other.png"
+         index="4712" />
+  <image id="Act_Type_RESUME_Recieved"  provider_class_id="Hr_ImageProvider" 
+         folder="HR\LookUpsIcons"
+         file_name="Attach_Type_Resume.png"
+         index="4713" />
+  <image id="Act_Type_STOPPED_EclipseAgreement" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_STOPPED_EclipseAgreement.png"
+         index="4714" />
+  <image id="Act_Type_STOPPED_Salary" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_STOPPED_Salary.png"
+         index="4715" />
+  <image id="Act_Type_STOPPED_unknown" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_STOPPED_unknown.png"
+         index="4716" />
+  <image id="Act_Type_STOPPED_Weak" provider_class_id="Hr_ImageProvider"
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_STOPPED_Weak.png"
+         index="4717" />
+  <image id="Act_Type_unknown" provider_class_id="Hr_ImageProvider" 
+         folder="HR\LookUpsIcons"
+         file_name="Act_Type_unknown.png"
+         index="4718" />
+  <image id="Act_Type_Question_Answer" provider_class_id="Hr_ImageProvider" 
+          folder="HR\LookUpsIcons"
+         file_name="Act_Type_Question_Answer.png"
+          index="4719" />
+  <image id="Act_Type_STOPPED_English" provider_class_id="Hr_ImageProvider" 
+          folder="HR\LookUpsIcons"
+         file_name="Act_Type_STOPPED_English.png"
+     index="4720" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <image id="Act_Type_INTERVIEW_Phone_Passed" provider_class_id="Hr_ImageProvider" 
+          folder="HR\LookUpsIcons"
+         file_name="receiver_16x16_Passed.png"
+       index="4721" /> 
+  
+  <image id="Act_Type_INTERVIEW_Office_Passed" provider_class_id="Hr_ImageProvider" 
+          folder="HR\LookUpsIcons"
+         file_name="office_chair_16x16_Passed.png"
+     index="4722" />
+
+  <image id="ApplicantVacancyFree" provider_class_id="Hr_ImageProvider" 
+          folder="HR"
+         file_name="ApplicantVacancyFree.png"
+        index="300" />
+  
+  <image id="ApplicantVacancyMatches" provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="ApplicantVacancyMatches.png"
+        index="301" />
+  <image id="ApplicantVacancyMisatches" provider_class_id="Hr_ImageProvider"
+         folder="HR"
+         file_name="ApplicantVacancyMisatches.png"
+        index="302" />
+
+  <image id="ApplicantsCreatedToday" provider_class_id="Hr_ImageProvider" index="5000" folder="Images/Dashboard" file_name="ApplicantsCreatedToday.png" />
+  <image id="TodoContact" provider_class_id="Hr_ImageProvider" index="5001" folder="Images/Dashboard" file_name="TodoContact.png" />
+  <image id="TodoInterviewOffice" provider_class_id="Hr_ImageProvider" index="5002"  folder="Images/Dashboard" file_name="TodoInterviewOffice.png"/>
+  <image id="TodoParse" provider_class_id="Hr_ImageProvider" index="5003"  folder="Images/Dashboard" file_name="TodoParse.png"/>
+  <image id="TodoPayAttention" provider_class_id="Hr_ImageProvider" index="5004" folder="Images/Dashboard" file_name="TodoPayAttention.png" />
+  <image id="AllActivitiesDashboard" provider_class_id="Hr_ImageProvider" index="5005" folder="Images/Dashboard" file_name="AllActivities.png"  />
+  <image id="PhoneInterviews" provider_class_id="Hr_ImageProvider" index="5006" folder="Images/Dashboard" file_name="PhoneInterviews.png" />
+  <image id="OfficeInterviews" provider_class_id="Hr_ImageProvider" index="5007" folder="Images/Dashboard" file_name="OfficeInterviews.png" />
+
+
+  <image id="logo" 
+        folder="HR"
+        file_name="logo.png" />
+
+  <image id="logo2"
+          folder="HR"
+          file_name="logo2.png" />
+
+  <image id="logo_back"
+          folder="HR"
+          file_name="login-image.jpg" />
+
+</images>

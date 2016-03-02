@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	           xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+             group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="User"
+          plural_caption="Users"
+          single_caption="User"
+          operations="ivud"
+          in_security="true"
+          entity_class_id="CxSecurityUserEntity"
+          db_object="Framework_Users"
+          image_id="TreeItem_Users"
+          cached="true">
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from v_Framework_Users t
+      ]]>
+    </sql_select>
+    <sql_delete>
+      <![CDATA[
+      
+        delete from Framework_MarkedItems
+        where UserId = :UserId
+ 
+      delete from Framework_Users 
+      where UserId = :UserId
+      
+      ]]>
+    </sql_delete>
+    <attributes>
+      <attribute id="UserId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="10"
+                 visible="false"
+                 default="=@sequence"
+      />
+      <attribute id="Login"
+                 caption="Login"
+                 type="string"
+                 alternative_key="true"
+                 max_length="50"
+                 nullable="false"
+                 display_name="true"
+                 sorting="asc"
+                 grid_width="150"
+      />
+      <attribute id="FullName"
+                 caption="Name"
+                 type="string"
+                 alternative_key="true"
+                 alternative_key_index="1"
+                 max_length="150"
+                 nullable="false"
+                 grid_width="250"
+      />
+      <attribute id="Password"
+                 caption="Password"
+                 type="string"
+                 max_length="150"
+                 visible="false"
+                 
+      />
+      <attribute id="DisplayPassword"
+                 caption="Password"
+                 type="string"
+                 max_length="150"
+                 visible="false"
+                 editable="true"
+                 storable="false"
+                 sl_control="password"
+                 nullable="false"
+      />
+      <attribute id="ConfirmPassword"
+                 caption="Confirm Password"
+                 type="string"
+                 max_length="150"
+                 visible="false"
+                 editable="true"
+                 storable="false"
+                 sl_control="password"
+                 nullable="false"
+      />
+      <attribute id="IsActive"
+                 caption="Active"
+                 type="boolean"
+                 max_length="1"
+                 storable="false"
+                 grid_width="50"
+                 row_source_id="Boolean_Lookup"
+                 default="1"
+                 nullable="false"
+      />
+      <attribute id="DeactivatedDate"
+                 caption="Deactivated Date"
+                 type="date"
+                 read_only="true"
+                 editable="false"
+                 storable="false"
+      />
+      <attribute id="DefaultWorkspaceId"
+                 caption="Default Workspace"
+                 type="int"
+                 max_length="10"
+                 visible="true"
+                 editable="true"
+                 filterable="true"
+                 nullable="false"
+                 row_source_id="Workspace_Lookup_List"
+                 text_attr_id="DefaultWorkspaceName"
+      />
+      <attribute id="IsDeactivated"
+                 caption="Is Deactivated"
+                 type="boolean"
+                 default="0"
+                 max_length="1"
+                 visible="false"
+                 on_save_expression="IIF(:IsActive = 1, 0, 1)"
+      />
+      <attribute id="Email"
+                 caption="Email"
+                 type="string"
+                 max_length="150"
+      />
+      <attribute id="Phone"
+                 caption="Phone"
+                 type="string"
+                 max_length="50"
+      />
+      <attribute id="MobilePhone"
+                 caption="Mobile Phone"
+                 type="string"
+                 max_length="50"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <entity_usage id="User"
+                sl_edit_frame_id="UserDetails_Layout"
+                entity_id="User">
+    <where_clause>
+      UserId > 0
+    </where_clause>
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="User_Edit"
+                sl_edit_frame_id="UserDetails_Layout"
+                entity_id="User">
+    <where_clause>
+      UserId > 0
+    </where_clause>
+    <attribute_usages>
+      <attribute_usage id="DisplayPassword"
+                       nullable="true"
+      />
+      <attribute_usage id="ConfirmPassword"
+                       nullable="true"
+      />
+    </attribute_usages>
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="User_Lookup"
+                entity_id="User"
+                inherited_entity_usage_id="User">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="User_Lookup"
+              entity_usage_id="User_Lookup" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="User_Lookup_ByName"
+                entity_id="User"
+                inherited_entity_usage_id="User">
+    <sql_select>
+      <![CDATA[
+        select t.UserId, t.FullName + ' ('  + t.Login + ')' as Login
+          from v_Framework_Users t
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="User_Lookup_ByName"
+              entity_usage_id="User_Lookup_ByName" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

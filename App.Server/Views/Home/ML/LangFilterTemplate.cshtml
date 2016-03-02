@@ -1,0 +1,32 @@
+﻿@{
+    Layout = null;
+}
+
+<!--css file: FormEditors.css-->
+
+<script type="text/html" id="ML/LangFilterTemplate">
+    <div  id="%id%" >
+       &nbsp;&nbsp;<span c-type="langLbl"></span>&nbsp;&nbsp;
+        
+        <div class="Form_RowSource_Edit" style="width: 250px; display:inline-block" c-type="lang-rs">
+
+            <span c-type="sel-lang"></span>
+
+            <svg width="7" height="7" >
+                <path d="M0 0 l7 0 L3.5 5 z" />
+            </svg>
+
+            <div c-type="cr-root" class="RsPopup unselectable" style="display: none;" >
+                
+            </div>
+
+        </div>
+        
+    </div>
+</script>
+
+<script type="text/html" id="LangFilterItem">
+    <div class="RsItem" l-id="%lid%"  >
+        <span style="color: black !important;"><!--text--></span>
+    </div>
+</script>

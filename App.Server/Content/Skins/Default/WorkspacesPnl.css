@@ -1,0 +1,36 @@
+﻿.WorkspacesPnl {
+     float:right;
+    margin: 0 35px 0 0;
+    color: white;
+
+       height:42px;
+    line-height:42px;   
+  
+}
+
+    .WorkspacePnlBtn {
+        border: 1px solid transparent;
+        border-radius: 6px;
+        padding:2px 7px 2px 7px;
+        display:inline;
+        
+    }
+
+    .WorkspacePnlBtn:hover {
+        border: 1px solid white;
+        border-radius: 4px;
+    }
+
+.WorkspacePnlBtn div {
+     display: inline;
+     margin-right: 6px;
+     border:none;
+}
+
+.WorkspacePnlBtn svg {
+    
+     display: inline;
+     border:none;
+     fill:white;
+}
+

@@ -1,0 +1,6 @@
+﻿Deployment:
+    Following should be updated:
+     - bin\*.*
+     - Views\*.* (except Web.config)
+     - Scripts\app\*.*
+     - Skins\*.*

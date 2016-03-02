@@ -1,0 +1,62 @@
+﻿@{
+    Layout = null;
+}
+
+<!--css file: GridEditors.css-->
+
+<script type="text/html" id="RowSourceComboBox">
+
+
+    <div class="RsComboBox" >
+        <img src="%rs_img%" style="display: %img_disp% " />
+        <div style="display: %img_sp_disp% "></div>
+        <span><!--text--></span>
+    </div>
+
+
+
+    @*<div class="RsComboBox" data-bind="style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}">
+
+        <!-- ko if: $parent[$data].SelectedRsItem()  -->
+
+
+        <img data-bind="visible: $root.IsRowSourceItemWithImage($parent[$data].SelectedRsItem()),  attr: { src: $root.GetRowSourceImgUrl($parent[$data].SelectedRsItem(), $parent[$data], $data)} " />
+        <div data-bind="visible: $root.IsRowSourceItemWithImage($parent[$data].SelectedRsItem())"></div>
+
+        <span data-bind="text: $parent[$data].SelectedRsItem().Text"></span>
+
+
+
+        <!-- /ko -->
+    </div>*@
+
+</script>
+
+<script type="text/html" id="string">
+    
+    <div data-bind="text: $parent[$data], visible: !$parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}"></div>
+    <input class="GridStringEditor" type="text" data-bind="value: $parent[$data], visible: $parent[$data].Editing() && $parent.Selected(), hasFocus: $parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}" />
+    
+</script>
+
+
+
+<script type="text/html" id="datetime">
+    <span data-bind="text: $parent[$data], visible: !$parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}"></span>
+</script>
+
+
+<script type="text/html" id="boolean">
+    <input type="checkbox" data-bind="checked: $parent[$data]" />
+</script>
+
+<script type="text/html" id="int">
+    <div data-bind="text: $parent[$data], visible: !$parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}"></div>
+    @*<input class="GridStringEditor" type="text" data-bind="value: $parent[$data], visible: $parent[$data].Editing() && $parent.Selected(), hasFocus: $parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}" />*@
+</script>
+
+<script type="text/html" id="float">
+    <div data-bind="text: $parent[$data], visible: !$parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}"></div>
+    @*<input class="GridStringEditor" type="text" data-bind="value: $parent[$data], visible: $parent[$data].Editing() && $parent.Selected(), hasFocus: $parent[$data].Editing(), style: {width: ($root.AttrsByIds[$data].GridWidth + 'px')}" />*@
+</script>
+

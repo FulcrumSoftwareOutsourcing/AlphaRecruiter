@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+}
+<script type="text/html" id="Commands/CommandsBar">
+    <div  >
+        <div class="MainCommands" data-bind="template: { name: 'CommandBtn', foreach: Commands }">
+
+        </div>
+
+        <div class="AdtCommands" data-bind="visible: SaveAndStayCmdVisible() || SaveAndCloseCmdVisible() || CancelCmdVisible() ">
+            <div class="CmdBtn SaveCmd" data-bind="click: function(data){ $root.CommandClick('SaveAndStay', $root)  }, visible: SaveAndStayCmdVisible">
+                <img data-bind="attr:{ src: SaveAndStayCmdImageUrl }, visible: SaveAndStayCmdImageUrl">
+                <div data-bind="visible: SaveAndStayCmdImageUrl"></div>
+                <div class="NoImg" data-bind="visible: !SaveAndStayCmdImageUrl"></div>
+                <span data-bind="text: GetTxt('Save')"></span>
+            </div>
+            <div class="CmdBtn SaveCmd" data-bind="click: function(data){ $root.CommandClick('SaveAndClose', $root)  }, visible: SaveAndCloseCmdVisible">
+                <img data-bind="attr:{ src: SaveAndCloseCmdImageUrl }, visible: SaveAndCloseCmdImageUrl">
+                <div data-bind="visible: SaveAndCloseCmdImageUrl"></div>
+                <div class="NoImg" data-bind="visible: !SaveAndCloseCmdImageUrl"></div>
+                <span data-bind="text: GetTxt('Save and Close')"></span>
+            </div>
+            <div class="CmdBtn" data-bind="click: function(data){ $root.CommandClick('Cancel', $root)  }, visible: CancelCmdVisible">
+                <img data-bind="attr:{ src: CancelCmdImageUrl }, visible: CancelCmdImageUrl">
+                <div data-bind="visible: CancelCmdImageUrl"></div>
+                <div class="NoImg" data-bind="visible: !CancelCmdImageUrl"></div>
+                <span data-bind="text: GetTxt('Cancel')"></span>
+            </div>
+        </div>
+
+    </div>
+</script>
+<script type="text/html" id="CommandBtn">
+    <div class="CmdBtn" data-bind="click: function(data){ $root.CommandClick(data, $root)  }, visible: Visible">
+        <img data-bind="attr:{ src: ImageUrl }, visible: ImageUrl">
+        <div data-bind="visible: ImageUrl"></div>
+        <div class="NoImg" data-bind="visible: !ImageUrl"></div>
+        <span data-bind="text: BCommand.Text"></span>
+    </div>
+</script>   

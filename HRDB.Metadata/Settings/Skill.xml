@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="HR_Speciality">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_SkillArea"
+          single_caption="Skill Area"
+          plural_caption="Skill Areas"
+          operations="iude"
+          filter_enabled="false"
+          entity_class_id="SlEntity"
+          db_object="HR_SkillArea"
+          >
+    <sql_select>
+      <![CDATA[
+          select *,
+              (select stuff((
+                    select N', ' + SkillName as [text()]
+                      from (
+                            select SkillName
+                              from HR_Skill s
+                              where s.SkillAreaCd = sa.SkillAreaCd
+                           ) as D for xml path('')
+                    ), 1,2,N'')) as Skills
+            from HR_SkillArea sa
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="SkillAreaCd"
+                 caption="Skill Area Code"
+                 type="string"
+                 primary_key="true"
+                 nullable="false"
+                 read_only_for_update="true"
+                 editable="true"
+                 visible="false"
+      />
+      <attribute id="SkillAreaName"
+                 display_name="true"
+                 caption="Skill Area"
+                 grid_width="200"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sorting="asc"
+      />
+      <attribute id="Skills"
+                 display_name="true"
+                 caption="Skills"
+                 type="string"
+                 nullable="true"
+                 storable="false" 
+                 read_only="true"
+      />
+    </attributes>
+   </entity>
+
+  <entity_usage id="HR_SkillArea"
+                entity_id="HR_SkillArea">
+  </entity_usage>
+
+  <entity_usage id="HR_SkillArea_FotLookUp"
+                cached="true"
+                entity_id="HR_SkillArea">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_SkillArea_Lookup"
+              entity_usage_id="HR_SkillArea_FotLookUp"
+              />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Skill"
+          single_caption="Skill"
+          plural_caption="Skills"
+          operations="iude"
+          filter_enabled="false"
+          entity_class_id="SlEntity"
+          db_object="HR_Skill"
+          >
+    <sql_select>
+      <![CDATA[
+          select *
+            from HR_Skill
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="SkillId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 read_only_for_update="true"
+                 visible="false"
+                 read_only="true"
+                 default="=@sequence"
+      />
+      <attribute id="SkillName"
+                 display_name="true"
+                 caption="Skill Name"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sort_order="2"
+                 sorting="asc"
+      />
+      <attribute id="SkillAreaCd"
+                 caption="Skill Area Code"
+                 type="string"
+                 nullable="false"
+                 row_source_id="HR_SkillArea_Lookup"
+                 read_only_for_update="true"
+                 editable="true"
+      />
+    </attributes>
+    <edit_order>
+      ,SkillName
+      ,SkillAreaCd
+    </edit_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Skill"
+                entity_id="HR_Skill">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Skill_ForLookup"
+                cached="true"
+                entity_id="HR_Skill">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Skill_Lookup"
+              entity_usage_id="HR_Skill_ForLookup"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_SkillWithArea"
+                entity_id="HR_Skill">
+    <sql_select>
+      <![CDATA[
+          select SkillId,
+                 SkillAreaCd + ': ' + SkillName as SkillName,
+                 SkillAreaCd
+            from HR_Skill
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_SkillWithArea_Lookup"
+              entity_usage_id="HR_SkillWithArea"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Skill4List"
+                entity_id="HR_Skill">
+    <sql_select>
+      <![CDATA[
+          select *
+            from v_HR_Skill
+      ]]>
+    </sql_select>
+    <attribute_usages>
+      <attribute_usage id="SkillAreaName"
+                        display_name="true"
+                        caption="Skill Area Name"
+                        type="string"
+                        max_length="50"
+                        storable="false"
+                        nullable="true"
+                        sorting="asc"
+                        sort_order="1"
+      />
+    </attribute_usages>
+    <grid_visible_order>
+      SkillName
+      SkillAreaName
+    </grid_visible_order>
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                      S K I L Ls   to   Speciality                   -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_Skill_Child_Of_Speciality"
+                entity_id="HR_Skill"
+                inherited_entity_usage_id="HR_Skill4List"
+                db_object="HR_SpecialitySkill"
+                filter_enabled="false">
+    <sql_select>
+      <![CDATA[
+       select *
+         from (
+               select :SpecialityCd as SpecialityCd, 
+                      case when ss.SpecialityCd is null then 0 else 1 end as Attached, 
+                      s.*
+                 from v_HR_Skill s
+                   left join HR_SpecialitySkill ss on (ss.SkillId = s.SkillId and
+	                                                   ss.SpecialityCd = :SpecialityCd)
+             ) as t
+      ]]>
+    </sql_select>
+    <grid_visible_order>
+      Attached
+      SkillName
+      SkillAreaName
+    </grid_visible_order>
+    <attribute_usages>
+      <attribute_usage id="SpecialityCd"
+                       caption="Speciality Code"
+                       primary_key="true"
+                       type="string"
+                       visible="false"
+      />
+      <attribute_usage id="Attached"
+                       caption="Attached"
+                       type="int"
+                       visible="true"
+                       row_source_id="HR_Ok_Lookup"
+                       storable="false"
+                       read_only="true"
+                       sorting="desc"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        1 = 1
+      ]]>
+    </join_condition>
+    <commands>
+      <command id="AttachSkilToSpeciality"/>
+      <command id="DetachSkilFromSpeciality"/>
+    </commands>
+    <command_order>
+      AttachSkilToSpeciality
+      DetachSkilFromSpeciality
+    </command_order>
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="AttachSkilToSpeciality"
+          text="Attach Skill"
+          image_id="ico16_ab_check"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+        if not exists (select 1
+                         from HR_SpecialitySkill 
+                        where SpecialityCd = :SpecialityCd
+                          and SkillId = :SkillId)
+        begin
+          insert into HR_SpecialitySkill(SkillId, SpecialityCd)
+          values(:SkillId, :SpecialityCd)
+        end  
+      ]]>
+    </sql_command>
+  </command>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="DetachSkilFromSpeciality"
+          text="Detach Skill"
+          image_id="Command_Delete"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+          delete from HR_SpecialitySkill
+           where SkillId = :SkillId
+             and SpecialityCd = :SpecialityCd
+      ]]>
+    </sql_command>
+  </command>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                      S K I L Ls   to   Applicant                    -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_Skill_Child_Of_Applicant"
+                entity_id="HR_Skill"
+                single_caption="Applicant's Skills"
+                inherited_entity_usage_id="HR_Skill4List"
+                db_object="HR_ApplicantSkill"
+                filter_enabled="false"
+                security_entity_usage_id="Hr_Skill_Child_Of_Applicant"
+                display_all_records_without_footer="true">
+    <sql_select>
+      <![CDATA[
+       select *
+         from (
+               select :ApplicantId  as ApplicantId, 
+                      case when ss.ApplicantId is null then 0 else 1 end as Attached, 
+                      s.*
+                 from HR_SpecialitySkill spe
+                   inner join v_HR_Skill        s  on (s.SkillId = spe.SkillId )
+                   left  join HR_ApplicantSkill ss on (ss.SkillId = s.SkillId and
+	                                                   ss.ApplicantId = :ApplicantId )
+                where spe.SpecialityCD in (select SpecialityCD
+                                             from HR_Applicant app
+                                            where app.ApplicantId = :ApplicantId)
+                union 
+               select :ApplicantId  as ApplicantId, 
+                      1 as Attached, 
+                      s.*
+                 from HR_ApplicantSkill   ss
+                   inner join v_HR_Skill s on (ss.SkillId = s.SkillId and
+	                                           ss.ApplicantId = :ApplicantId)
+             ) as t
+      ]]>
+    </sql_select>
+    <grid_visible_order>
+      Attached
+      SkillName
+      SkillAreaName
+    </grid_visible_order>
+    <attribute_usages>
+      <attribute_usage id="ApplicantId"
+                       primary_key="true"
+                       type="int"
+                       visible="false"
+      />
+      <attribute_usage id="Attached"
+                       caption="Attached"
+                       type="int"
+                       visible="true"
+                       row_source_id="HR_Ok_Lookup"
+                       storable="false"
+                       read_only="true"
+                       sorting="desc"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        1 = 1
+      ]]>
+    </join_condition>
+    <commands>
+      <command id="AttachSkilToApplicant"/>
+      <command id="DetachSkilFromApplicant"/>
+    </commands>
+    <command_order>
+      AttachSkilToApplicant
+      DetachSkilFromApplicant
+    </command_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="AttachSkilToApplicant"
+          text="Attach Skill"
+          image_id="ico16_ab_check"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[  
+        if not exists (select 1
+                         from HR_ApplicantSkill 
+                        where ApplicantId = :ApplicantId
+                          and SkillId = :SkillId)
+        begin
+          insert into HR_ApplicantSkill(ApplicantId, SkillId)
+          values(:ApplicantId, :SkillId)
+        end
+      ]]>
+    </sql_command>
+  </command>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="DetachSkilFromApplicant"
+          text="Detach Skill"
+          image_id="Command_Delete"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[  
+          delete from HR_ApplicantSkill
+           where ApplicantId = :ApplicantId
+             and SkillId = :SkillId
+      ]]>
+    </sql_command>
+  </command>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

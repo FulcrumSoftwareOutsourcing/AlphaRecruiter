@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_WorkExpirience"
+          single_caption="Work Expirience"
+          plural_caption="Work Expirience"
+          operations="ivud"
+          filter_enabled="true"
+          image_id="Activities"
+          entity_class_id="SlEntity"
+          sl_edit_frame_id="HR_WorkExpirience_Frame"
+          db_object="HR_WorkExpirience"
+          in_security="true"
+          wordwrap_rowdata="true"
+          >
+    <sql_select>
+      <![CDATA[
+      select t.*
+        from HR_WorkExpirience t
+        ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="WorkExpirienceId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 read_only_for_update="true"
+                 visible="false"
+                 read_only="true"
+                 default="=@sequence"
+      />
+      <attribute id="ApplicantId"
+                 type="int"
+                 nullable="false"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=PARENT.Hr_Applicant.ApplicantId"
+      />
+      <attribute id="Employer"
+                 caption="Employer"
+                 type="string"
+                 grid_width="200"     
+                 max_length="150"
+                 nullable="false"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="City"
+                 caption="City"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sl_control_placement="pnGeneral"
+                 local_expression="SQL.select :Employer + '___'"
+      />
+      <attribute id="State"
+                 caption="State"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="JobTitle"
+                 caption="Job Title"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 grid_width="400"
+                 sl_control="memo"
+                 control_width="5"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="JobResponsibility"
+                 caption="Responsibility"
+                 type="string"
+                 max_length="2000"
+                 nullable="true"
+                 sl_control="memo"
+                 control_width="5"
+                 grid_width="300"
+                 control_height="50"                 
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="MajorAchievement"
+                 caption="Major Achievements"
+                 type="string"
+                 max_length="2000"
+                 nullable="true"
+                 sl_control="memo"
+                 grid_width="300"
+                 control_width="5"
+                 control_height="50"                 
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="StartYear"
+                 caption="Start Year"
+                 type="int"
+                 nullable="false"
+                 sorting="asc"
+                 grid_width="120"     
+                 sl_control_placement="pnOther"
+                 row_source_id="Years70_Lookup"
+                 default="=SQL.select max(EndYear) 
+                                 from hr_WorkExpirience 
+                                where ApplicantId = :ApplicantId"
+      />
+      <attribute id="StartMonth"
+                 caption="Start Month"
+                 type="int"
+                 sorting="asc"
+                 grid_width="120"     
+                 nullable="true"
+                 sl_control_placement="pnOther"
+                 row_source_id="Months_Name_Lookup"
+                 default="=SQL.select max(EndMonth) 
+                                 from hr_WorkExpirience 
+                                where ApplicantId = :ApplicantId 
+                                  and EndYear = :StartYear"
+      />
+      <attribute id="EndYear"
+                 caption="End Year"
+                 type="int"
+                 grid_width="120"     
+                 nullable="true"
+                 sl_control_placement="pnOther"
+                 row_source_id="Years70_Lookup"
+      />
+      <attribute id="EndMonth"
+                 caption="End Month"
+                 type="int"
+                 nullable="true"
+                 grid_width="120"     
+                 sl_control_placement="pnOther"
+                 row_source_id="Months_Name_Lookup"
+      />
+      <attribute id="PresentlyWorkHere"
+                 caption="Presently Work Here"
+                 type="boolean"
+                 nullable="true"
+                 sl_control_placement="pnOther"
+                 default="0"
+      />
+    </attributes>
+
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_WorkExpirience"
+                entity_id="HR_WorkExpirience">
+    <edit_order>
+      Employer
+      City
+      State
+      JobTitle
+      JobResponsibility
+      MajorAchievement
+
+      StartYear
+      StartMonth
+      
+      EndYear
+      EndMonth
+
+      PresentlyWorkHere
+    </edit_order>
+    <grid_visible_order>
+      Employer
+      City
+      State
+      JobTitle
+      JobResponsibility
+      StartMonth
+      StartYear
+      EndMonth
+      EndYear
+      PresentlyWorkHere
+    </grid_visible_order>
+  </entity_usage>
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_WorkExpirience_Child_Of_Applicant"
+                entity_id="HR_WorkExpirience"
+                inherited_entity_usage_id="HR_WorkExpirience"
+                filter_enabled="false"
+                display_all_records_without_footer="true">
+    <attribute_usages>
+      <attribute_usage id="ApplicantId"
+                       default="=PARENT.Hr_Applicant.ApplicantId" 
+                       visible="false"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        t.ApplicantId = :ApplicantId
+      ]]>
+    </join_condition>
+    <grid_visible_order>
+      StartYear
+      EndYear
+      Employer
+      JobTitle
+      City
+      State
+    </grid_visible_order>
+  </entity_usage>
+
+</fw:entities>

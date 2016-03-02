@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="QuestionsAnsvers">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                           C A T E G O R Y                           -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="QuestionCategory_Layout"
+            text="QuestionCategory_Layout"
+            rows_height="auto, 600"
+            rows_count="2" >
+    <sl_panel id="pnDefault"
+              row="0"
+              text="Category" />
+    <sl_tab_control id="tcChildren" row="1">
+      <sl_tab id="tDetails"
+              text="Questions">
+        <sl_frame id="frQuestions"
+                  text="Questions **"
+                  frame_class_id="CxGridFrame"
+                  entity_usage_id="HR_Question_for_Category" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                         Q U E S T I O N                             -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="Question_Layout"
+            text="Question_Layout"
+            rows_height="auto"
+            rows_count="1" >
+    <sl_panel id="pnDefault"
+              row="0"
+              columns_count="3"
+              text="Question" />
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                         Interview:  A N S W E R S                   -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="InterviewAnswer_Layout"
+            text="InterviewAnswer_Layout"
+            rows_height="auto, auto"
+            rows_count="2" >
+    <sl_panel id="pnDefault"
+              row="0"
+              columns_count="4"
+              text="Interview **" />
+    <sl_tab_control id="tcChildren" row="1"
+      text = "tcChildren">
+      <sl_tab id="tDetails"
+              text="Questions ** ">
+        <sl_frame id="frQuestions"
+                  text="Question / Answers"
+                  frame_class_id="CxGridFrame"
+                  entity_usage_id="HR_InterviewAnswer" />
+      </sl_tab>
+      <sl_tab id="tAssesments"
+              text="Assesments by Question Categories **">
+        <sl_frame id="frAssesments"
+                  text="Assesments by Categories"
+                  frame_class_id="CxGridFrame"
+                  entity_usage_id="HR_Assessment_for_Interview" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,244 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A40FECDC-593B-4239-9C30-60229072289E}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>Framework.Db</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Framework.Db</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AdoNetHelper">
+      <HintPath>..\..\ThirdParty\AdoNetHelper.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient">
+      <Name>System.Data.OracleClient</Name>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\Framework.Common\Framework.Common.csproj">
+      <Project>{7F54A8D3-63CC-4014-A195-4420EBC6C18E}</Project>
+      <Name>Framework.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Framework.Utils\Framework.Utils.csproj">
+      <Name>Framework.Utils</Name>
+      <Project>{BAD39340-A936-43B2-ADDC-ED74E068D4AA}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AggregateDescriptor\CxAggregateDescriptorList.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CriteriaOperator\CxBinaryOperator.cs" />
+    <Compile Include="CriteriaOperator\CxInOperator.cs" />
+    <Compile Include="CriteriaOperator\CxSimpleValueOperand.cs" />
+    <Compile Include="CriteriaOperator\CxUnaryOperator.cs" />
+    <Compile Include="CriteriaOperator\CxValueOperandList.cs" />
+    <Compile Include="CriteriaOperator\NxBinaryOperatorType.cs" />
+    <Compile Include="CriteriaOperator\CxCriteriaOperatorList.cs" />
+    <Compile Include="CriteriaOperator\NxGroupOperatorType.cs" />
+    <Compile Include="CriteriaOperator\CxGroupOperator.cs" />
+    <Compile Include="CriteriaOperator\CxValueOperand.cs" />
+    <Compile Include="CriteriaOperator\NxUnaryOperatorType.cs" />
+    <Compile Include="AggregateDescriptor\CxAggregateDescriptor.cs" />
+    <Compile Include="CxColumnPropertyDescriptor.cs" />
+    <Compile Include="CxWhereClause.cs" />
+    <Compile Include="DxCustomPreProcessDataSource.cs" />
+    <Compile Include="IxConnectionFactory.cs" />
+    <Compile Include="LightWeight\CxLwColumn.cs" />
+    <Compile Include="LightWeight\CxLwColumnDescriptor.cs" />
+    <Compile Include="LightWeight\CxLwRow.cs" />
+    <Compile Include="LightWeight\CxLwRowList.cs" />
+    <Compile Include="LightWeight\NxLwRowStatus.cs" />
+    <Compile Include="QueryDescriptor\CxAggregateQueryDescriptor.cs" />
+    <Compile Include="QueryDescriptor\CxQueryDescriptor.cs" />
+    <Compile Include="CxDbCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxDbCommandDescription.cs" />
+    <Compile Include="CxDbCommandResult.cs" />
+    <Compile Include="CxDbConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxDbParameter.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxDbParameterDescription.cs" />
+    <Compile Include="CxDbParamParser.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CxDbSettingsStorage.cs" />
+    <Compile Include="CxDbUtils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CriteriaOperator\CxCriteriaOperator.cs" />
+    <Compile Include="CxGenericDataRow.cs" />
+    <Compile Include="CxGenericDataTable.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="IxGenericDataSource.cs" />
+    <Compile Include="AggregateDescriptor\NxAggregateDescriptorType.cs" />
+    <Compile Include="Specific\CxOdbcConnection.cs" />
+    <Compile Include="Specific\CxOdbcScriptGenerator.cs" />
+    <Compile Include="Specific\CxOleDbConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Specific\CxOleDbScriptGenerator.cs" />
+    <Compile Include="Specific\CxOracleConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="SortDescriptor\CxSortDescriptor.cs" />
+    <Compile Include="SortDescriptor\CxSortDescriptorList.cs" />
+    <Compile Include="Specific\CxOracleScriptGenerator.cs" />
+    <Compile Include="Specific\CxSqlConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CriteriaOperator\CxPropertyOperand.cs" />
+    <Compile Include="CxDbScriptGenerator.cs" />
+    <Compile Include="Specific\CxSqlScriptGenerator.cs" />
+    <Compile Include="Specific\CxWebConnection.cs" />
+    <Compile Include="IxDbCommandEx.cs" />
+    <Compile Include="Specific\CxWebScriptGenerator.cs" />
+    <Compile Include="WebServiceClient\CxDbService.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceClientRegistrationRecord.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceCommand.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceConnection.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceDataAdapter.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceDataReader.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceParameter.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceParameterCollection.cs" />
+    <Compile Include="WebServiceClient\CxWebServiceTransaction.cs" />
+    <Compile Include="WebServiceClient\ExWebServiceClientNotRegisteredException.cs" />
+    <Compile Include="WebServiceClient\ExWebServiceConnectException.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

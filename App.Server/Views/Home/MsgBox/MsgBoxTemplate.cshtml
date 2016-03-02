@@ -1,0 +1,28 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--css file: MsgBox.css-->
+<script type="text/html" id="MsgBox/MsgBoxTemplate">
+
+    <table>
+        <tr>
+            <td>
+                <div class="MsgIcon">
+                    <img data-bind="visible: ImageUrl, attr: {src: ImageUrl}" />
+                </div>
+            </td>
+            <td>
+                <div class="MsgText" data-bind="foreach: Messages">
+                    <div style="word-break: break-word; -ms-word-break: break-word; white-space: pre-wrap;" data-bind="html: $data" ></div>
+                    <br />
+                    
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    
+    
+</script>

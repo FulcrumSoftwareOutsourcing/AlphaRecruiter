@@ -1,0 +1,59 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!--css file: Tree.css-->
+<script type="text/html" id="Tree/TreeViewTemplate">
+   
+    
+    <div id="treeHolder" class="TreeHolder" data-bind="foreach: TreeItemsBySectionId.All">
+        
+        <div class="treeview"  style="display:none;"  data-bind="attr: {id: 'tree_' + SectionId}, template: { name: 'TaskTree/TaskTreeItemTemplate', foreach: TreeItems }  "></div>
+    </div>
+  
+</script>
+
+
+
+<script type="text/html" id="TaskTree/TaskTreeItemTemplate">
+   
+    <ul data-bind="visible: Visible" style="padding-left: 0 !important;">
+        <li  data-bind="attr: {id: $root.TreeNodeCreating() }" >
+            
+           
+           
+            @*<div style="width: 9999999px; height:30px; background-color:burlywood; position: absolute; left: -100px; "></div>*@
+           
+            <div  class="TreeNode" data-bind="css: Selected() ? 'TreeNode TreeNodeSelected' : 'TreeNode', click: OnTreeNodeClicked, clickBubble: false, attr: {ti_root: IsRootLevel} ">
+               
+                @*<div class="Selection"></div>*@
+                
+                <div class="NodeExpander">
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_up.png")"
+                         data-bind="visible: (!Expanded() && TreeItems.length > 0), click: OnExpandClicked, clickBubble: false " />
+                    <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/arrow_dwn.png")"
+                         data-bind="visible: (Expanded() && TreeItems.length > 0), click: OnCollapseClicked, clickBubble: false " />
+                </div>
+
+                <div class="NodeImg">
+                    <img data-bind="attr: { src: ImageUrl }, visible: ImageUrl != null" />
+                </div>
+               
+                <div class="NodeText" data-bind="text: Text  "></div>
+               
+            </div>
+           
+            
+            <ul data-bind="template: { name: 'TaskTree/TaskTreeItemTemplate', foreach: TreeItems }, visible: Expanded"></ul>
+            
+        </li>
+    </ul>
+   
+</script>
+
+
+<script type="text/html" id="TaskTree/TreeItemSelection">
+    
+</script>

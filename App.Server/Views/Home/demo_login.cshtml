@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>AlphaRecruiter</title>
+
+    <!-- Mobile viewport and optimize -->
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+
+    <meta name="HandheldFriendly" content="true">
+
+    <!-- Add to homescreen for Chrome on Android -->
+
+    <meta name="mobile-web-app-capable" content="yes">
+
+
+
+    <!-- IE -->
+
+    <meta http-equiv="cleartype" content="on">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!--[if lt IE 9]>
+        <script type="text/javascript" src="js/libs/html5.js"</script>
+    <![endif]-->
+
+
+
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,500italic,700,700italic&subset=cyrillic-ext,greek-ext,latin-ext,vietnamese' rel='stylesheet' type='text/css'>
+    
+
+    
+    <link href="@Url.Content("~/Content/demo_login/all.css")" rel="stylesheet" type="text/css" />
+    
+    
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Content/demo_login/js/libs/html5.js")"></script>
+    <script src="@Url.Content("~/Content/demo_login/js/main.js")"></script>
+
+    
+</head>
+<body>
+    <section id="login-page-holder">
+        <!-- login-column -->
+        <section id="login-column">
+            <div id="center-holder">
+                <div class="center-holder-middle">
+                    <h1 id="logo">AlphaRecruiter</h1>
+                    <div style=" margin: auto; width: 78%; font-style:italic; padding:8px 0 8px 0;">Please enter any user name and click login for the demo.</div>
+                    <form action="#" class="login-form-holder">
+                        <div class="form-row" id="userNameRow">
+                            <div id="emptyUserNameError" class="error-msg">Please enter any user name.</div>
+                            <div class="input-holder">
+                                <input type="text" id="userName" name="userName" class="user-name" placeholder="User name" maxlength="50">
+                                <i class="form-element-icon">&nbsp;</i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="input-holder">
+                                <input type="password" name="password" class="password" placeholder="Password" value="123456789" disabled="disabled">
+                                <i class="form-element-icon">&nbsp;</i>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <input type="checkbox" id="keepMeLoggedIn" name="keepMeLoggedIn"  disabled="disabled">
+                            <label for="keepMeLoggedIn">Keep me logged in</label>
+                        </div>
+                        <div class="form-row">
+                            <input type="button" class="button" value="Log in" onclick="return DemoLoginClick()">
+                        </div>
+                        
+                        @Html.AntiForgeryToken()
+
+                    </form>
+                </div>
+            </div>
+            <!-- mobile-info -->
+            <div class="mobile-info">
+                <div class="mobile-info-holder">
+                    <div class="mobile-info-images"><img src="@Url.Content("~/Content/demo_login/devices.png")" alt="devices"></div>
+                    <div class="text-holder">Now available on any mobile device!</div>
+                </div>
+            </div>
+        </section>
+    </section>
+    <script type="text/javascript">
+
+        $(function ()
+        {
+            $(document).keypress(function (e)
+            {
+                if (e.which == 13)
+                {
+                    DemoLoginClick();
+                }
+            });
+
+            $('#userName').focus();
+        })
+
+        function DemoLoginClick()
+        {
+            $('#userName').focus();
+            $('#userNameRow').removeClass('validation-error');
+            $('#emptyUserNameError').hide();
+
+            if ( IsStringNullOrWhitespace( $('#userName').val() )  )
+            {
+                $('#userNameRow').addClass('validation-error');
+                $('#emptyUserNameError').show();
+                $('#userName').focus();
+                return false;
+            }
+
+            $('form').submit();
+
+        }
+
+        function IsStringNullOrWhitespace (str)
+        {
+            if (str == null)
+                return true;
+
+            var hasSymbols = false;
+            for (var i = 0; i < str.length; i++)
+            {
+                if (str[i] != ' ')
+                    hasSymbols = true;
+            }
+
+            if (str != undefined && str != null && str != '' && hasSymbols)
+                return false;
+
+            return true;
+        };
+
+    </script>
+</body>
+</html>

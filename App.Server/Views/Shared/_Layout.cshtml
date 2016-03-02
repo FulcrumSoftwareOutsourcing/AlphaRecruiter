@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimal-ui" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="cleartype" content="on">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+    <title>@ViewBag.Title - Fulcrum Software</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no,width=device-width">
+
+    @Html.Partial("_ScriptsAndStylesLinks")
+
+
+
+</head>
+<body id="htmlBody">
+
+
+
+
+    @*@Html.Partial("HeadLine")*@
+
+    @RenderBody()
+
+
+
+    <div id="popupHolder" data-bind="template: { name: 'Popup/PopupTemplate' }"></div>
+    <div id="waitSpinnerHolder" data-bind="template: { name: 'Popup/PopupTemplate' }"></div>
+
+    <div class="WaiterOver" id="WaiterOver"></div>
+    <div id="WaiterImg" class="WaiterImg"></div>
+
+
+    <link href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/Popup.css")" rel="stylesheet" type="text/css" />
+    <script type="text/html" id="Popup/PopupTemplate">
+        <div id="popupOver" class="PopupOver" @*data-bind="style: { display: OverDisplayStyle } "*@></div>
+
+        <div id="popupDlgBorder" class="PopupDlgBorder"   data-bind="style: { left: LeftStyle, top: TopStyle,  width: WidthStyle, height: HeightStyle }, mousedownBubble: false, mouseoverBuble: false, mouseoverBuble: false ">
+            <div class="PopupDlgCaption unselectable" id="popupCaption">
+                <span data-bind="text: Caption"></span>
+
+                <img data-bind="attr: { src: CloseImageUrl }, event: { mousedown: OnCloseBtnMouseDown, mouseover: OnCloseBtnMouseOver, mouseout: OnCloseBtnMouseOut }, mousedownBubble: false, mouseoverBuble: false, mouseoverBuble: false, click: OnCancel, visible: !NoCloseButton()" alt="Close" />
+            </div>
+            <div class="PopupDlgContent" id="DlgContentHolder">
+
+            </div>
+
+            <div id="dlgMainWaitingImage" class="MainWaiterImg"></div>
+
+
+            <div class="DlgButtons" id="dlgButtons">
+
+                <input type="button" data-bind="click: OnCancel, style: { display: CancelBtnVisible }, value: GetTxt('Cancel')" />
+                <input type="button" data-bind="click: OnNo, style: { display: NoBtnVisible }, value: GetTxt('No')" />
+                <input type="button" data-bind="click: OnYes, style: { display: YesBtnVisible }, value: GetTxt('Yes')" />
+                <input type="button" data-bind="click: OnOk, style: { display: OkBtnVisible }, value: GetTxt('Ok')" />
+
+                <div id="exDlgButtons" style="display:inline" data-bind="foreach: ExButtons">
+                    <input type="button" data-bind="value: text, click: $parent.ExButtonClick, attr: { id: id }" />
+                </div>
+
+                <div id="WorkingDlgIndicator" class="WorkingDlgIndicator"></div>
+            </div>
+            <br />
+        </div>
+    </script>
+
+    <script type="text/html" id="UnderConstrustionFrameTemplate">
+        <div id="empty-frame" style="  width: 100%; height:100%">
+           
+        </div>
+    </script>
+
+
+
+    <link href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/LoginPnl.css")" rel="stylesheet" type="text/css" />
+    <script type="text/html" id="LoginPnl/LoginPnlTemplate">
+        
+        <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/user_50x05.png")" class="UserIcon" data-bind="style: { display: UserLogedVisibility }" />
+        
+        <div class="UserName" data-bind="text: UserName, visible: UserLogedVisibilityUserName  " ></div> &nbsp;&nbsp;&nbsp;
+        <div id="WorkingLogoutIndicator" class="WorkingLogout" data-bind="style: { display: UserLogedVisibility }"></div>
+        
+     </script>
+
+    <link id="linkT" href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/LoginForm.css")" rel="stylesheet" type="text/css" />
+    <script type="text/html" id="LoginForm/LoginForm">
+        
+       
+
+       
+        <section id="login-page-holder"  class="LoginForm" >
+            
+            <!-- login-column -->
+            <section id="login-column">
+                <div id="center-holder">
+                    <div class="center-holder-middle">
+                        <h1 id="logo" ></h1>
+                        <form action="#" class="login-form-holder">
+                            <div data-bind="css: (LoginInfo.UserName.HasErrors() ? 'form-row validation-error' : 'form-row')">
+                                
+                                
+
+                            
+
+                                <div class="input-holder">
+                                    <input type="text" id="loginForm_userName" name="userName" class="user-name" data-bind="attr: {placeholder: GetTxt('User name')}, value: LoginInfo.UserName " maxlength="50">
+                                    <i class="form-element-icon">&nbsp;</i>
+                                </div>
+                            </div>
+                            <div  data-bind="css: (LoginInfo.Password.HasErrors() ? 'form-row validation-error' : 'form-row')">
+                                <div class="input-holder">
+                                    <input type="password" name="password" id="loginForm_password" class="password" data-bind="attr: {placeholder: GetTxt('Password')}, value: LoginInfo.Password ">
+                                    <i class="form-element-icon">&nbsp;</i>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <input type="checkbox" id="keepMeLoggedIn" name="keepMeLoggedIn" data-bind="checked: LoginInfo.RememberMe">
+                                <label for="keepMeLoggedIn" data-bind="text: GetTxt('Keep me logged in')"></label>
+                            </div>
+                            <div class="form-row">
+                                <input type="button" class="button" id="loginBtn" data-bind="value: GetTxt('Log in'), click: LoginClick" >
+                              
+                            
+                            </div>
+                            @*<div class="forgot-password"><a href="#">I forgot my password</a></div>*@
+                            <div data-bind="foreach: ValidationErrors" style="position: absolute; top:300px; left: 50px; z-index: 999999">
+                                <div class="error-msg" data-bind="text: $data"></div>
+
+                            </div>
+                        </form>
+                       
+                    </div>
+                   
+                </div>
+                <!-- mobile-info -->
+                <div class="mobile-info">
+                    <div class="mobile-info-holder">
+                        <div class="mobile-info-images"><img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/devices.png")" alt="devices"></div>
+                        <div class="text-holder">Now available on any mobile device!</div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+
+
+
+
+        @*<div class="LoginForm popup_fileset">
+            <div data-bind=" template: { name: 'Popup/ErrorListTemplate'}"></div>
+
+            <ol>
+                <li>
+
+                    <div><span data-bind="text: GetTxt('User name')"></span><sup class="required">*</sup></div>
+                    <input type="text" data-bind=" value: LoginInfo.UserName, css: (LoginInfo.UserName.HasErrors() ? 'fieldErrorGlow' : ''), hasFocus: LoginInfo.UserName.HasFocus " />
+                </li>
+                <li>
+                    <div><span data-bind="text: GetTxt('Password')"></span><sup class="required">*</sup></div>
+                    <input type="password" data-bind="value: LoginInfo.Password, css: (LoginInfo.Password.HasErrors() ? 'fieldErrorGlow' : ''), hasFocus: LoginInfo.Password.HasFocus">
+                </li>
+                <li style="padding-top:8px;">
+                    <input type="checkbox" data-bind="checked: LoginInfo.RememberMe" />&nbsp;&nbsp;<span data-bind="text: GetTxt('Remember me')"></span>
+                </li>
+            </ol>
+
+
+
+        </div>*@
+    </script>
+
+    <div id="mmHolder" style="display: none; z-index:99999999; ">
+        <div class="MainMenu"></div>
+        <div class="MainMenuArrow"></div>
+    </div>
+
+    <script type="text/html" id="MSectionItem">
+        <div class="MmSection" i-id="item-id" style="background-color:bc-color !important">
+            <div>
+                <img src="item_img" />
+            </div>
+            
+            <div c-type="text"><!--item text--></div>
+        </div>
+    </script>
+    
+    <div id="logoutMenuHolder" style="display: none; z-index:999999999;  ">
+       <div class="UserMenu">
+           <div id="miUserName" class="NameUserMenuItem"></div>
+           <div id="miLogout" class="UserMenuItem"></div>
+           <div id="miAccount" class="UserMenuItemDis"></div>
+       </div>
+        <div class="UserMenuArrow"></div>
+    </div>
+
+    <div id="settingsMenuHolder" style="display: none; z-index:999999999;  ">
+        <div class="UserMenu">
+            <div id="miLang" class="NameUserMenuItem"></div>
+            
+
+            <div id="miWorkspaces" class="NameUserMenuItem"></div>
+            <div class="NameUserMenuItem">Themes</div>
+            <div class="UserMenuItem UserMenuItemSelected">Main Theme</div>
+
+        </div>
+        <div class="UserMenuArrow" ></div>
+    </div>
+
+    
+    
+
+    @*<link href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/Frame.css")" rel="stylesheet" type="text/css" />
+        <script type="text/html" id="FrameTemplate">
+
+        </script>*@
+
+    @Html.AntiForgeryToken()
+
+
+
+</body>
+
+</html>

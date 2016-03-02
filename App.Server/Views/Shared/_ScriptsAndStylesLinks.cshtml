@@ -1,0 +1,187 @@
+﻿@{
+    Layout = null;
+}
+
+@*<link href="@Url.Content("~/Content/kendo.common.min.css")" rel="stylesheet" />*@
+
+
+@*<link href="@Url.Content("~/Content/kendo.default.min.css")" rel="stylesheet" />*@
+
+
+
+
+@*<script src="@Url.Content("~/Scripts/modernizr-2.6.2.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/jquery-1.10.2.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Scripts/kendo.all.min.js")" type="text/javascript"></script>*@
+
+@Scripts.Render("~/bundles/jquery")
+
+<link href="@Url.Content("~/Content/jquery.datetimepicker.css")" rel="stylesheet" />
+
+<script src="@Url.Content("~/Scripts/jquery.datetimepicker.js")"></script>
+<script src="@Url.Content("~/Scripts/html5.js")"></script>
+
+@*<script src="@Url.Content("~/Scripts/multithread.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/kendo.core.min.js")"></script>
+<script src="@Url.Content("~/Scripts/kendo.data.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/kendo.columnsorter.min")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/kendo.grid.min.js")" type="text/javascript" ></script>*@
+
+@*<script src="@Url.Content("~/Scripts/colResizable-1.5.min.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/jquery.min.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Scripts/knockout-3.3.0.js")" type="text/javascript"></script>*@
+
+@Scripts.Render("~/bundles/knockout")
+
+<script src="@Url.Content("~/Scripts/heartcode-canvasloader-min.js")" type="text/javascript" ></script>
+
+<script type="text/javascript">
+    var logoffUrl = '@Url.Action("LogOffAjax", "Account" @*, null, "https"*@)';
+    var loginUrl = '@Url.Action("LoginAjax", "Account" @*, null, "https"*@)';
+    var skinFolderUrl = '@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/")';
+    var getStartObjectUrl = '@Url.Action("GetStartObject", "Home" @*, null, "https"*@)';
+    var getTemplateUrl = '@Url.Action("GetTemplate", "Home" @*, null, "https"*@)';
+    var imagesFolder = '@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/")';
+    var getEntityListUrl = '@Url.Action("GetEntityList", "Home" @*, null, "https"*@)';
+    var getEntityFromPkUrl = '@Url.Action("GetEntityFromPk", "Home" @*, null, "https"*@)';
+    var executeCommandUrl = '@Url.Action("ExecuteCommand", "Home" @*, null, "https"*@)';
+    var getChildEntityListUrl = '@Url.Action("GetChildEntityList", "Home" @*, null, "https"*@)';
+    var getMetadataUrl = '@Url.Action("GetMetadata", "Home" @*, null, "https"*@)';
+    var calculateExpressionsUrl = '@Url.Action("CalculateExpressions", "Home" @*, null, "https"*@)';
+    var eportToCsvUrl = '@Url.Action("ExportToCsv", "Home" @*, null, "https"*@)';
+    var downloadUrl = '@Url.Action("Download", "Home" @*, null, "https"*@)';
+    var downloadPhotoUrl = '@Url.Action("Photo", "Home" @*, null, "https"*@)';
+    var uploadUrl = '@Url.Action("Upload", "Home" @*, null, "https"*@)';
+    var pingUrl = '@Url.Action("Ping", "Home" @*, null, "https"*@)';
+    var saveSettingsUrl = '@Url.Action("SaveSettings", "Home" @*, null, "https"*@)';
+    var showImageUrl = '@Url.Action("ShowImage", "Home" @*, null, "https"*@)';
+
+</script>
+
+@*<script src="@Url.Content("~/Scripts/Common/Utils.js")" type="text/javascript"></script>*@
+
+@Scripts.Render("~/bundles/app")
+
+@*
+<script src="@Url.Content("~/Scripts/Common/Consts.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Common/AppSizes.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Common/Multilang.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Common/HtmlProvider.js")" type="text/javascript"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Infrastructure/WaitDispatcher.js")" type="text/javascript"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Infrastructure/ObservableObject.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/Infrastructure/Layer.js")" type="text/javascript"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Infrastructure/LayerFasade.js")" type="text/javascript"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Infrastructure/BusinessLayer.js")" type="text/javascript"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Infrastructure/DataLayer.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Scripts/Infrastructure/ViewLayer.js")" type="text/javascript"></script>*@
+@*<script src="@Url.Content("~/Scripts/Common/Metadata.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Common/AttributeUtils.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Common/EntityValidator.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/MsgBox/BMsgBox.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/MsgBox/VMsgBox.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Navigation/VNavigationBar.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Root/BRoot.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Root/RootDataBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Root/RootViewBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Root/VRoot.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Root/DRoot.js")"></script>*@
+
+
+    
+
+
+@*<script src="@Url.Content("~/Scripts/LoginForm/BLoginForm.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/LoginForm/DLoginForm.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/LoginForm/VLoginForm.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/LoginForm/LoginFormViewBorder.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Popup/BPopup.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Popup/VPopup.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/LoginPanel/BLoginPanel.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/LoginPanel/VLoginPanel.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Sections/BSections.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Sections/VSections.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Sections/SectionsViewBorder.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Tree/VTree.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Tree/TreeViewBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Tree/BTree.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/WorkspacePnl/BWorkspacePnl.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/WorkspacePnl/VWorkspacePnl.js")"></script>*@
+
+
+
+@*<script src="@Url.Content("~/Scripts/Frames/BFramesRoot.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/VFramesRoot.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/UploadDlg/VUploadDlg.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/UploadDlg/BUploadDlg.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Frames/BaseFrame/BBaseFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/BaseFrame/VBaseFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/BaseFrame/BaseFrameViewBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/BaseFrame/BaseFrameDataBorder.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/DataGrid/VDataGrid.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/DataGrid/BDataGrid.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/DataGrid/DataGridViewBorder.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/BGridFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/VGridFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/GridFrameViewBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/GridFrameDataBorder.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/UnderConstrustionFrame/BUnderConstrustionFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/UnderConstrustionFrame/VUnderConstrustionFrame.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/Filters/BFilters.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/Filters/VFilters.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/Filters/FiltersViewBorder.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Frames/Commands/BCommandBar.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/Commands/CommandBarVBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/Commands/VCommandBar.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/Commands/CommandHandler.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Common/QueryParams.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/Paging/BPagingPnl.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/GridFrame/Paging/VPagingPnl.js")"></script>*@
+
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/LayoutBuilder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/FrameBuilder.js")"></script>*@
+
+
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/BAutoLayoutFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/VAutoLayoutFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/AutoLayoutFrameViewBorder.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Frames/AutoLayoutFrame/AutoLayoutFrameDataBorder.js")"></script>*@
+
+@* ////////////////////Issue Tracker Scripts///////////////////////*@
+@*<script src="@Url.Content("~/Scripts/Tracker/ItrGridFrame/BItrGridFrame.js")"></script>*@
+@*<script src="@Url.Content("~/Scripts/Tracker/ItrGridFrame/VItrGridFrame.js")"></script>*@
+@* ///////////////////////////////////////////*@
+
+@*<script src=" @Url.Content("~/Scripts/site.js") "></script>*@
+
+<link href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/Site.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/Frame.css")" rel="stylesheet" type="text/css" />

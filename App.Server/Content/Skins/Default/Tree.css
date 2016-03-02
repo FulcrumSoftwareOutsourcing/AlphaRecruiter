@@ -1,0 +1,148 @@
+﻿.TreeHolder {
+    background-color:#f9f9fc;
+    
+     height:100% !important;
+     
+     
+     overflow: auto;
+     border-right: 1px solid #285284;
+       
+}
+
+
+.treeview { 
+    cursor:default;  
+    border-top: 1px solid white;
+}
+   
+    .treeview ul
+    {
+       overflow-x:visible;
+         
+         margin: 0; 
+         padding: 0 0 0 0;
+        list-style-type: none;
+        
+    }
+
+  
+
+    .treeview .TreeNode
+    {
+        height:40px;
+        
+        padding:0 0 0 5px;
+       
+       position: relative;
+      
+       display:table-cell;
+
+       line-height:40px;
+ 
+   width: 300000px;
+ 
+       
+    }
+
+     .treeview .TreeNode:hover
+    {
+        background: #D1E2ED;
+       
+        
+    }
+
+     .treeview .TreeNode[ti_root=true]
+    {
+        background: #EFEFEF;
+       border-bottom:1px solid white; 
+    }
+    
+     
+
+        .treeview .TreeNodeSelected
+        {
+            background-color:  #B1CEE6 ;
+        }
+
+      .treeview .NodeExpander
+    {
+ 
+        height:16px;
+        width:16px;
+        position:relative;
+        
+       
+    }
+
+
+    .treeview .NodeExpander img
+    {
+    
+     
+        cursor:pointer;
+        position:absolute;
+        top:3px;
+        left: 13px;
+    }
+
+    .treeview .NodeImg
+    {
+        vertical-align: top;
+        width: 20px;
+        height: 20px;
+        margin-right:2px;
+    }
+
+    .treeview .NodeImg img
+    {
+         margin-top: 7px;
+        width: 20px;
+        height: 20px;
+    }
+
+    .treeview .NodeText
+    {
+       
+      
+        font-size:1.1em;
+        margin-right:15px;
+    }
+
+   
+
+    .treeview ul li div div
+    {
+         
+        display:inline-block;
+        height:inherit;
+        
+    }
+
+    
+
+    .treeview .Selection {
+        width: 250px; 
+        height: 32px; 
+        background-color:burlywood;
+        position: absolute;
+        left: -200%;
+        top: 0;
+       
+    }
+
+
+       .treeview .Selection:hover {
+        
+        background-color:rebeccapurple;
+        
+
+       
+    }
+
+
+  
+
+   
+  
+   
+

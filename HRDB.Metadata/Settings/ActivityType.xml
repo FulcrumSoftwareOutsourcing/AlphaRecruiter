@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                      A C T I V I T Y   T Y P E                      -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_ActivityType"
+          single_caption="Activity Type"
+          plural_caption="Activity Types"
+          sl_multiple_grid_edit="true"
+          operations="ivud"
+          image_id="ActivityType_Question"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_ActivityType"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.*,
+              (select stuff((
+                    select N', ' + Name as [text()]
+                      from (
+                            select Name
+                              from HR_ActivityTypeResult lnk,
+                                   HR_ActivityResult r
+                              where lnk.ActivityTypeCD = t.ActivityTypeCD
+                                and r.ActivityResultCd = lnk.ActivityResultCd
+                           ) as D for xml path('')
+                    ), 1,2,N'')) as Results
+          from HR_ActivityType t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="ActivityTypeCd"
+                 caption="Activity Type Code"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 grid_width="150"
+                 vidible="false"
+                 editable="true"                 
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="Description"
+                 caption="Description"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 grid_width="150"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="DisplayOrder"
+                 caption="Display Order"
+                 type="int"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="120"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="IsCompletedOnCreation"
+                 caption="Is Completed on Creation"
+                 type="boolean"
+                 row_source_id="Boolean_Lookup"
+                 nullable="false"
+                 default="0"
+                 grid_width="170"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="Results"
+                 caption="Results"
+                 type="string"
+                 grid_width="300"
+                 storable="false"
+                 read_only="true"
+                 sl_control_placement="pnGeneral"
+      />
+      <attribute id="IconCd"
+                 caption="Display Icon"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 vidible="false"
+                 editable="true"                 
+                 sl_control_placement="pnGeneral"
+      />
+    </attributes>
+    <grid_visible_order>
+      Description
+      DisplayOrder
+      Results
+      IsCompletedOnCreation
+    </grid_visible_order>
+    <edit_order>
+      ActivityTypeCD
+      Description
+      DisplayOrder
+      IsCompletedOnCreation
+      IconCd
+      IsSystemActivity
+    </edit_order>
+    <commands>
+      <command id="New"
+               entity_usage_id="HR_ActivityType_New"
+      />
+      <command id="View"
+               entity_usage_id="HR_ActivityType"
+      />
+      <command id="Edit"
+               entity_usage_id="HR_ActivityType_Edit"
+      />
+    </commands>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityType_New"
+                sl_edit_frame_id="HR_ActivityType_New_Frame"
+                entity_id="HR_ActivityType">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityType_Edit"
+                sl_edit_frame_id="HR_ActivityType_Edit_Frame"
+                entity_id="HR_ActivityType">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityType"
+                sl_edit_frame_id="HR_ActivityType_Frame"
+                entity_id="HR_ActivityType">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityType_ForLookUp"
+                cached="true"
+                entity_id="HR_ActivityType">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ActivityType_Lookup"
+              image_attr_id="IconCd"
+              entity_usage_id="HR_ActivityType_ForLookUp"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityType_With_Total"
+                inherited_entity_usage_id="HR_ActivityType_ForLookUp"
+                entity_id="HR_ActivityType">
+    <sql_select>
+      <![CDATA[
+        select ActivityTypeCd, Description, DisplayOrder, IconCd
+          from HR_ActivityType 
+         union all
+        select 'Total' as ActivityTypeCd, '<B>Total</B>' as Description, 99999999 as DisplayOrder, null as IconCd
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ActivityType_withTotal_Lookup"
+              image_attr_id="IconCd"
+              entity_usage_id="HR_ActivityType_With_Total"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                  A C T I V I T Y   R E S U L T                      -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_ActivityResult"
+          single_caption="Activity Result"
+          plural_caption="Activity Result"
+          operations="ivud"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_ActivityResult"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from HR_ActivityResult t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="ActivityResultCd"
+                 caption="Activity Result Code"
+                 type="string"
+                 primary_key="true"
+                 max_length="50"
+                 nullable="false"
+                 read_only_for_update="true"
+                 vidible="false"
+                 editable="true"
+      />
+      <attribute id="Name"
+                 caption="Activity Result Name"
+                 type="string"
+                 max_length="50"
+      />
+      <attribute id="IconCd"
+                 caption="Display Icon"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 vidible="false"
+                 editable="true"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityResult"
+                entity_id="HR_ActivityResult">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityResults2Types"
+                entity_id="HR_ActivityResult">
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from (
+                select r.*,
+                       lnk.ActivityTypeCD
+                  from HR_ActivityTypeResult lnk,
+                       HR_ActivityResult r
+                 where r.ActivityResultCd = lnk.ActivityResultCd      
+               ) as t
+      ]]>
+    </sql_select>
+    <attribute_usages>
+      <attribute_usage id="ActivityTypeCD"
+                       type="string"
+                       />
+    </attribute_usages>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityResult_ForLookUp"
+                cached="true"
+                entity_id="HR_ActivityResult">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ActivityResult_Lookup"
+              image_attr_id="IconCd"
+              entity_usage_id="HR_ActivityResult_ForLookUp"
+              />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_ActivityResult2Types_Lookup"
+              image_attr_id="IconCd"
+              entity_usage_id="HR_ActivityResults2Types"
+              />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--            A C T I V I T Y   R E S U L T  ->  T Y P E               -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_ActivityResult_Child_Of_Type"
+                entity_id="HR_ActivityResult"
+                inherited_entity_usage_id="HR_ActivityResult"
+                db_object="HR_ActivityTypeResult"
+                filter_enabled="false">
+    <sql_select>
+      <![CDATA[
+       select *
+         from (
+               select :ActivityTypeCd as ActivityTypeCd, 
+                      case when lnk.ActivityResultCd is null then 0 else 1 end as Attached, 
+                      s.*
+                 from HR_ActivityResult s
+                   left join HR_ActivityTypeResult lnk on (lnk.ActivityResultCd = s.ActivityResultCd and
+                                                           lnk.ActivityTypeCD = :ActivityTypeCd)
+             ) as t
+      ]]>
+    </sql_select>
+    <grid_visible_order>
+      Attached
+      Name
+    </grid_visible_order>
+    <attribute_usages>
+      <attribute_usage id="ActivityTypeCd"
+                       caption="Activity Type Code"
+                       primary_key="true"
+                       type="string"
+                       visible="false"
+      />
+      <attribute_usage id="Attached"
+                       caption="Attached"
+                       type="int"
+                       visible="true"
+                       row_source_id="HR_Ok_Lookup"
+                       storable="false"
+                       read_only="true"
+                       sorting="desc"
+                       />
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        1 = 1
+      ]]>
+    </join_condition>
+    <commands>
+      <command id="AttachResultToActivity"/>
+      <command id="DetachResultFromActivity"/>
+    </commands>
+    <command_order>
+      AttachResultToActivity
+      DetachResultFromActivity
+    </command_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="AttachResultToActivity"
+          text="Attach Result"
+          image_id="ico16_ab_check"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+        if not exists (select 1
+                         from HR_ActivityTypeResult 
+                        where ActivityResultCd = :ActivityResultCd
+                          and ActivityTypeCD = :ActivityTypeCD)
+        begin
+          insert into HR_ActivityTypeResult(ActivityResultCd, ActivityTypeCD)
+          values(:ActivityResultCd, :ActivityTypeCD)
+        end  
+      ]]>
+    </sql_command>
+  </command>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="DetachResultFromActivity"
+          text="Detach Result"
+          image_id="Command_Delete"
+          is_entity_instance_required="true"
+          refresh_page="true"
+          hidden_when_disabled="true"
+          multiple="true">
+    <sql_command>
+      <![CDATA[    
+          delete from HR_ActivityTypeResult
+           where ActivityResultCd = :ActivityResultCd
+             and ActivityTypeCD = :ActivityTypeCD
+      ]]>
+    </sql_command>
+  </command>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

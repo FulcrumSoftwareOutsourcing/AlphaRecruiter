@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="LocalizationDictionary"
+          plural_caption="Dictionary"
+          single_caption="Dictionary Item"
+          operations="oiudvtcpf"
+          entity_class_id="BASE_ENTITY"
+          db_object="Framework_LocalizationDictionary"
+         
+          group_name="Administration">
+
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from Framework_LocalizationDictionary t
+      ]]>
+    </sql_select>
+
+
+    <!--<commands>
+      <command id="Localization_ResetCache" />
+      <command id="Localization_ExportNotTranslated" />
+      <command id="Localization_ImportTranslated" />
+    </commands>-->
+
+    <attributes>
+      <attribute id="ApplicationCd"
+                 type="string"
+                 primary_key="true"
+                 default="=Application$ApplicationCode"
+                 max_length="50"
+                 nullable="false"
+                 visible="false"
+      />
+      <attribute id="LanguageCd"
+                 type="string"
+                 primary_key="true"
+                 default="=PARENT.Language.LanguageCd"
+                 row_source_id="LanguageCd_Lookup_List"
+                 caption="Language"
+                 max_length="3"
+                 nullable="false"
+                 visible="true"
+                 editable="true"
+      />
+      <attribute id="DefaultValue"
+                 caption="Original Text"
+                 type="longstring"
+                 primary_key="true"
+                 max_length="150"
+                 nullable="false"
+                 control_width="1"
+                 grid_width="200"
+      />
+      <attribute id="Value"
+                 caption="Translated Text"
+                 type="string"
+                 max_length="4000"
+                 nullable="false"
+                 control_width="1"
+                 grid_width="200"
+      />
+      <attribute id="ModificationDate"
+                 caption="Modification Date"
+                 type="datetime"
+                 read_only="true"
+                 storable="false"
+                 editable="false"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="LocalizationDictionary"
+                entity_id="LocalizationDictionary">
+
+    <grid_visible_order>
+      DefaultValue,
+      Value,
+      ModificationDate,
+      LanguageCd
+    </grid_visible_order>
+    
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <row_source id="LanguageCd_Lookup_List"
+              entity_usage_id="Languages"
+  />
+</fw:entities>

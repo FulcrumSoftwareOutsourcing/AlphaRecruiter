@@ -1,0 +1,51 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--css file: GridTemplate.css-->
+
+<script type="text/html" id="GridFrame/GridTemplate">
+   
+    <tr data-bind="template:{ name: 'GridHeaderTemplate', foreach: $root.GridOrderedAttrs }, visible: $index() == 0"></tr>
+   
+   
+    <tr data-bind="template:{ name: 'GridColTemplate', foreach: $root.GridOrderedAttrs },  style:{backgroundColor: $index() % 2 ? '#f4f2e8' : 'transparent'}, css: Selected() ? 'SelectedRow' : '' "></tr>
+    
+</script>
+
+
+<script type="text/html" id="GridColTemplate">
+    <!-- ko if: $index() == 0 -->
+    <td width="8" data-bind="template:{ name: 'CursorColumn'}, click: function(data, event) {$root.RowClick($parent, $parent[$data], data, event)" class="CursorColumn"></td>
+    <!-- /ko -->
+    
+    <!-- ko if: $parent[$data].Visible  -->
+    <td data-bind="attr: {width: ($root.AttrsByIds[$data].GridWidth) }, template:{name: $root.GetGridControlTemplateName($parent, $data) }, click: function(data, event) {$root.RowClick($parent, $parent[$data], data, event) } "></td>
+    <!-- /ko -->
+
+    <!-- ko if: $index() ==  $root.GridOrderedAttrs.length - 1 -->
+    <td data-bind="click: function(data, event) {$root.RowClick($parent, $parent[$data], data, event)}"></td>
+    <!-- /ko -->
+
+</script>
+
+
+<script type="text/html" id="GridHeaderTemplate">
+
+    <!-- ko if: $index() == 0 -->
+    <td width="8" class="DataColHeader"></td>
+    <!-- /ko -->
+
+    <!-- ko if: $parent[$data].Visible  -->
+    <td  class="DataColHeader" data-bind="attr: {width: ($root.AttrsByIds[$data].GridWidth) }">
+        <div data-bind="text: $root.AttrsByIds[$data].Caption"></div>
+    </td>
+    <!-- /ko -->
+
+    <!-- ko if: $index() ==  $root.GridOrderedAttrs.length - 1 -->
+    <td class="DataColHeader"></td>
+    <!-- /ko -->
+   
+</script>
+

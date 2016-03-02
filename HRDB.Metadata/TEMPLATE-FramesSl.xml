@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_###_New_Frame"
+            entity_usage_id="HR_###_New"
+            rows_height="auto"
+            rows_count="2">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="3"
+              text="General"
+              />
+    <sl_panel id="pnOther"
+              row="1"
+              columns_count="3"
+              text="Other"
+              />
+  </sl_frame>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_###_Edit_Frame"
+            entity_usage_id="HR_###_Edit"
+            rows_height="auto"
+            rows_count="2">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="3"
+              text="General"
+              />
+    <sl_panel id="pnOther"
+              row="1"
+              columns_count="3"
+              text="Other"
+              />
+  </sl_frame>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_###_Frame"
+            entity_usage_id="HR_###">
+
+    <!-- -*-*-*-*-*-*-*-*-*-* -->
+    <!--     T A B S  main    -->
+    <sl_tab_control id="tcMain"
+                    row="0" >
+      <!--     T A B  main 1   -->
+      <sl_tab id="tbDefault"
+              text="General"
+              rows_height="auto"
+              rows_count="8">
+        <sl_panel id="pnGeneral"
+                  row="0"
+                  columns_count="3"
+                  text="General"
+              />
+        <sl_panel id="pnOther"
+                  row="1"
+                  columns_count="3"
+                  text="Other"
+              />
+
+        <!-- -*-*-*-*-*-*-*-*-*-* -->
+        <!--   T A B S  children  -->
+        <sl_tab_control id="tc###ChildLists"
+                        row="1" >
+          <!--   tab  AAA  (child) -->
+          <sl_tab id="tHR_###ChildLists_AAA"
+                  rows_count="1"
+                  rows_height="300"
+                  text="AAA">
+
+            <sl_frame id="fr_###_AAA"
+                      text="AAA"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="Hr_###_AAA" />
+          </sl_tab>
+
+          <!--   tab  BBB  (child) -->
+          <sl_tab id="tHR_###ChildLists_BBB"
+                  rows_count="1"
+                  rows_height="300"
+                  text="BBB">
+
+            <sl_frame id="fr_###_BBB"
+                      text="BBB"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="Hr_###_BBB" />
+          </sl_tab>
+        </sl_tab_control>
+      </sl_tab>
+
+      <!--     T A B  main 2   -->
+      <sl_tab id="tbHistory"
+              text="History"
+              rows_height="400"
+              rows_count="1">
+        <sl_panel id="pnHistory"
+                  row="0"
+                  columns_count="1"
+                  text="History" />
+        <sl_panel id="pnActivities"
+          columns_count="4"
+          row="2"
+          text="Activities" />
+
+      </sl_tab>
+
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</sl_frames>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<assemblies>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="Framework.Entity"
+            namespace="Framework.Entity"
+            file_name="Framework.Entity.dll"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="Framework.Silverlight.Client"
+            namespace="Framework.Silverlight.Client"
+            file_name="Framework.Silverlight.Client.dll"
+            
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="Framework.Remote"
+            namespace="Framework.Remote"
+            file_name="Framework.Remote.dll"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="App.Metadata"
+            namespace="App.Metadata"
+            file_name="App.Metadata.dll"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="App.Silverlight.Client"
+            namespace="App.Silverlight.Client"
+            file_name="App.Silverlight.Client.dll"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</assemblies>
+
+
+

@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_dashboards>
+  <sl_dashboard id="HR_Dashboard"
+                text="Home">
+    <sl_dashboard_item
+      id="HR_Applicant_CreatedToday"
+      image_id="ApplicantsCreatedToday"
+      entity_usage_id="HR_Applicant_CreatedToday"
+      tree_item_id="HR_Applicant_CreatedToday"
+      text="Applicants created today"/>
+
+    <sl_dashboard_item
+      id="HR_TodoContact"
+      image_id="TodoContact"
+      entity_usage_id="HR_Applicant_Contact"
+      tree_item_id="HR_Applicant_Contact"
+      text="TODO: Contact"/>
+
+    <sl_dashboard_item
+      id="HR_Applicant_InterviewOffice"
+      image_id="TodoInterviewOffice"
+      entity_usage_id="HR_Applicant_InterviewOffice"
+      tree_item_id="HR_Applicant_InterviewOffice"
+      text="TODO: Interview office"/>
+
+    <sl_dashboard_item
+      id="HR_Applicant_ToParse"
+      image_id="TodoParse"
+      entity_usage_id="HR_Applicant_ToParse"
+      tree_item_id="HR_Applicant_ToParse"
+      text="TODO: Parse"/>
+
+    <sl_dashboard_item
+      id="HR_TodoPayAttention"
+      image_id="TodoPayAttention"
+      entity_usage_id="HR_Applicant_PayAttention"
+      tree_item_id="HR_Applicant_PayAttention"
+      text="TODO: Pay attention"/>
+
+    <sl_dashboard_item
+      id="HR_ApplicantActivities"
+      image_id="AllActivitiesDashboard"
+      entity_usage_id="HR_ApplicantActivities"
+      tree_item_id="HR_ApplicantActivities"
+      text="All activities"/>
+
+    <sl_dashboard_item
+      id="HR_Phone_Interview_All"
+      image_id="PhoneInterviews"
+      entity_usage_id="HR_Phone_Interview_All"
+      tree_item_id="HR_Phone_Interview_All"
+      text="Phone Interviews"/>
+
+    <sl_dashboard_item
+      id="HR_Office_Interview_All"
+      image_id="OfficeInterviews"
+      entity_usage_id="HR_Office_Interview_All"
+      tree_item_id="HR_Office_Interview_All"
+      text="Office Interviews"/>
+
+  </sl_dashboard>
+</sl_dashboards>
+

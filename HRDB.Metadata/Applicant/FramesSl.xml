@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                                N E W                                -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Applicant_New_Frame"
+            entity_usage_id="HR_Applicant_New"
+              rows_height="auto"
+              rows_count="4">
+    <sl_panel id="pnPersonalInfo"
+              row="0"
+              columns_count="2"
+              text="Personal Info"
+              />
+    <sl_panel id="pnResume"
+              row="1"
+              columns_count="2"
+              text="Resume Info"
+              />
+    <sl_panel id="pnEducation"
+              row="2"
+              columns_count="2"
+              text="Education" />
+    <sl_panel id="pnMarketing"
+              row="3"
+              columns_count="2"
+              text="Marketing"
+              />
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                              E D I T                                -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Applicant_Edit_Frame"
+            entity_usage_id="HR_Applicant_New"
+              rows_height="auto"
+              rows_count="5">
+    <sl_panel id="pnPersonalInfo"
+              row="0"
+              columns_count="3"
+              text="Personal Info" />
+    <sl_panel id="pnResume"
+              row="1"
+              columns_count="3"
+              text="Resume" />
+    <sl_panel id="pnEducation"
+              row="2"
+              columns_count="3"
+              text="Education" />
+    <sl_panel id="pnMarketing"
+              row="3"
+              columns_count="3"
+              text="Marketing" />
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                              V I E W                                -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Applicant_Frame"
+            entity_usage_id="HR_Applicant">
+    <sl_tab_control id="tcMain"
+                    row="0" >
+      <sl_tab id="tbDefault"
+              text="General"
+              rows_height="auto"
+              rows_count="8">
+        <sl_panel id="pnPersonalInfo"
+                  row="0"
+                  columns_count="3"
+                  text="Personal Info" />
+        <sl_panel id="pnResume"
+                  row="1"
+                  columns_count="3"
+                  text="Resume" />
+
+        <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+        <!--                         Children Entities                           -->
+        <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+        <sl_tab_control id="tcApplicantChildLists"
+                        row="1" >
+
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+          <sl_tab id="tHR_ApplicantChildLists_Workflow"
+                  rows_count="1"
+                  rows_height="300"
+                  text="Employment Workflow">
+
+            <sl_frame id="frApplicantActivityList"
+            text="Activities"
+            column="0"
+            row="0"
+            frame_class_id="CxGridFrame"
+            entity_usage_id="Hr_Activity_Child_Of_Applicant" />
+          </sl_tab>
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+          <sl_tab id="tHR_ApplicantChildLists_Attachments"
+                  rows_count="1"
+                  rows_height="300"
+                  text="File Attachments">
+
+            <sl_frame id="frApplicantAttachmentList"
+            text="Attachments"
+            column="0"
+            row="0"
+            frame_class_id="CxGridFrame"
+            entity_usage_id="Hr_Attachment_Child_Of_Applicant" />
+          </sl_tab>
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+          <sl_tab id="tHR_ApplicantChildLists_Skills"
+                  rows_count="1"
+                  rows_height="300"
+                  text="Skills">
+            <sl_frame id="frApplicantSkillList"
+                      text="Vacancies"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="Hr_Skill_Child_Of_Applicant" />
+          </sl_tab>
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+          <sl_tab id="tHR_ApplicantChildLists_Expirience"
+                  rows_count="1"
+                  rows_height="300"
+                  text="Expirience">
+            <sl_frame id="frApplicantExpirienceList"
+                      text="Expirience"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="Hr_WorkExpirience_Child_Of_Applicant" />
+          </sl_tab>
+          
+
+
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+          <sl_tab id="tHR_ApplicantChildForm_Education"
+                  rows_count="1"
+                  rows_height="300"
+                  text="Education">
+            <sl_panel id="pnEducation"
+                      row="4"
+                      columns_count="3"
+                      text="Education" />
+
+          </sl_tab>
+
+
+
+
+          <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+        </sl_tab_control>
+      </sl_tab>
+      <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+      <sl_tab id="tbVacancies"
+              text="Link to Vacancy"
+              rows_height="400"
+              rows_count="1">
+        <sl_frame id="frApplicantVacancyList"
+                  text="Vacancies"
+                  column="0"
+                  row="0"
+                  frame_class_id="CxGridFrame"
+                  entity_usage_id="Hr_Vacancy_Child_Of_Applicant" />
+
+
+      </sl_tab>
+      <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+      <sl_tab id="tbHistory"
+              text="History"
+              rows_height="400"
+              rows_count="1">
+        <sl_panel id="pnHistory"
+                  row="0"
+                  columns_count="1"
+                  text="History" />
+        <sl_panel id="pnMarketing"
+                  columns_count="4"
+                  row="2"
+                  text="Marketing" />
+      </sl_tab>
+      <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                         A C T I V I T Y                             -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="Activity_Layout"
+            rows_height="auto"
+            rows_count="3" >
+    <sl_tab_control id="tcChildren" row="0">
+      <sl_tab id="tActivity"
+              text="Activity">
+        <sl_panel id="pnDefault"
+                  row="0"
+                  columns_count="2"
+                  text="Activity" />
+        
+        <sl_panel id="pnResult"
+                  row="3"
+                  columns_count="1"
+                  text="Activity Execution Results" />
+
+        <sl_panel id="pnDetails"
+                  row="1"
+                  columns_count="2"
+                  text="Attached Document" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                        E X P I R I E N C E                          -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_WorkExpirience_Frame"
+            entity_usage_id="HR_WorkExpirience"
+            rows_height="auto"
+            rows_count="3">
+      <sl_panel id="pnGeneral"
+                row="0"
+                columns_count="3"
+                text="General"
+                />
+      <sl_panel id="pnOther"
+                row="1"
+                columns_count="2"
+                text="Period"
+                />
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+
+
+  
+  
+</sl_frames>

@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<images>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Section_Administration"
+         folder="Framework"
+         file_name="book_open_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="0" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TreeItem_Users"
+         folder="Framework"
+         file_name="users2_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="1" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TreeItem_Roles"
+         folder="Framework"
+         file_name="masks_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="2" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="TreeItem_Security"
+         folder="Framework"
+         file_name="key1_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="3" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Command_New"
+         folder="Framework"
+         file_name="add2_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="501" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Command_Delete"
+         folder="Framework"
+         file_name="delete2_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="502" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Command_View"
+         folder="Framework"
+         file_name="document_view_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="503" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Command_Edit"
+         folder="Framework"
+         file_name="document_edit_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="504" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="MainMenu_Refresh"
+         folder="Framework"
+         file_name="replace2_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="701" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="MainMenu_History"
+         folder="Framework"
+         file_name="history_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="702" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="MainMenu_Favorites"
+         folder="Framework"
+         file_name="star_yellow_24x24.png"
+         provider_class_id="DefaultImageProvider"
+         index="703" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Workspace"
+         folder="Framework"
+         file_name="breakpoints_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="3002" />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Arrow_Down"
+         folder="Framework"
+         file_name="arrow_down_green_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="3003" />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="Arrow_Up"
+         folder="Framework"
+         file_name="arrow_up_green_48x48.png"
+         provider_class_id="DefaultImageProvider"
+         index="3004" />
+
+  <image id="BlueDisk_48x48"
+         folder="Framework"
+         file_name="disk_blue_48x48.png"/>
+
+  <image id="Undo_48x48"
+         folder="Framework"
+         file_name="undo_48x48.png"/>
+
+  <image id="error_48x48"
+        folder="Framework"
+        file_name="error_48x48.png"/>
+
+  <image id="information_48x48"
+       folder="Framework"
+       file_name="information_48x48.png"/>
+
+  <image id="question_and_answer_48x48"
+       folder="Framework"
+       file_name="question_and_answer_48x48.png"/>
+
+  <image id="warning_48x48"
+         folder="Framework"
+         file_name="warning_48x48.png"/>
+
+  <image id="check_16x16"
+         folder="Framework"
+         file_name="check_16x16.png"/>
+
+</images>
+
+

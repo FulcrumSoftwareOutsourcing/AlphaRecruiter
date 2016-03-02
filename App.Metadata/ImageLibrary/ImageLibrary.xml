@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+      group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="ImageLibrary"
+          plural_caption="Images"
+          single_caption="Image"
+          operations="iudvf"
+          entity_class_id="SlImageLibraryEntity"
+          sl_client_class_id="ImageLibraryEntity"
+          db_object="ImageLibrary"
+          db_object_1="ImageLibraryTrail"
+          grid_row_variable_height="true"
+          file_lib_category_entity_usage_id="ImageLibraryCategory"
+          file_lib_category_reference_attribute_id="CategoryId"
+          group_name="Administration">
+    <sql_select>
+      <![CDATA[
+        select *
+          from (
+                select img.ImageId,
+                      
+                       img.Name,
+                       img.ImageWidth,
+                       img.ImageHeight,
+                       img.CategoryId,
+                       img.Description,
+                       img.Hint,
+                       img.FileLenght,
+                       img.FileContentState,
+                       img.CreatedByUserId,
+                       img.ModifiedByUserId,
+                       trail.HLink,
+                       cat.Name as CategoryName,
+                       CAST(CASE
+                              WHEN img.ImageWidth IS NOT NULL AND img.ImageHeight IS NOT NULL
+                              THEN CAST(img.ImageWidth AS VARCHAR) + 'x' + CAST(img.ImageHeight AS VARCHAR)
+                              ELSE NULL
+                            END AS VARCHAR(30)) AS ImageSize
+                  from ImageLibrary img with (noLock)
+                    inner join ImageLibraryCategory cat   with (noLock) on (cat.CategoryId = img.CategoryId)
+                    left  join ImageLibraryTrail    trail with (noLock) on (trail.ImageId = img.ImageId)
+               ) as t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="ImageId"
+                 primary_key="true"
+                 visible="false"
+                 editable="false"
+                 read_only_for_update="true"
+                 default="=@sequence"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+      />
+      <attribute id="ImageContent"
+                 caption="Image"
+                 type="image"
+                 blob_file_name_attribute_id="Name"
+                 blob_file_size_attribute_id="FileLenght"
+                 filterable="false"
+                 storable="true"
+      />
+
+      <attribute id="Name"
+                 caption="Name"
+                 type="string"
+                 max_length="150"
+                 sorting="asc"
+                 display_name="true"
+                 grid_width="200"
+                 read_only="true"
+                 nullable="false"
+      />
+      <attribute id="ImageSize"
+                 caption="Size"
+                 type="string"
+                 max_length="30"
+                 grid_width="75"
+                 read_only="true"
+                 storable="false"
+                 filterable="false"
+      />
+      <attribute id="ImageWidth"
+                 caption="Width"
+                 type="int"
+                 visible="false"
+      />
+      <attribute id="ImageHeight"
+                 caption="Height"
+                 type="int"
+                 visible="false"
+      />
+      <attribute id="CategoryId"
+                 caption="Category"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 row_source_id="ImageLibraryCategory_Lookup"
+                 default="=PARENT.ImageLibrary.CategoryId"
+                
+      />
+      <attribute id="Description"
+                 caption="Description"
+                 type="string"
+                 max_length="2000"
+                 web_control="memo"
+                 grid_width="250"
+      />
+      <attribute id="Hint"
+                 caption="Hint (Alt)"
+                 type="string"
+                 max_length="2000"
+                 grid_width="250"
+      />
+      <attribute id="HLink"
+                 caption="Hyperlink"
+                 type="string"
+                 max_length="2000"
+                 grid_width="250"
+                 db_object_index="1"
+      />
+
+      <attribute id="FileLenght"
+                 caption="File Lenght"
+                 type="int"
+                 control_width="3"
+                 max_length="2000"
+                 nullable="true"
+                 grid_width="150"
+                 read_only="true"
+                 visible="false"
+      />
+
+      <attribute id="ImageContentState"
+                type="string"
+                visible="false"
+                storable="false" 
+      />
+
+      <attribute id="CreatedByUserId"
+                 caption="Created By User"
+                 type="int"
+                 row_source_id="User_Lookup"
+                 default="=Application$UserId"
+                 read_only="true"
+                 visible="true"
+      />
+
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By User"
+                 type="int"
+                 row_source_id="User_Lookup"
+                 default="=Application$UserId"
+                 read_only="true"
+                 visible="true"
+      />
+
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="ImageLibrary"
+                entity_id="ImageLibrary">
+    
+    
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  
+  <entity_usage id="Image_Child_Of_Category"
+                entity_id="ImageLibrary">
+
+    <attribute_usages>
+      <attribute_usage id="CategoryId"
+                       default="=PARENT.ImageLibraryCategory.CategoryId"
+                       nullable="false"
+      />
+    </attribute_usages>
+    
+    <parent_entities>
+      <parent_entity id="ImageLibraryCategory">
+        <where_clause>
+          <![CDATA[
+            CategoryId = :CategoryId
+          ]]>
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+    <join_condition>
+      <![CDATA[
+        t.CategoryId = :CategoryId
+      ]]>
+    </join_condition>
+    
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="ImageLibrary_Lookup"
+              entity_usage_id="ImageLibrary"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  
+</fw:entities>

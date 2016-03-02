@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_skins>  
+  <!--<sl_skin id="test_skin_1" text="Test Skin 1" skin_folder="Test Skin 1" skin_file="TestSkin1.dll"/>
+  <sl_skin id="test_skin_2" text="Test Skin 2" />-->
+  <sl_skin id="VS2010_skin" text="Visual Studio 2010"  skin_folder="VisualStudio2010Skin" skin_file="VisualStudio2010Skin.dll" is_default="true"/>
+</sl_skins>

@@ -1,0 +1,257 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!--css file: FormEditors.css-->
+
+
+<script type="text/html" id="form_edit_RowSourceComboBox">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <div data-bind="click: function() {$root.OnRowSourceClick ( $root.CurrentEntity()[Attr.Id], Attr, $root) }, clickBubble: false, attr:{class: 'Form_RowSource_Edit ' + Attr.JsControlCssClass }" >
+        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $root.CurrentEntity()[Attr.Id].SelectedRsItem())">
+            <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $root.CurrentEntity()[Attr.Id].SelectedRsItem(), $parent, Attr.Id, $root )} " />
+        </div>
+        
+      
+
+        <span data-bind="text: $root.CurrentEntity()[Attr.Id].SelectedRsItem().Text"></span>
+
+        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+            <path d="M0 0 l7 0 L3.5 5 z" />
+        </svg>
+
+        <div  data-bind="foreach: $root.CurrentEntity()[Attr.Id].RsItems(), visible: $root.CurrentEntity()[Attr.Id].RsOpen" class="RsPopup unselectable">
+            <div data-bind="css: $data == $root.CurrentEntity()[$parent.Attr.Id].SelectedRsItem() ? 'RsItem selected' : 'RsItem', click: function( data ){ $root.OnRowSourceItemClick( data, $root.CurrentEntity()[$parent.Attr.Id], $parent.Attr, $root ) } ">
+                <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $data )">
+                    <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $data, $parent, $parent.Attr.Id )} " />
+                </div>
+                <span  data-bind="text: Text"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_RowSourceComboBox'}"></div>
+    <!-- /ko -->
+
+</script>
+
+<script type="text/html" id="form_view_RowSourceComboBox">
+    <div data-bind="attr: { class: 'Form_RowSource_View ' + Attr.JsControlCssClass }">
+        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $root.CurrentEntity()[Attr.Id].SelectedRsItem())">
+            <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $root.CurrentEntity()[Attr.Id].SelectedRsItem(), $parent, Attr.Id, $root )} " />
+        </div>
+        
+        <span data-bind="text: $root.CurrentEntity()[Attr.Id].SelectedRsItem().Text"></span>
+    </div>
+</script>
+
+
+
+<script type="text/html" id="form_edit_string">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id], attr:{class: 'Form_StringEditor_Edit ' + Attr.JsControlCssClass }"  />
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_string'}"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="form_view_string">
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id], attr:{class: 'Form_StringEditor_View ' + Attr.JsControlCssClass } "  readonly="readonly" />
+    
+</script>
+
+
+<script type="text/html" id="form_edit_datetime">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <input type="text" data-bind="attr: {id: $root.TempId + 'datetimepicker_' + App.Utils.ShortGuid()}, value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_Edit" />
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_View" readonly="readonly" />
+    <!-- /ko -->
+</script>
+<script type="text/html" id="form_view_datetime">
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_View" readonly="readonly" />
+</script>
+
+<script type="text/html" id="form_edit_date">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <input type="text" data-bind="attr: {id: $root.TempId + 'datepicker_' + App.Utils.ShortGuid()}, value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_Edit" />
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_View" readonly="readonly" />
+    <!-- /ko -->
+</script>
+<script type="text/html" id="form_view_date">
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id]" class="Form_StringEditor_View" readonly="readonly" />
+</script>
+
+
+
+<script type="text/html" id="form_edit_memo">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <textarea data-bind="value:  $root.CurrentEntity()[Attr.Id], style: { height: ControlHeight }, attr: { class: 'Form_MemoEditor_Edit ' + Attr.JsControlCssClass }" ></textarea>
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_memo'}"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="form_view_memo">
+    <textarea data-bind="value: $root.CurrentEntity()[Attr.Id], style: { height: ControlHeight }, attr: { class: 'Form_MemoEditor_View ' + Attr.JsControlCssClass } " readonly="readonly"></textarea>
+</script>
+
+
+
+
+<script type="text/html" id="form_edit_boolean">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <div data-bind="attr: { class: 'Form_BoolEditor_Edit ' + Attr.JsControlCssClass } ">
+        <input type="checkbox" data-bind="checked: $root.CurrentEntity()[Attr.Id]" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_boolean'}"></div>
+    <!-- /ko -->
+</script>
+
+<script  type="text/html" id="form_view_boolean">
+    <div data-bind="attr: { class: 'Form_BoolEditor_Edit ' + Attr.JsControlCssClass } ">
+        <input type="checkbox" data-bind="checked: $root.CurrentEntity()[Attr.Id]"   onclick="return false"/> 
+    </div>
+</script>
+
+<script type="text/html" id="form_edit_int">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <div>
+        <input type="text" data-bind="numeric: $root.CurrentEntity()[Attr.Id], attr: { class: 'Form_StringEditor_Edit ' + Attr.JsControlCssClass } "  _onkeyup="this.value=this.value.replace(/[^\d]/,'')"  />
+    </div>
+    @*<div style="" class="NumPad">
+        
+        <table cellpadding="0" cellspacing="0" class="NumPadTable">
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button class="FuncBtn">&larr;</button></td>
+
+            </tr>
+            <tr>
+                <td ><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button class="FuncBtn">OK</button></td>
+            </tr>
+            <tr>
+                <td><button>3</button></td>
+                <td><button>2</button></td>
+                <td><button>1</button></td>
+                <td><button class="FuncBtn">Cancel</button></td>
+            </tr>
+            <tr>
+                <td><button>0</button></td>
+                <td><button>-</button></td>
+                <td><button>.</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>*@ 
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_int'}"></div>
+    <!-- /ko -->
+</script>
+<script type="text/html">
+
+</script>
+
+<script type="text/html" id="form_view_int">
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id], attr: { class: 'Form_StringEditor_View ' + Attr.JsControlCssClass } " />
+</script>
+
+<script type="text/html" id="form_edit_float">
+    <!-- ko if: !$root.CurrentEntity()[Attr.Id].Readonly() -->
+    <div>
+        <input type="text" data-bind="numeric: $root.CurrentEntity()[Attr.Id], attr: { class: 'Form_StringEditor_Edit ' + Attr.JsControlCssClass }" _onkeyup="this.value=this.value.replace(/[^\d.]/,'')" />
+    </div>
+    <!-- /ko -->
+    <!-- ko if: $root.CurrentEntity()[Attr.Id].Readonly -->
+    <div data-bind="template: {name: 'form_view_float'}"></div>
+    <!-- /ko -->
+</script>
+
+<script type="text/html" id="form_view_float">
+    <input type="text" data-bind="value: $root.CurrentEntity()[Attr.Id], attr: { class: 'Form_StringEditor_View ' + Attr.JsControlCssClass }"  />
+</script>
+
+
+
+<script type="text/html" id="form_edit_file">
+   
+    <a data-bind="text: GetTxt('Download...'), attr: {href: $root.GetDownloadlinkUrl(Attr.Id, $root ) }, visible: $root.IsDownloadPossible(Attr.Id)"></a>
+    
+    @*<span type="text" data-bind="text: GetTxt('Download...'), visible: $root.CurrentEntity()[$root.GetBlobStateAttributeId(Attr.Id)]() != BlobStateAttrValues.BLOB_PRESENT_IN_DB"  style="color: gray"></span>*@
+    <span type="text" data-bind="attr:{ id: 'file_name_lbl_' + Attr.Id + 'zzzz' + $root.TempId  }" style="color: gray"></span>
+
+        &nbsp&nbsp
+        <button type="button" data-bind="text:GetTxt('Upload...'), click: function(data){ $root.UploadFileClick.call($root, Attr)  }" />
+        <button type="button" data-bind="text:GetTxt('Clear'), click: function(data){ $root.ClearFileClick.call($root, Attr)  }" />
+
+    <input type="file" data-bind="event: { change: $root.HandleFileSelect }, attr:{ id: 'file_input_' + Attr.Id + 'zzzz' + $root.TempId  }" style="display:none;" />
+
+</script>
+
+<script type="text/html" id="form_view_file">
+    <a data-bind="text: GetTxt('Download...'), attr: {href: $root.GetDownloadlinkUrl(Attr.Id, $root )}, visible: $root.IsDownloadPossible(Attr.Id)"></a>
+</script>
+
+
+
+<script type="text/html" id="form_edit_hyperlink">
+
+    <a href="javascript: DownloadLink();" data-bind="text: $root.CurrentEntity()[Attr.Id], click: function(data){$root.DymmicCommandClick($root.CurrentEntity(), Attr)  }" ></a>
+
+</script>
+
+<script type="text/html" id="form_view_hyperlink">
+    <a href="javascript: DownloadLink();" data-bind="text: $root.CurrentEntity()[Attr.Id], click: function(data){$root.DymmicCommandClick($root.CurrentEntity(), Attr) }"></a>
+</script>
+
+
+
+
+
+
+<script type="text/html" id="CommandHyperlinkTemplate">
+    <a href="javascript: DownloadLink();" c-type="cmd-link" attr-id="%attr-id%"><!--text--></a>
+</script>
+
+
+<script type="text/html" id="form_edit_photo">
+    <div class="Thumb">
+        <img data-bind="attr: {src: $root.GetPhotoUrl(Attr.Id, $root, true )}, style: { width: (Attr.ThumbnailWidth + 'px'), height: (Attr.ThumbnailHeight + 'px') }, click: function(){ $root.OnThumbClick(Attr.Id, $root )}, visible: $root.IsDownloadPossible(Attr.Id)"  />
+        <a data-bind="text: GetTxt('Download...'), attr: {href: $root.GetDownloadlinkUrl(Attr.Id, $root ) }, visible: $root.IsDownloadPossible(Attr.Id)"></a>
+
+        @*<span type="text" data-bind="text: GetTxt('Download...'), visible: $root.CurrentEntity()[$root.GetBlobStateAttributeId(Attr.Id)]() != BlobStateAttrValues.BLOB_PRESENT_IN_DB" style="color: gray"></span>*@
+        <span type="text" data-bind="attr:{ id: 'file_name_lbl_' + Attr.Id + 'zzzz' + $root.TempId  }" style="color: gray"></span>
+
+        &nbsp&nbsp
+        <button type="button" data-bind="text:GetTxt('Upload...'), click: function(data){ $root.UploadFileClick.call($root, Attr)  }" />
+        <button type="button" data-bind="text:GetTxt('Clear'), click: function(data){ $root.ClearFileClick.call($root, Attr)  }" />
+
+        <input type="file" data-bind="event: { change: $root.HandleFileSelect }, attr:{ id: 'file_input_' + Attr.Id + 'zzzz' + $root.TempId  }" style="display:none;" />
+    </div>
+
+</script>
+
+<script type="text/html" id="form_view_photo">
+    <div class="Thumb" >
+        <div t="plh"></div>
+        <img  data-bind="attr: { src: $root.GetPhotoUrl(Attr.Id, $root, true )}, style: { width: (Attr.ThumbnailWidth + 'px'), height: (Attr.ThumbnailHeight + 'px') }, click: function(){ $root.OnThumbClick(Attr.Id, $root ) }, visible: $root.IsDownloadPossible(Attr.Id)"  />
+        <a data-bind="text: GetTxt('Download...'), attr: {href: $root.GetDownloadlinkUrl(Attr.Id, $root )}, visible: $root.IsDownloadPossible(Attr.Id)"></a>
+    </div>
+</script>

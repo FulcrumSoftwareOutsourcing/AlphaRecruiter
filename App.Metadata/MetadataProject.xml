@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<files>
+  <include file="Portal.xml" />
+  <include file="Assemblies.xml" />
+  <include file="Classes.xml" />
+  <include file="Commands.xml" />
+  <include file="FramesSl.xml" />
+  <include file="Images.xml" />
+  <include file="LocalizationDictionary.xml" />
+  <include file="LocalizationValue.xml" />
+  <include file="Languages.xml" />
+  
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!-- Entities -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <include file="Lookups\BooleanLookup.xml" />
+  <include file="Lookups\YearMonthLookup.xml" />
+
+  <include file="Security\ObjectPermission.xml" />
+  <include file="Security\EntityPermission.xml" />
+  <include file="Security\SubsystemPermission.xml" />
+  <include file="Security\Workspace.xml" />
+  <include file="Security\FramesSl.xml" />
+  <include file="Security\User.xml" />
+  <include file="Security\Role.xml" />
+  <include file="Security\UserRole.xml" />
+  <include file="Security\RoleWorkspace.xml" />
+  <include file="Security\RowSources.xml" />
+  <include file="Security\Images.xml" />
+  <include file="ImageLibrary\ImageLibrary.xml" />
+  <include file="ImageLibrary\ImageLibraryCategory.xml" />
+  <include file="ImageLibrary\ImageLibraryCategoryLayout.xml" />
+ 
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <include file="SlSkins.xml" />
+  <include file="SlDashboads.xml" />
+  
+  
+</files>

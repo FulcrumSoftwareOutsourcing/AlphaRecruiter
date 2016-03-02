@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:images xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+  group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--<image id="folder"
+         provider_class_id="DefaultImageProvider"
+         index="0"
+  />-->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="green_circle"
+         provider_class_id="DefaultImageProvider"
+         folder="Framework"
+         file_name="green_circle_16x16.png"
+         index="2101"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="red_circle"
+         provider_class_id="DefaultImageProvider"
+         index="2102"
+          folder="Framework"
+         file_name="red_circle_16x16.png"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="yellow_circle"
+         provider_class_id="DefaultImageProvider"
+         folder="Framework"
+         file_name="yellow_circle_16x16.png"
+         index="2103"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <image id="cyan_circle"
+         provider_class_id="DefaultImageProvider"
+         index="2104"
+         folder="Framework"
+         file_name="cyan_circle_16x16.png"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:images>

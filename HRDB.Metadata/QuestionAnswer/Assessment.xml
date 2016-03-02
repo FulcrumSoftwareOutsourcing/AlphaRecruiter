@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="QuestionsAnsvers">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Assessment"
+          single_caption="Interview Assessment"
+          plural_caption="Interview Assessments"
+          operations=""
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_Assessment"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.ActivityId            ,
+               t.HR_QuestionCategoryCd ,
+               t.AverageResult         ,
+               cat.Name,
+               cat.DisplayOrder
+          from HR_Assessment t,
+               HR_QuestionCategory cat
+         where cat.HR_QuestionCategoryCd = t.HR_QuestionCategoryCd
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="HR_QuestionCategoryCd"
+                 caption="Category Code"
+                 type="string"
+                 row_source_id="HR_QuestionCategory_Lookup"
+                 primary_key="true"
+                 />
+      <attribute id="ActivityId"
+                 caption="ActivityId"
+                 type="int"
+                 primary_key="true"
+                 />
+      <attribute id="AverageResult"
+                 caption="Average Result"
+                 type="float"
+                 grid_width="100"
+                 />
+      <attribute id="Name"
+                 caption="Question Category"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 grid_width="150"
+      />
+      <attribute id="DisplayOrder"
+                 caption="Display Order"
+                 type="int"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="100"
+      />
+    </attributes>
+    <grid_visible_order>
+      ,HR_QuestionCategoryCd
+      ,AverageResult
+    </grid_visible_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Assessment"
+                entity_id="HR_Assessment">
+    <where_clause>
+      <![CDATA[
+        ActivityId = ( select max(i.ActivityId)
+                        from HR_Activity  a,
+                             HR_Interview i
+                       where a.ApplicantId = :ApplicantId
+                         and i.ActivityId = a.ActivityId )
+      ]]>
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Assessment_for_Interview"
+                entity_id="HR_Assessment">
+    <where_clause>
+      <![CDATA[
+        ActivityId = :ActivityId
+      ]]>
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Vacancy"
+          single_caption="Vacancy"
+          plural_caption="Vacancies"
+          operations="fivud"
+          filter_enabled="true"
+          entity_class_id="SlEntity"
+          db_object="HR_Vacancy"
+          in_security="true"
+          _wordwrap_rowdata="true">
+    <sql_select>
+      <![CDATA[
+       select * 
+         from HR_Vacancy t
+      ]]>
+    </sql_select>
+
+    <attributes>
+      <attribute id="VacancyId"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 read_only_for_update="true"
+                 visible="false"
+                 read_only="true"
+                 default="=@sequence"
+                 />
+      <attribute id="VacancyName"
+                 caption="Vacancy Name"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 control_width="5"
+                 grid_width="150"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="SpecialityCD"
+                 caption="Speciality"
+                 type="string"
+                 grid_width="200"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_Speciality_Lookup"
+                 sl_control_placement="VacancyInfo"
+      />
+      <attribute id="VacancyDescription"
+                 caption="Description"
+                 type="string"
+                 sl_control="memo"
+                 max_length="2000"
+                 nullable="true"
+                 grid_width="400"
+                 control_width="5"
+                 sl_control_placement="VacancyInfo"/>
+
+      <attribute id="MinWorkYears"
+                 caption="Work Years"
+                 type="int"
+                 max_length="50"
+                 grid_width="100"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="VacancyInfo"
+      />
+      <attribute id="SalaryExpectationsUSDMax"
+                 caption="Max Salary"
+                 type="int"
+                 grid_width="75"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="EnglishLevelCD"
+                 caption="English Level"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 grid_width="100"
+                 row_source_id="English_Level_Lookup"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="VacancyQty"
+                 caption="Quantity"
+                 type="int"
+                 default="1"
+                 control_height="25"
+                 grid_width="100"
+                 nullable="true"
+                 sl_control_placement="VacancyInfo"
+                 />
+      <attribute id="CreationDate"
+                 caption="Creation Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 default="=@NOW"
+                 read_only="true"
+                 sl_control_placement="pnHistory"
+                 filter_advanced="true"
+                 visible="false"
+      />
+      <attribute id="CreatedByUserId"
+                 caption="Created By"
+                 type="int"
+                 max_length="10"
+                 default="=Application$UserId"
+                 editable="true"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 sl_control_placement="pnHistory"
+                 visible="false"
+      />
+      <attribute id="ModificationDate"
+                 caption="Modification Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 default="=@NOW"
+                 read_only="true"
+                 sl_control_placement="pnHistory"
+                 visible="false"
+      />
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By"
+                 type="int"
+                 max_length="10"
+                 default="=Application$UserId"
+                 visible="false"
+                 editable="true"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+      />
+      <attribute id="IsActive"
+                 caption="Is Active"
+                 type="boolean"
+                 grid_width="80"
+                 sl_control_placement="VacancyInfo"
+                 filter_advanced="true"
+                 default="true"
+                 row_source_id="Boolean_Lookup"
+                 />
+
+    </attributes>
+  </entity>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Vacancy_Active"
+                entity_id="HR_Vacancy"
+                sl_edit_frame_id="HR_Vacancy_Frame"
+                sl_filter_on_start="false">
+    <where_clause>
+      <![CDATA[
+        IsActive='1' 
+      ]]>
+    </where_clause>    
+  </entity_usage>
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Vacancy"
+                entity_id="HR_Vacancy"
+                sl_edit_frame_id="HR_Vacancy_Frame"
+                sl_filter_on_start="false">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Vacancy_Lookup"
+              image_attr_id="SLImageId"
+              entity_usage_id="HR_Vacancy"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_VacancySteps_Lookup">
+    <rows>
+      <row key="0" value="0" image_id = "Act_Type_RESUME_Recieved" />
+      <row key="1" value="1" image_id = "Act_Type_INTERVIEW_Phone" />
+      <row key="2" value="2" image_id = "Act_Type_INTERVIEW_Phone_Passed" />
+      <row key="3" value="3" image_id = "Act_Type_INTERVIEW_Office" />
+      <row key="4" value="4" image_id = "Act_Type_INTERVIEW_Office_Passed" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="English_Level_Lookup">
+    <rows>
+      <row key="NotRequired"        value="NotRequired"        />
+      <row key="Beginner"           value="Beginner"           />
+      <row key="Pre-Intermediate"   value="Pre-Intermediate"   />
+      <row key="Intermediate"       value="Intermediate"       />
+      <row key="Upper-Intermediate" value="Upper-Intermediate" />
+      <row key="Advanced"           value="Advanced"           />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

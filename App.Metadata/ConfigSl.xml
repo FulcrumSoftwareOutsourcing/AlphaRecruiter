@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<config
+  application_code="Silverlight.Core"
+  child_entity_usage_visible_in_hierarchy="false"
+  application_scope="Silverlight"
+  plugins_have_metadata_project_file="true">
+  <plugins>
+
+
+
+    HRDB.Metadata
+
+
+  </plugins>
+  <!--Tracker.Metadata-->
+  <!--HRDB.Metadata-->
+  <!--TimeServer.Metadata-->
+</config>

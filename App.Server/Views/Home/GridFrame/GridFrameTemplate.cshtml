@@ -1,0 +1,158 @@
+﻿@{
+    Layout = null;
+}
+
+<!--css file: GridFrame.css-->
+<!--css file: GridTemplate.css-->
+
+<script type="text/html" id="GridFrame/GridFrameTemplate">
+    
+    @*<div class="TreeCaption"  data-bind="text: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' +  Caption(), visible: $root.GetIsFrameCaptionVisible($root)"></div>*@
+    <div data-bind="attr: {id: 'commandsBar_' + TempId}, css: (!$root.OpenMode || $root.OpenMode.indexOf('Child') == -1) ? 'CommandsBar' : 'CommandsBar CommandsBar_Child' "  ></div>
+
+    <!-- ko if: !App.Utils.IsStringNullOrWhitespace( $root.EntityUsage.GridHint ) -->
+    <div class="GridHint" data-bind="text: $root.EntityUsage.GridHint, attr: {id: 'grid_hint' + TempId} " ></div>
+    <!-- /ko -->
+
+    <!-- ko if: $root.EntityUsage && $root.EntityUsage.IsFilterEnabled -->
+        <div data-bind="attr: {id: 'filters_panel' + $root.TempId}"></div>
+    <!-- /ko -->
+    <div data-bind="attr: {id: TempId + '_dataGridRoot'}" class="DataGridHolder">
+       
+       
+    </div>
+    
+    <div data-bind="attr: {id: 'padingBar_' + TempId }" class="PagingPnl"></div>
+
+ 
+    
+</script>
+
+
+
+<script type="text/html" id="DataGridRootTemplate">
+    @*<table cellpadding="0" cellspacing="0" style="table-layout:fixed">
+        <tr>
+            <td width="8">
+                <table class="DataGrid" id="%cursor_tbl_id%" ></table>
+            </td>
+            <td >*@
+    <div style="position: relative;">
+        <table class="DataGrid" id="%id%">
+            <!--content-->
+
+            <tr style="display:none" c-type="noDataRow" class="NoDataInGrid" >
+                <td colspan="1">
+                    <div><!--no_data_text--></div>
+                </td>
+            </tr>
+
+        </table>
+
+        @*<div class="GridColMenu"  >
+            <div c-type="giMulti" class="UserMenuItem"></div>
+            <div c-type="giSelAll" class="UserMenuItem"></div>
+            <div c-type="giSelNone" class="UserMenuItem"></div>
+            <div c-type="giSingle" class="UserMenuItem"></div>
+            <div c-type="giCancel" class="UserMenuItem"></div>
+        </div>*@
+
+    </div>
+
+            @*</td>
+        </tr>
+    </table>*@
+
+    
+</script>
+
+<script type="text/html" id="DataGridColHeaderTemplate">
+    <td id="%id%" class="DataColHeader unselectable" width="%width%" attr-id="" style="position: relative" >
+        <span><!--text--></span>
+        <svg width="7" height="7" display="none" c-type="down-arr">
+            <path d="M0 0 l7 0 L3.5 5 z" />
+        </svg>
+         <svg width="7" height="7" display="none" c-type="up-arr">
+             <path d="M0, 3.5 l3.5, -5 L7, 3.5 z" />
+        </svg>
+        <div class="ColResizeGrip" ></div>
+
+    </td>
+</script>
+
+<script type="text/html" id="DataGridHeadRowTemplate">
+    <tr id="%id%"><!--content--></tr>
+   
+</script>
+
+<script type="text/html" id="DataGridRowTemplate">
+    <tr class="%class%" id="%id%"  ><!--content--></tr>
+    <tr style="display:none" c-type="noDataRow">
+        <td>
+            <div><!--no_data_text--></div>
+        </td>
+    </tr>
+</script>
+
+<script type="text/html" id="DataGridCellTemplate">
+    <td id="%id%"><div style="width:%ctrl_width% !important; %wordWrap% "> <!--text--></div></td>
+</script>
+
+<script type="text/html" id="CursorColumn">
+    <td width="24" style="max-width: 22px !important">
+        <div class="GridCursor" id="%id%">
+            @*<svg width="6" height="12"  c-type="s-cursor" style="display:%cursor_disp%;">
+                <path d="M5 0 l6 6  L5 12 z" />
+            </svg>
+            <svg width="20" height="20" style="display:none; " c-type="m-cursor">
+                <path d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" stroke="gray" fill-opacity="0" />
+            </svg>*@
+            <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/row-check-hover.png")" style="display: %cursor_disp%;" c-type="row-sel-img" />
+            <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/row-checked-round.png")" c-type="round-img" />
+            <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/row-check-hover.png")" c-type="checked-hover-img" />
+        </div>
+    </td>
+</script>
+
+<script type="text/html" id="CursorHeaderTemplate" >
+    <td width="24" class="DataColHeader CursorHeaderTemplate" >
+        <div c-type="headerCursor" style="position:relative;">
+            @*<svg width="20" height="20" style="display:none; ">
+                <path d="M0,10a10,10 0 1,0 20,0a10,10 0 1,0 -20,0" stroke="gray" fill-opacity="0" />
+            </svg>*@
+            <img style="display: %selectAllVisible%" src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/row-check-hover.png")" />
+
+            
+
+            
+        </div>
+        
+    </td>
+</script>
+
+<script type="text/html" id="GridFileContentTemplate">
+    <a href="javascript: DownloadLink();" c-type="d-link" attr-id="%attr-id%"><!--text--></a>
+</script>
+<script type="text/html" id="GridFileContentTemplateNoFile">
+    @*<span c-type="lbl-no-file" style="color: gray"></span>*@
+</script>
+
+<script type="text/html" id="GridPhotoContentTemplate">
+    <img src="thumb_url" style="width: thumb_w; height: thumb_h" />
+    <a href="javascript: DownloadLink();" c-type="d-link" attr-id="%attr-id%"><!--text--></a>
+    <img style="width: 16px; height: 16px;" src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/zoom-glass.png")"  />
+</script>
+<script type="text/html" id="GridPhotoContentTemplateNoFile">
+    @*<span c-type="lbl-no-file" style="color: gray"></span>*@
+</script>
+
+<script type="text/html" id="GridFileContentTemplate">
+    <a href="javascript: DownloadLink();" c-type="d-link" attr-id="%attr-id%"><!--text--></a>
+</script>
+
+<script type="text/html" id="CommandHyperlinkTemplate">
+    <a href="javascript: DownloadLink();" c-type="cmd-link" attr-id="%attr-id%"><!--text--></a>
+</script>
+
+
+

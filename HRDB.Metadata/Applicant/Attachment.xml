@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Attachment"
+          single_caption="Attachment"
+          plural_caption="Attachments"
+          operations="ivd"
+          filter_enabled="false"
+          entity_class_id="SlEntity"
+          image_id="Attachments"
+          db_object="HR_Attachment"
+          in_security="true"
+          display_all_records_without_footer="true"
+          >
+    <sql_select>
+      <![CDATA[
+      
+      SELECT  [AttachmentId]
+      ,[ApplicantID]
+      ,[AttachmentTypeCD]
+      ,[ActivityId]
+      ,[FileDate]
+      ,[FileName]
+      ,null as [FileContent]
+      ,[FileSize]
+      ,[FileContentState]
+      ,[CreationDate]
+      ,[CreatedByUserId]
+      ,[ModificationDate]
+      ,[ModifiedByUserId]
+      ,[FileType]
+  FROM [HR_Attachment] t
+  
+        ]]>
+    </sql_select>
+
+
+    <sql_delete>
+      <![CDATA[
+  if :ActivityId is not null
+        begin
+          raiserror('Attachment cant be deleted because it is linked to Activity.', 16, 1)
+          return
+        end
+        
+  delete from HR_Attachment
+         where AttachmentId = :AttachmentId
+        
+       ]]>
+    </sql_delete>
+
+    <parent_entities>
+      <parent_entity id="HR_Applicant"
+                     entity_usage_id="HR_Applicant">
+        <where_clause>
+          ApplicantID = :ApplicantID
+        </where_clause>
+      </parent_entity>
+      
+      <parent_entity id="HR_Activity"
+                     entity_usage_id="HR_Activity">
+        <where_clause>
+          ActivityID = :ActivityID
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+    
+    <attributes>
+      <attribute id="AttachmentId"
+                 caption="Attachment Id"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 read_only_for_update="true"
+                 grid_width="50"
+                 visible="false"
+                 default="=@sequence"
+      />
+
+      <attribute id="ActivityId"
+           caption="Activity Code"
+           type="int"
+           nullable="true"
+           read_only="true"
+           editable="false"  
+           visible="false"
+      />
+      
+      <attribute id="AttachmentTypeCD"
+           caption="Attachment Type"
+           type="string"
+           nullable="false"
+           row_source_id="HR_AttachmentType_Lookup"
+           max_length="50"
+           default="RESUME"      
+      />
+
+      <attribute id="ApplicantId"
+                 type="int"
+                 nullable="false"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=PARENT.Hr_Applicant.ApplicantId"
+      />
+      
+      <attribute id="FileContent"
+                 caption="Content"
+                 type="file"
+                 control_width="7"
+                 max_length="150"
+                 nullable="true"
+                 grid_width="100"
+                 blob_file_name_attribute_id="FileName"
+                 blob_file_size_attribute_id="FileSize"
+      />
+      <attribute id="FileDate"
+                 caption="File Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 read_only="true"
+                 nullable="false"
+                 default="=@NOW"
+                 />
+
+      <attribute id="FileName"
+                 caption="File Name"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 grid_width="250"
+                 read_only="true"
+      />
+      <attribute id="FileSize"
+                 caption="File Length"
+                 type="int"
+                 control_width="3"
+                 max_length="2000"
+                 nullable="true"
+                 grid_width="150"
+                 read_only="true"
+                 visible="false"
+      />
+      <attribute id="FileContentState"
+                 type="string"
+                 visible="false"
+      />
+
+
+      <attribute id="CreationDate"
+                 caption="Creation Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+                 filter_advanced="true"
+           visible="false"                 
+      />
+      
+      
+      <attribute id="CreatedByUserId"
+                  caption="Created By"
+                  type="int"
+                  max_length="10"
+                  nullable="false"
+                  default="=Application$UserId"
+                  read_only="true"
+                  row_source_id="User_Lookup"
+                  filter_advanced="true"
+                  visible="false"                 
+      />
+
+      <attribute id="ModificationDate"
+                 caption="Modification Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+                 filter_advanced="true"
+                 visible="false"                 
+       />
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 default="=Application$UserId"
+                 visible="false"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+                 filter_advanced="true"
+      />
+
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Attachment"
+                entity_id="HR_Attachment"
+                _sl_edit_frame_id="HR_Attachment">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Hr_Attachment_Child_Of_Applicant"
+                entity_id="Hr_Attachment"
+                inherited_entity_usage_id="Hr_Attachment"
+                filter_enabled="false">
+    <attribute_usages>
+      <attribute_usage id="ApplicantId"
+                       default="=PARENT.Hr_Applicant.ApplicantId"
+                       />
+      
+    </attribute_usages>
+    <join_condition>
+      <![CDATA[
+        t.ApplicantId = :ApplicantId
+      ]]>
+    </join_condition>
+    <grid_visible_order>
+      AttachmentTypeCD
+      FileContent
+      FileDate
+      FileName
+    </grid_visible_order>
+  </entity_usage>
+
+</fw:entities>

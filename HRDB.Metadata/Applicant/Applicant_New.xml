@@ -1,0 +1,542 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Hr_Applicant_New">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Applicant_New"
+          single_caption="Applicant"
+          operations="iu"
+          filter_enabled="false"
+          entity_class_id="SlEntity"
+          db_object="v_HR_Applicant"
+          sl_edit_frame_id="HR_Applicant_New_Frame"
+          in_security="true"
+          image_id="Created_Today"
+          post_create_command_id="View"
+          >
+    <sql_insert>
+      <![CDATA[
+        if exists (select top 1 1 from HR_Applicant where email = :Email )
+        begin
+          Raiserror('Applicant with same email address already present in DB!', 16, 1)
+        end
+        else
+        begin
+
+        declare @AttachmentId        UDT_OBJID
+        declare @ActivityId        UDT_OBJID
+        exec p_GetFrameworkSequenceNextValue @NextValue = @AttachmentId output
+        exec p_GetFrameworkSequenceNextValue @NextValue = @ActivityId output
+
+        insert into HR_Applicant
+        (
+          ApplicantId               ,
+          FirstName                 ,
+          MiddleName                ,
+          LastName                  ,
+          BirthDate                 ,
+          Location                  ,
+          Phone                     ,
+          Email                     ,
+          SpecialityCD              ,
+          SalaryExpectationsUSD     ,
+          SalaryNote                ,
+          CreationDate              ,
+          CreatedByUserId           ,
+          ModificationDate          ,
+          ModifiedByUserId          ,
+          Exp_MinWorkYears          ,
+          Edu_University_Name       ,
+          Edu_University_Speciality ,
+          Edu_University_FinishYear ,
+          Edu_EnglishLevelCD        ,
+          RecruiterName             ,
+          AdvertisingTypeCd         ,
+          Position                  ,
+          TotalWorkExperience       ,
+          Edu_Degree                ,
+          OwnerId                    
+        )
+        values
+        (
+          :ApplicantId               ,
+          :FirstName                 ,
+          :MiddleName                ,
+          :LastName                  ,
+          :BirthDate                 ,
+          :Location                  ,
+          :Phone                     ,
+          :Email                     ,
+          :SpecialityCD              ,
+          :SalaryExpectationsUSD     ,
+          :SalaryNote                ,
+          :CreationDate              ,
+          :CreatedByUserId           ,
+          :ModificationDate          ,
+          :ModifiedByUserId          ,
+          :Exp_MinWorkYears          ,
+          :Edu_University_Name       ,
+          :Edu_University_Speciality ,
+          :Edu_University_FinishYear ,
+          :Edu_EnglishLevelCD        ,
+          :RecruiterName             ,
+          :AdvertisingTypeCd         ,
+          :Position                  ,
+          :TotalWorkExperience       ,
+          :Edu_Degree                ,
+          :OwnerId
+        )
+
+        insert into HR_Activity
+        (ActivityId, ActivityTypeCD,  ApplicantId, ActivityDate, IsCompleted, ActivityResultCD, Subject, BodyText,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId)
+        values
+        (@ActivityId, 'RESUME_Recieved', :ApplicantId, :ResumeDate, '1', 'OK', 'Resume recieved', :ResumeText,   :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId)
+
+        insert into HR_Attachment
+        (AttachmentId, ApplicantID, ActivityId, FileDate, FileName, FileContent,FileSize, FileContentState,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId, AttachmentTypeCD)
+        values
+        (@AttachmentId, :ApplicantID, @ActivityId, :ResumeDate, :FileName, :FileContent,:FileSize, :FileContentState,  :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId, 'RESUME')
+
+        if (:PhotoFileContent is not null)
+          begin
+            exec p_GetFrameworkSequenceNextValue @NextValue = @AttachmentId output
+            
+            insert into HR_Attachment
+            (AttachmentId, ApplicantID, FileDate, FileName, FileContent,FileSize, FileContentState,  CreationDate, CreatedByUserId, ModificationDate, ModifiedByUserId, AttachmentTypeCD)
+            values
+            (@AttachmentId, :ApplicantID, :CreationDate, :PhotoFileName, :PhotoFileContent,:PhotoFileSize, :PhotoFileContentState,  :CreationDate, :CreatedByUserId, :ModificationDate, :ModifiedByUserId, 'APPLICANT_PHOTO')
+          
+          end
+        end
+    ]]>
+    </sql_insert>
+
+    <parent_entities>
+      <parent_entity id="HR_Applicant"
+                     entity_usage_id="HR_Applicant">
+        <where_clause>
+          Email = :Email
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+
+
+    <attributes>
+      <attribute id="ApplicantId"
+                 caption="Applicant Id"
+                 type="int"
+                 primary_key="true"
+                 nullable="false"
+                 max_length="2"
+                 control_modifiers="U"
+                 read_only_for_update="true"
+                 visible="false"
+                 default="=@sequence"
+      />
+
+      <!-- pnPersonalInfo -->
+      <attribute id="LastName"
+                 caption="Last Name"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 sl_control_placement="pnPersonalInfo"
+                 js_control_css_class="HighlightedAttributeStyle"
+                 
+             />
+
+
+      <attribute id="FirstName"
+                 caption="First Name"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 sl_control_placement="pnPersonalInfo"
+                 js_control_css_class="HighlightedAttributeStyle"
+                 
+      />
+
+
+      <attribute id="MiddleName"
+                 caption="Middle Name"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 visible="false"
+                 sl_control_placement="pnPersonalInfo"
+      />
+
+      <attribute id="BirthDate"
+                 caption="Birth Date"
+                 type="date"
+                 storable="true"
+                 sl_control_placement="pnPersonalInfo"
+                 filter_advanced="true"
+     />
+
+      <attribute id="FullName"
+             caption="Full Name"
+             type="string"
+             max_length="101"
+             storable="false"
+             display_name="true"
+             filterable="false"
+
+             read_only="true"
+             visible="false"
+       />
+
+      <attribute id="Email"
+                 caption="Email"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 sl_control_placement="pnPersonalInfo"
+                 local_expression="SQL.select TOP 1 Email from HR_Applicant where LastName = :LastName AND FirstName = :FirstName"
+      />
+      <attribute id="Phone"
+                 caption="Phone"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 sl_control_placement="pnPersonalInfo"
+      />
+      <!-- pnResume -->
+      <attribute id="SpecialityCD"
+              caption="Speciality"
+              type="string"
+              max_length="50"
+              nullable="false"
+              default="DEV"
+              row_source_id="HR_Speciality_Lookup"
+              sl_control_placement="pnResume"
+      />
+
+      <attribute id="Location"
+                caption="Location"
+                type="string"
+                max_length="50"
+                nullable="true"
+                sl_control_placement="pnResume"
+      />
+
+      <attribute id="EmploymentStatusCD"
+                 caption="Resume Status"
+                 read_only="true" 
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 default="RESUME"
+                 row_source_id="HR_Applicant_EmploymentStatus_Lookup"
+                 filter_advanced="true"
+                 sl_control_placement="pnOtherInfo"
+      />
+
+      <attribute id="SalaryExpectationsUSD"
+                 caption="Min. Salary"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <attribute id="Position"
+                 caption="Position"
+                 type="string"
+                 max_length="150"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <attribute id="TotalWorkExperience"
+                 caption="Experience (yrs)"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+
+      <attribute id="ResumeDate"
+                 caption="Resume Date"
+                 type="datetime"
+                 default="=@NOW"
+                 nullable="false"
+                sl_control_placement="pnResume"
+      />
+      <!-- Resume -->
+      <attribute id="FileContent"
+                 caption="Resume"
+                 type="file"
+                 max_length="150"
+                 nullable="false"
+                 blob_file_name_attribute_id="FileName"
+                 blob_file_size_attribute_id="FileSize"
+                 sl_control_placement="pnResume"
+                
+      />
+      <attribute id="FileName"
+                 caption="Resume File"
+                 type="string"
+                 max_length="150"
+                 visible="true"
+                 read_only="true"
+                 nullable="false"
+                 sl_control_placement="pnResume"
+      />
+      <attribute id="FileSize"
+                 caption="File Length"
+                 type="int"
+                 control_width="3"
+                 max_length="2000"
+                 nullable="true"
+                 read_only="true"
+                 visible="false"  
+                 sl_control_placement="pnResume"
+                 />
+      <attribute id="FileContentState"
+                 type="string"
+                 visible="false"
+      />
+      <!-- Photo -->
+      <attribute id="PhotoFileContent"
+                 caption="Photo"
+                 type="photo"
+                 max_length="150"
+                 nullable="true"
+                 blob_file_name_attribute_id="PhotoFileName"
+                 blob_file_size_attribute_id="PhotoFileSize"
+                 sl_control_placement="pnResume"
+                 thumbnail_width="80"
+                 thumbnail_height="80"
+      />
+      <attribute id="PhotoFileName"
+                 caption="Photo File"
+                 type="string"
+                 max_length="150"
+                 visible="true"
+                 read_only="true"
+                 nullable="true"
+                 sl_control_placement="pnResume"
+      />
+      <attribute id="PhotoFileSize"
+                 caption="Photo File Length"
+                 type="int"
+                 control_width="3"
+                 max_length="2000"
+                 nullable="true"
+                 read_only="true"
+                 visible="false"
+                 sl_control_placement="pnResume"
+                 />
+      <attribute id="PhotoFileContentState"
+                 type="string"
+                 visible="false"
+      />
+
+
+      <!-- *******************   pnEducation -->
+      <attribute id="Edu_University_Name"
+                 caption="University"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_University_Speciality"
+                 caption="Field of Study"
+                 type="string"
+                 max_length="150"
+                 nullable="true"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_University_FinishYear"
+                 caption="Graduation Year"
+                 type="int"
+                 max_length="50"
+                 filter_advanced="true"
+                 nullable="true"
+                 sl_control_placement="pnEducation"
+      />
+      <attribute id="Edu_EnglishLevelCD"
+                 caption="English Level"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_ForeignLanguage_Level_Lookup"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+                 />
+      <attribute id="Edu_Degree"
+                 caption="Degree"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 row_source_id="HR_Education_Degree_Lookup"
+                 filter_advanced="true"
+                 sl_control_placement="pnEducation"
+                 />
+
+      <!--  pnMarketing -->
+      <attribute  id="AdvertisingTypeCD"
+           caption="Advertising Source"
+           type="string"
+           row_source_id="HR_AdvertisingType_Lookup"
+           max_length="50"
+           default="SentFulcrumWeb"
+           nullable="true"
+           sl_control_placement="pnMarketing"
+      />
+
+      <attribute id="RecruiterName"
+           caption="Recruiter Name"
+           type="string"
+           max_length="150"
+           nullable="true"
+           on_save_expression =  ""
+           filter_advanced="true"
+           sl_control_placement="pnMarketing"
+      />
+
+
+
+      <!--  pnOtherInfo -->
+
+      <attribute id="PayAttention"
+         caption="Pay Attention"
+         type="string"
+         max_length="50"
+         nullable="true"
+         sl_control_placement="pnOtherInfo"
+      />
+
+
+      <!--<attribute id="ImageNet"
+        caption=" "
+        type="string"
+        read_only="true"
+        sl_control_placement="pnOtherInfo"
+      />-->
+
+      <attribute id="CreationDate"
+                 caption="Creation Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+                 visible="false"
+      />
+      <attribute id="CreatedByUserId"
+                 caption="Created By"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 default="=Application$UserId"
+                 visible="false"
+                 editable="true"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+      />
+      <attribute id="ModificationDate"
+                 visible="false"
+                 caption="Modification Date"
+                 type="datetime"
+                 max_length="23"
+                 scale="3"
+                 nullable="false"
+                 default="=@NOW"
+                 read_only="true"
+              />
+
+      <attribute id="ModifiedByUserId"
+                 caption="Modified By"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+                 default="=Application$UserId"
+                 visible="false"
+                 read_only="true"
+                 row_source_id="User_Lookup"
+      />
+      <attribute id="OwnerId"
+                 caption="Owner"
+                 type="int"
+                 max_length="10"
+                 visible="false"
+                 editable="true"
+                 filterable="true"
+                 storable="true"
+                 _row_source_id="User_Lookup"
+                 default="=APPLICATION$USERID"
+	  />
+    </attributes>
+
+    <commands>
+      
+      <command id="View"
+               entity_usage_id="HR_Applicant"
+      />
+      
+    </commands>
+
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Applicant_New"
+                entity_id="HR_Applicant_New"
+                post_create_command_id="View"
+                >
+    <edit_order>
+
+      LastName
+      FirstName
+
+      MiddleName
+      BirthDate
+
+      Email
+      Phone
+
+      -----------------------
+
+      SpecialityCD
+      Position
+
+      Location
+      SalaryExpectationsUSD
+
+      FileContent
+      TotalWorkExperience
+      PhotoFileContent
+
+      -----------------------
+
+      Edu_University_Name
+      Edu_University_FinishYear
+
+      Edu_Degree
+      Edu_University_Speciality
+
+      -----------------------
+
+
+      AdvertisingTypeCD
+      RecruiterName
+
+    </edit_order>
+    <commands>
+      <command id="View"/>
+    </commands>
+    <command_order>
+      View
+    </command_order>
+  </entity_usage>
+
+
+</fw:entities>

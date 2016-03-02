@@ -1,0 +1,482 @@
+﻿@charset "UTF-8";
+/**
+ * RESET
+ */
+/* Let's default this */
+html, body, body div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
+pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small,
+strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label,
+legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, figure,
+footer, header, menu, nav, section, time, mark, audio, video, details, summary {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font-weight: normal;
+    vertical-align: baseline;
+    background: transparent;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, footer,
+header, hgroup, main, nav, section, summary {
+    display: block;
+}
+
+/**
+ * Apply a natural box layout model to all elements:
+ * (http://www.paulirish.com/2012/box-sizing-border-box-ftw/)
+ */
+*,
+*:before,
+*:after {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+ }
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+}
+
+/* Remove most spacing between table cells */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+td,
+th {
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+/**
+ * NORMALIZE
+ */
+
+/**
+ * 1. Prevent iOS text size adjust after orientation change, without disabling user zoom.
+ * 2. Force a vertical scrollbar to prevent a jumpy page
+ * (http://css-tricks.com/snippets/css/force-vertical-scrollbar/)
+ */
+html {
+    -ms-text-size-adjust: 100%; /* 1 */
+    -webkit-text-size-adjust: 100%; /* 1 */
+   /* 2 */
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+audio,
+canvas,
+progress,
+video {
+    display: inline-block; /* 1 */
+    vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Responsive images and other embedded objects
+ * Note: keeping IMG here will cause problems if you're using foreground images as sprites.
+ */
+img,
+object,
+embed {
+    max-width: 100%;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+[hidden],
+template {
+    display: none;
+}
+
+/* Remove the gray background color from active links in IE 10 */
+a {
+    background: transparent;
+}
+
+/* Improve readability when focused and also mouse hovered in all browsers */
+a:active,
+a:hover {
+    outline: 0;
+}
+
+/* Remove border when inside `a` element in IE 8/9/10 */
+img {
+    border: 0;
+}
+
+/* Correct overflow not hidden in IE 9/10/11 */
+svg:not(:root) {
+    overflow: hidden;
+}
+
+/**
+ * 1. Correct color not being inherited.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+button,
+input,
+optgroup,
+select,
+textarea {
+    color: inherit; /* 1 */
+    font: inherit; /* 2 */
+    margin: 0; /* 3 */
+}
+
+/* Address `overflow` set to `hidden` in IE 8/9/10/11 */
+button {
+    overflow: visible;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button; /* 2 */
+    cursor: pointer; /* 3 */
+}
+
+/* Re-set default cursor for disabled elements */
+button[disabled],
+html input[disabled] {
+    cursor: default;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+input {
+    line-height: normal;
+}
+
+/* Remove excess padding in IE 8/9/10. */
+input[type="checkbox"],
+input[type="radio"] {
+    padding: 0; /* 1 */
+}
+
+/**
+ * FRAMEWORK
+ */
+/* .cf (clearfix) - clear floats */
+.cf:before,
+.cf:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.cf:after {
+  clear: both;
+}
+.ie6 .cf {
+  zoom: 1;
+}
+
+ /* .pull-left/right */
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+/* .clickable - hand cursor on clickable elements */
+.clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button { cursor: pointer; }
+
+
+/* -- login page styles -- */
+body {
+	background-color: #fff;
+    font-family: "Roboto", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    /*min-height: 100%;*/
+    background:url(login-image.jpg) no-repeat fixed;  
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+
+
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: default;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+
+}
+a{color: #999}
+a:hover{ text-decoration: none;}
+a:active{color: #000;}
+#login-column{
+	float: right;
+	width: 550px;
+	position: relative;
+	background-color: #fff;
+}
+/* -- center alignment -- */
+#center-holder {
+    width: 100%;
+    height: 100%;
+	display: table;
+}
+.center-holder-middle{
+	display: table-cell;
+	vertical-align: middle;
+}
+/* -- logo -- */
+#logo{
+	margin: 30px auto 0;
+	width: 217px;
+	height: 29px;
+	background: url(logo.png) no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+/* -- login-form-holder  -- */
+.login-form-holder {
+	overflow: hidden;
+	padding: 50px 50px 200px;
+}
+.form-row{
+	overflow: hidden;
+	padding: 0 0 20px;
+}
+.login-form-holder input[type="text"],
+.login-form-holder input[type="password"]  {
+	width: 100%;
+	display: block;
+	border: 1px solid #d3d3d3;
+	padding: 10px 30px 10px 10px;
+	background-color: #f7f6f6;
+	font-size: 14px;
+	line-height: 18px;
+}
+.error-msg{
+	display: none;
+	color: #f30;
+	padding-bottom: 10px;
+}
+.validation-error .error-msg{display: block;}
+.login-form-holder .validation-error input[type="text"],
+.login-form-holder .validation-error input[type="password"]{
+	border-color: #ff7011;	
+}
+.input-holder{
+	position: relative;
+}
+.login-form-holder .form-element-icon {
+    position: absolute;
+    top:50%;
+    left:100%;
+    width: 16px;
+    height: 16px;
+    margin-left: -26px;
+    margin-top: -8px;
+}
+.login-form-holder input.user-name+.form-element-icon { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABAUlEQVQ4T6WTwRGCMBBFCRSgJWgFWoIdSAdqBWoFYgVqBViCJcgRuEgHlhAKAHzrIBMURWVnMgnZ/S/ZP0FZHUN11FsqiqIxkN6foFSFYegi9hijHyGJ6ASgWcyLopgrpaZfQgLq9gxfAIWIAKyYhkCWnyDUHWzbvjD7UlcBSsiRZEBS6C++AF+Qm5CbPQ6pAcrNC5B1nucnA5Ky52ZZtgEigCqaAAHFYqoFRG4i4bGny++a2c8tmP1prutxoph8B7Fev22hqb8mM6kTWGKaqKU/rrcjIY+qNRCfHcfZik8qjuMJ5viQB61KowDIFcji/pQR938RP2qB6O4/0z8nm5ob6AqNKuXXU08AAAAASUVORK5CYII="); }
+.login-form-holder input.password+.form-element-icon{ background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABA0lEQVQ4T6WTzRGCMBCFzTDDmQ60A8mBn5uUQCfSgdABJVgCdoA3fi5Ygh1gAUx8y4QMEzMRxxx33377dlnYzvC6rvOFEBekEpmuGWNFGIaDLmd6oO/7ZJqmKwqyKIoqyrdtmwJYrmNL3QcA4hHCRO8mXdWu6x4456MRILtncRynptGapqkcxymDIKiNAAgydPdgPTcB4C7HKCMalEYACShhA+h5tQOyD7owdTbFsKM7xRUA3TcXSxdzrRUAQ89ZxNhed4Ex7QAU35avAXe09dMa8hUAcbEsUy6XLlO9LYABIi4vkU74+CvgAYD/D0CNgAOj/+D8qwPrSWzZgQ3wAsAjwRvmfJMRUMaYswAAAABJRU5ErkJggg=="); }
+textarea:focus, input:focus{
+    outline: 0;
+}
+.login-form-holder input[type="text"]:focus,
+.login-form-holder input[type="password"]:focus {
+	background-color: #fff;
+	border-color: #a7a7a7;
+	color: #000;
+}
+/*-- hide placeholder text --*/
+.login-form-holder input[type="text"]::-webkit-input-placeholder,
+.login-form-holder input[type="password"]::-webkit-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]::-moz-placeholder,
+.login-form-holder input[type="password"]::-moz-placeholder{opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:-moz-placeholder,
+.login-form-holder input[type="password"]:-moz-placeholder{opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:-ms-input-placeholder,
+.login-form-holder input[type="password"]:-ms-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus::-webkit-input-placeholder,
+.login-form-holder input[type="password"]:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus::-moz-placeholder,
+.login-form-holder input[type="password"]:focus::-moz-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus:-moz-placeholder,
+.login-form-holder input[type="password"]:focus:-moz-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus:-ms-input-placeholder,
+.login-form-holder input[type="password"]:focus:-ms-input-placeholder {opacity: 0; transition: opacity 0.3s ease;} 
+.login-form-holder input[type="checkbox"] {
+	float: left;
+	margin:0 8px 0 0;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+}
+.login-form-holder label{
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.login-form-holder .button {
+	margin-top: 16px;
+	border: none;
+	background: #39b54a;
+	color: #fff;
+	text-align: center;
+	width: 110px;
+	height: 34px;
+	line-height: 34px;
+}
+.login-form-holder .button:hover{background-color: #44c456;}
+.login-form-holder .button:active{background-color: #009444;}
+.login-form-holder .button.gray-button{ background-color: #999;}
+.login-form-holder .button.gray-button:hover{ background-color: #a8a8a8;}
+.forgot-password{
+	position: absolute;
+	bottom: 228px;
+	left: 50px;
+	z-index: 100;
+}
+
+/*-- mobile-info --*/
+.mobile-info{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 550px;
+}
+.mobile-info-holder {
+	background-color: #39b54a;
+	border:1px solid #a1a1a1;
+	padding:36px 80px 47px 42px;
+	color: #fff;
+	overflow: hidden; 
+}
+.mobile-info-images{
+	float: left;
+	width: 153px;
+	margin-right: 14px;
+}
+.mobile-info-images img{max-width: 100%;}
+.mobile-info-holder .text-holder{
+	overflow: hidden;
+}
+@media screen and ( max-height: 660px ){
+	.mobile-info-holder {
+		padding: 25px 50px;
+	}
+	.mobile-info-images{
+		width: 80px;
+	}
+    .forgot-password{
+    	display: inline-block;
+    	position: static;
+    	left: auto;
+    	bottom: auto;
+    	margin-top: 30px;
+    }
+}
+@media screen and ( max-height: 550px ){
+	.login-form-holder {padding-bottom: 100px;}
+}
+@media screen and ( max-height: 510px ){
+	#login-column {overflow-y:auto;} 
+	.mobile-info {
+		visibility: hidden;
+		height: 0;
+		right: -9999px;
+	}
+}
+@media screen and ( max-width: 1440px ){
+	#login-column{width: 425px;}
+	.mobile-info{width: 425px;}
+}
+@media screen and ( max-width: 1024px ){
+	.login-form-holder .button{
+		font-size: 18px;
+		width: 150px;
+		height: 45px;
+		line-height: 45px;
+	}
+	.login-form-holder input[type="text"],
+	.login-form-holder input[type="password"]{
+		padding-top:13px;
+		padding-bottom: 13px;
+	}
+	.mobile-info-holder {
+		visibility: hidden;
+		height: 0;
+	}
+}
+@media screen and ( max-width: 400px ){
+	.loginForm{background: #fff;}
+	#login-column{
+		width: 100%;
+	}
+	.login-form-holder{
+		padding: 20px;
+	}
+	.login-form-holder .button{
+		width: 100%;
+
+	}
+	.forgot-password{
+		width: 100%;
+		left: 0;
+		bottom: 40px;
+		text-align: center;
+	}
+
+}
+@media screen and ( max-width: 320px ){
+	#login-column{
+		width: 320px;
+	}
+}
+

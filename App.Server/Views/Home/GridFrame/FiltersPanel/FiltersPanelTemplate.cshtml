@@ -1,0 +1,424 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--css file: FiltersPanel.css-->
+<!--css file: FormEditors.css-->
+
+<script type="text/html" id="GridFrame/FiltersPanel/FiltersPanelTemplate">
+    <div class="Filters">
+        <div class="FiltersExpander" data-bind="click: function(){ GeneralItemsExpanderClicked($root) }">
+            <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/expandHide_24x24.png")" data-bind="visible: GeneralOpened" />
+            <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/expandShow_24x24.png")" data-bind="visible: !GeneralOpened()" />
+            <span data-bind="text: GetTxt('Hide Search'), visible: GeneralOpened"></span>
+            <span data-bind="text: GetTxt('Show Search'), visible: !GeneralOpened()"></span>
+        </div>
+        <div>
+
+            <table class="FilterTable" data-bind="foreach: GetRows($root.GeneralItems), visible: GeneralOpened, attr:{ id: 'filter_table' + $root.TempId}">
+                <tr data-bind="foreach: $data">
+
+                    <td width="1" style="min-width: 10px !important; table-layout:fixed !important">
+                        <span class="FilterLabel" data-bind="text: BFilter.Text"></span>
+                        <div style="width:10px;"></div>
+                    </td>
+
+                    <td width="110" data-bind="template: {name: 'FilterOperationEditor'}"></td>
+                    <td width="10" style="min-width: 10px !important; table-layout:fixed !important">
+                        <div style="width:10px;"></div>
+                    </td>
+                    <td data-bind="template:{name: $root.GetFilterControlTemplateName($data) }" class="ControlColumn"></td>
+                    <td width="20" style="min-width: 20px !important; table-layout:fixed !important">
+                        <div style="width:20px;"></div>
+                    </td>
+
+
+                </tr>
+
+            </table>
+            <!-- /ko -->
+
+
+
+
+        </div>
+        <!-- ko if: AdvancedItems.length > 0 -->
+        <div data-bind="visible: GeneralOpened">
+            <div class="FiltersExpander" data-bind="click: function(){ AdvancedItemsExpanderClicked($root) }   ">
+                <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/expandHide_24x24.png")" data-bind="visible: AdvancedOpened()  " />
+                <img src="@Url.Content("~/Content/Skins/" + @Url.SkinFolder() + "/images/framework/expandShow_24x24.png")" data-bind="visible: !AdvancedOpened()  " />
+                <span data-bind="text: GetTxt('Advanced')"></span>
+            </div>
+
+            <table class="FilterTable" data-bind="foreach: GetRows($root.AdvancedItems), visible: AdvancedOpened, attr:{ id: 'filter_table_adv' + $root.TempId}">
+                <tr data-bind="foreach: $data">
+                    <td width="1">
+                        <span class="FilterLabel" data-bind="text: BFilter.Text"></span>
+                        <div style="width:10px;"></div>
+                    </td>
+
+                    <td width="110" data-bind="template: {name: 'FilterOperationEditor'}"></td>
+                    <td width="10">
+                        <div style="width:10px;"></div>
+                    </td>
+                    <td data-bind="template:{name: $root.GetFilterControlTemplateName($data) }" class="ControlColumn"></td>
+                    <td width="20">
+                        <div style="width:20px;"></div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <!-- /ko -->
+        
+        <div class="FilterPanelBtn" data-bind="visible: GeneralOpened">
+            <input  type="button" data-bind="value:GetTxt('Find'), click: FindClick" c-type="btnFilter" />
+            <input  type="button" data-bind="value:GetTxt('Reset'), click: ResetClick" c-type="btnReset"/>
+        </div>
+
+        <div class="RowsLimitInfo" data-bind="visible: IsRecordCountLimited, text: GetTxt('According to server settings the number of displayed records is limited to ') + $root.RecordCountLimit() + '. ' + GetTxt('Please use filters for more accurate data selection.') "></div>
+        <div style="height: 5px;" data-bind="visible: IsRecordCountLimited"></div>
+    </div>
+
+</script>
+<script type="text/html" id="FilterOperationEditor">
+    <div class="Form_RowSource_Edit" data-bind="click: function(data) {$root.OnFilterOperationClicked ( data) }, clickBubble: false " style="min-width: 60px !important;">
+
+        <span data-bind="text: $root.GetFilterOperationText(SelectedOperation()) "></span>
+
+        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+            <path d="M0 0 l7 0 L3.5 5 z" />
+        </svg>
+
+        <div data-bind="foreach: BFilter.Operations, visible: RsOpen" class="RsPopup unselectable">
+            <div data-bind="css: $data == $parent.SelectedOperation() ? 'RsItem selected' : 'RsItem',  click: function( data ){ $root.OnOperationItemClick( data, $parent )}">
+
+                <span data-bind="text: $root.GetFilterOperationText( $data )"></span>
+            </div>
+        </div>
+
+    </div>
+</script>
+
+
+
+
+
+
+
+
+<script type="text/html" id="filter_edit_RowSourceComboBox">
+
+    <div class="Form_RowSource_Edit" data-bind="click: function() {$root.OnFilterRowSourceClick ( $data ) }, clickBubble: false, visible: ValuesCount() == 1 " style="min-width: 60px !important;">
+
+        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( SelectedRsItem() )">
+            <img data-bind="attr: {  src: $root.GetRowSourceImgUrl(SelectedRsItem(), BFilter.Attr )} " />
+        </div>
+
+
+
+        <span data-bind="text: SelectedRsItem().Text"></span>
+
+        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+            <path d="M0 0 l7 0 L3.5 5 z" />
+        </svg>
+
+        <div data-bind="foreach: RsItems(), visible: RsFilterControlOpen" class="RsPopup unselectable">
+            <div class="RsItem" data-bind="click: function( data ){ $root.OnFilterItemClick( $data, $parent, 1 ) } ">
+                <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $data )">
+                    <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $data, $parent.BFilter.Attr )} " />
+                </div>
+                <span data-bind="text: Text"></span>
+            </div>
+        </div>
+    </div>
+
+    @*<table data-bind="visible: ValuesCount() == 2">
+            <tr>
+                <td>
+                    <div class="Form_RowSource_Edit" data-bind="click: function() {$root.OnFilterRowSourceClick ( $data ) }, clickBubble: false, visible: ValuesCount() == 1 ">
+
+                        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( SelectedRsItem() )">
+                            <img data-bind="_attr: { src: $root.GetRowSourceImgUrl( $root.CurrentEntity()[Attr.Id].SelectedRsItem(), $parent, Attr.Id, $root )} " />
+                        </div>
+
+
+
+                        <span data-bind="text: SelectedRsItem().Text"></span>
+
+                        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+                            <path d="M0 0 l7 0 L3.5 5 z" />
+                        </svg>
+
+                        <div data-bind="foreach: RsItems(), visible: RsFilterControlOpen" class="RsPopup unselectable">
+                            <div class="RsItem" data-bind="_click: function( data ){ $root.OnRowSourceItemClick( data, $root.CurrentEntity()[$parent.Attr.Id], $parent.Attr, $root ) } ">
+                                <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $data )">
+                                    <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $data, $parent.BFilter.Attr )} " />
+                                </div>
+                                <span data-bind="text: Text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="Form_RowSource_Edit" data-bind="click: function() {$root.OnFilterRowSourceClick ( $data ) }, clickBubble: false, visible: ValuesCount() == 1 ">
+
+                        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( SelectedRsItem() )">
+                            <img data-bind="_attr: { src: $root.GetRowSourceImgUrl( $root.CurrentEntity()[Attr.Id].SelectedRsItem(), $parent, Attr.Id, $root )} " />
+                        </div>
+
+
+
+                        <span data-bind="text: SelectedRsItem().Text"></span>
+
+                        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+                            <path d="M0 0 l7 0 L3.5 5 z" />
+                        </svg>
+
+                        <div data-bind="foreach: RsItems(), visible: RsFilterControlOpen" class="RsPopup unselectable">
+                            <div class="RsItem" data-bind="_click: function( data ){ $root.OnRowSourceItemClick( data, $root.CurrentEntity()[$parent.Attr.Id], $parent.Attr, $root ) } ">
+                                <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $data )">
+                                    <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $data, $parent.BFilter.Attr )} " />
+                                </div>
+                                <span data-bind="text: Text"></span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>*@
+
+</script>
+
+<script type="text/html" id="filter_rowsource">
+
+    <div class="Form_RowSource_Edit" data-bind="_click: function() {$root.OnRowSourceClick ( $data ) }, clickBubble: false " style="min-width: 60px !important;">
+
+        <div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( SelectedRsItem() )">
+            <img data-bind="_attr: { src: $root.GetRowSourceImgUrl( $root.CurrentEntity()[Attr.Id].SelectedRsItem(), $parent, Attr.Id, $root )} " />
+        </div>
+
+
+
+        <span data-bind="text: SelectedRsItem().Text"></span>
+
+        <svg width="7" height="7" data-bind="attr: {id: 'rs_arrow_' + App.Utils.ShortGuid()}">
+            <path d="M0 0 l7 0 L3.5 5 z" />
+        </svg>
+
+        <div data-bind="foreach: RsItems(), visible: RsFilterControlOpen" class="RsPopup unselectable">
+            <div class="RsItem" data-bind="_click: function( data ){ $root.OnRowSourceItemClick( data, $root.CurrentEntity()[$parent.Attr.Id], $parent.Attr, $root ) } ">
+                @*<div class="RsImageHolder" data-bind="visible: $root.IsRowSourceItemWithImage( $data )">
+                        <img data-bind="attr: { src: $root.GetRowSourceImgUrl( $data, $parent, $parent.Attr.Id )} " />
+                    </div>*@
+                <span data-bind="text: Text"></span>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+
+
+
+<script type="text/html" id="filter_edit_string">
+    <input type="text" data-bind="value: Value1, visible: ValuesCount() == 1" class="Form_StringEditor_Edit" style="min-width: 60px !important;"/>
+
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1, " class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important;" />
+        <input type="text" data-bind="value: Value2, " class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important; " />
+    </div>
+
+
+</script>
+
+
+<script type="text/html" id="filter_edit_datetime">
+
+    <input type="text" data-bind="value: Value1, visible: ValuesCount() == 1, attr: {id: 'datetimepicker_' + App.Utils.ShortGuid()} " class="Form_StringEditor_Edit" style="min-width: 60px !important;" />
+    
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1, attr: {id: $root.TempId +  'datetimepicker_' + App.Utils.ShortGuid()}" class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important; " />
+        <input type="text" data-bind="value: Value2, attr: {id: $root.TempId +  'datetimepicker_' + App.Utils.ShortGuid()}" class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important; "  />
+    </div>
+</script>
+
+<script type="text/html" id="filter_edit_date">
+
+    <input type="text" data-bind="value: Value1, visible: ValuesCount() == 1, attr: {id: $root.TempId + 'datepicker_' + App.Utils.ShortGuid()} " class="Form_StringEditor_Edit" style="min-width: 60px !important;" />
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1, attr: {id: $root.TempId +  'datepicker_' + App.Utils.ShortGuid()}" class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important; " />
+        <input type="text" data-bind="value: Value2, attr: {id: $root.TempId +  'datepicker_' + App.Utils.ShortGuid()}" class="Form_StringEditor_Edit" style="width: 150px; min-width: 30px !important; " />
+    </div>
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/html" id="filter_edit_memo">
+
+    <input type="text" data-bind="value: Value1, visible: ValuesCount() == 1" class="Form_StringEditor_Edit" />
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1, " class="Form_StringEditor_Edit" style="width: 150px;" />
+        <input type="text" data-bind="value: Value2, " class="Form_StringEditor_Edit" style="width: 150px ; " />
+    </div>
+
+</script>
+
+
+
+
+
+<script type="text/html" id="filter_edit_boolean">
+
+  
+    <div class="Form_BoolEditor_Edit" data-bind="visible: ValuesCount() == 1">
+        <input type="checkbox" data-bind="checked: Value1" />
+    </div>
+    <div class="Form_BoolEditor_Edit" data-bind="visible: ValuesCount() == 2">
+        <input type="checkbox" data-bind="checked: Value1" />
+    </div>
+    <div class="Form_BoolEditor_Edit" data-bind="visible: ValuesCount() == 2">
+        <input type="checkbox" data-bind="checked: Value2" />
+    </div>
+</script>
+
+
+<script type="text/html" id="filter_edit_int">
+
+    <div data-bind="visible: ValuesCount() == 1">
+        <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit" onkeyup="this.value=this.value.replace(/[^\d]/,'')" />
+    </div>
+    @*<div style="" class="NumPad">
+
+        <table cellpadding="0" cellspacing="0" class="NumPadTable">
+            <tr>
+                <td><button>7</button></td>
+                <td><button>8</button></td>
+                <td><button>9</button></td>
+                <td><button class="FuncBtn">&larr;</button></td>
+
+            </tr>
+            <tr>
+                <td><button>4</button></td>
+                <td><button>5</button></td>
+                <td><button>6</button></td>
+                <td><button class="FuncBtn">OK</button></td>
+            </tr>
+            <tr>
+                <td><button>3</button></td>
+                <td><button>2</button></td>
+                <td><button>1</button></td>
+                <td><button class="FuncBtn">Cancel</button></td>
+            </tr>
+            <tr>
+                <td><button>0</button></td>
+                <td><button>-</button></td>
+                <td><button>.</button></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>*@
+
+    <div data-bind="visible: ValuesCount() == 2">
+        
+            <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit" style="width: 150px;" onkeyup="this.value=this.value.replace(/[^\d]/,'')" />
+        
+        @*<div style="" class="NumPad">
+
+            <table cellpadding="0" cellspacing="0" class="NumPadTable">
+                <tr>
+                    <td><button>7</button></td>
+                    <td><button>8</button></td>
+                    <td><button>9</button></td>
+                    <td><button class="FuncBtn">&larr;</button></td>
+
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button class="FuncBtn">OK</button></td>
+                </tr>
+                <tr>
+                    <td><button>3</button></td>
+                    <td><button>2</button></td>
+                    <td><button>1</button></td>
+                    <td><button class="FuncBtn">Cancel</button></td>
+                </tr>
+                <tr>
+                    <td><button>0</button></td>
+                    <td><button>-</button></td>
+                    <td><button>.</button></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>*@
+        
+            <input type="text" data-bind="value: Value2" class="Form_StringEditor_Edit" style="width: 150px; " onkeyup="this.value=this.value.replace(/[^\d]/,'')" />
+        
+        @*<div style="" class="NumPad">
+
+            <table cellpadding="0" cellspacing="0" class="NumPadTable">
+                <tr>
+                    <td><button>7</button></td>
+                    <td><button>8</button></td>
+                    <td><button>9</button></td>
+                    <td><button class="FuncBtn">&larr;</button></td>
+
+                </tr>
+                <tr>
+                    <td><button>4</button></td>
+                    <td><button>5</button></td>
+                    <td><button>6</button></td>
+                    <td><button class="FuncBtn">OK</button></td>
+                </tr>
+                <tr>
+                    <td><button>3</button></td>
+                    <td><button>2</button></td>
+                    <td><button>1</button></td>
+                    <td><button class="FuncBtn">Cancel</button></td>
+                </tr>
+                <tr>
+                    <td><button>0</button></td>
+                    <td><button>-</button></td>
+                    <td><button>.</button></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>*@
+    </div>
+</script>
+
+<script type="text/html" id="filter_edit_float">
+
+    <div data-bind="visible: ValuesCount() == 1">
+        <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit" onkeyup="this.value=this.value.replace(/[^\d.]/,'')" />
+    </div>
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit" style="width: 150px;" onkeyup="this.value=this.value.replace(/[^\d.]/,'') "/>
+        <input type="text" data-bind="value: Value2" class="Form_StringEditor_Edit" style="width: 150px; " onkeyup="this.value=this.value.replace(/[^\d.]/,'') " />
+    </div>
+</script>
+
+<script type="text/html" id="filter_edit_hyperlink">
+
+    <div data-bind="visible: ValuesCount() == 1">
+        <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit"  />
+    </div>
+    <div data-bind="visible: ValuesCount() == 2">
+        <input type="text" data-bind="value: Value1" class="Form_StringEditor_Edit" style="width: 150px;"  />
+        <input type="text" data-bind="value: Value2" class="Form_StringEditor_Edit" style="width: 150px; "  />
+    </div>
+</script>

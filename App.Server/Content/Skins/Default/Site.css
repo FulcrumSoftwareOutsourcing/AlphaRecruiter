@@ -1,0 +1,850 @@
+﻿
+
+
+
+
+html {
+    margin: 0;
+    padding: 0;
+    text-wrap: none;
+    white-space: nowrap;
+    height: 100%;
+}
+
+body {
+    font-family: Tahoma, 'Segoe UI', Geneva, Verdana, sans-serif;
+    font-size: 13px;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    cursor: default;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+#top {
+    white-space: nowrap;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.LeftPin {
+    background-color: white;
+    width: 250px;
+    height: 100%;
+    float: left;
+    position:relative;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.LeftFloat {
+    z-index: 999999;
+    position: absolute;
+}
+
+#right {
+    width: 100%;
+    height: 100%;
+    background-color: #d8d8dd;
+}
+
+.MenuButtons {
+    position: absolute;
+    top: 10px;
+    left: 90px;
+}
+
+    .MenuButtons img {
+        cursor: pointer;
+        display: inline;
+        margin-left: 15px;
+    }
+
+        .MenuButtons img:hover {
+            -moz-animation-name: pulse-animated;
+            -o-animation-name: pulse-animated;
+            -webkit-animation-name: pulse-animated;
+            animation-name: pulse-animated;
+            -moz-animation-duration: 280ms;
+            -o-animation-duration: 280ms;
+            -webkit-animation-duration: 280ms;
+            animation-duration: 280ms;
+        }
+
+.TopPanel {
+    white-space: nowrap;
+    
+    height: 50px;
+   
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#133f6d+0,184470+100 */
+background: #133f6d; /* Old browsers */
+background: -moz-linear-gradient(top,  #133f6d 0%, #184470 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#133f6d), color-stop(100%,#184470)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #133f6d 0%,#184470 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #133f6d 0%,#184470 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #133f6d 0%,#184470 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #133f6d 0%,#184470 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#133f6d', endColorstr='#184470',GradientType=0 ); /* IE6-9 */
+
+   
+}
+
+
+
+.WaiterOver {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: black;
+    opacity: 0.5;
+    display: none;
+    z-index: 9998 !important;
+}
+
+.WaiterImg {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -70px;
+    margin-left: -70px;
+    display: none;
+    z-index: 9999 !important;
+}
+
+.required {
+    padding-left: 5px;
+    color: red;
+    font-weight: bold;
+}
+
+.fieldErrorGlow {
+    box-shadow: 0 0 10px 1px rgba(255,0,0,1);
+    -moz-transition: all 0.2s linear;
+    -o-transition: all 0.2s linear;
+    -webkit-transition: all 0.2s linear;
+    transition: all 0.2s linear;
+}
+
+
+.fade-in {
+    display: block;
+    -o-animation: fade-in 0.7s linear;
+    animation: fade-in 0.7s linear;
+    -webkit-animation: fade-in 0.7s linear;
+    -moz-animation: fade-in 0.7s linear;
+}
+
+.fade-in-img {
+    display: block !important;
+    -o-animation: fade-in 0.7s linear;
+    animation: fade-in 0.7s linear;
+    -webkit-animation: fade-in 0.7s linear;
+    -moz-animation: fade-in 0.7s linear;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}
+
+@-webkit-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}
+
+@-moz-keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}
+
+
+@keyframes fade-in-img {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fade-in-img {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@-moz-keyframes fade-in-img {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+
+input, textarea {
+    border: 1px solid #e2e2e2;
+    color: #333;
+    font-size: 1.2em;
+    margin: 0 0 6px 0;
+    padding: 5px;
+    width: 250px;
+}
+
+    input[type="checkbox"] {
+        background: transparent;
+        border: inherit;
+        width: auto;
+    }
+
+    input[type="button"] {
+        font-size: 1em;
+    }
+
+        input[type="button"]:hover {
+        }
+
+.PartsHolder {
+    position: absolute;
+    top: 55px;
+}
+
+.PartHolder {
+    position: absolute;
+    background-color: white;
+    width: 100px;
+    height: 100px;
+}
+
+
+
+.pulse-animated {
+    -webkit-animation-duration: 280ms;
+    -moz-animation-duration: 280ms;
+    -o-animation-duration: 280ms;
+    animation-duration: 280ms;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes pulse-animated {
+    0% {
+        -webkit-transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.5);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes pulse-animated {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.5);
+        -ms-transform: scale(1.5);
+        -o-transform: scale(1.5);
+        -webkit-transform: scale(1.5);
+        transform: scale(1.5);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+.pulse {
+    -webkit-animation-name: pulse-animated;
+    -moz-animation-name: pulse-animated;
+    -o-animation-name: pulse-animated;
+    animation-name: pulse-animated;
+}
+
+.pulse-animated2 {
+    -webkit-animation-duration: 280ms;
+    -moz-animation-duration: 280ms;
+    -o-animation-duration: 280ms;
+    animation-duration: 280ms;
+    -webkit-animation-fill-mode: both;
+    -moz-animation-fill-mode: both;
+    -o-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes pulse-animated2 {
+    0% {
+        -webkit-transform: scale(1);
+    }
+
+    50% {
+        -webkit-transform: scale(1.06);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+@keyframes pulse-animated2 {
+    0% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+
+    50% {
+        -moz-transform: scale(1.06);
+        -ms-transform: scale(1.06);
+        -o-transform: scale(1.06);
+        -webkit-transform: scale(1.06);
+        transform: scale(1.06);
+    }
+
+    100% {
+        -moz-transform: scale(1);
+        -ms-transform: scale(1);
+        -o-transform: scale(1);
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+
+
+
+.animated-fadeInLeft { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+} 
+
+@-webkit-keyframes fadeInLeft { 
+    0% { 
+        opacity: 0; 
+        -webkit-transform: translateX(-20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        -webkit-transform: translateX(0); 
+    } 
+} 
+@keyframes fadeInLeft { 
+    0% { 
+        opacity: 0; 
+        transform: translateX(-20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        transform: translateX(0); 
+    } 
+} 
+.fadeInLeft { 
+    -webkit-animation-name: fadeInLeft; 
+    animation-name: fadeInLeft; 
+}
+
+
+
+
+
+.TreeCaption {
+    height: 40px;
+    line-height:25px;
+    position: relative;
+    
+    color: white;
+    font-size: 1.1em;
+   
+ /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#0b335d+0,09355f+100 */
+background: #0b335d; /* Old browsers */
+background: -moz-linear-gradient(top,  #0b335d 0%, #09355f 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#0b335d), color-stop(100%,#09355f)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #0b335d 0%,#09355f 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #0b335d 0%,#09355f 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #0b335d 0%,#09355f 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #0b335d 0%,#09355f 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0b335d', endColorstr='#09355f',GradientType=0 ); /* IE6-9 */
+
+}
+
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.FrameHolder {
+}
+
+
+.clear-user-agent-styles table,
+.clear-user-agent-styles thead,
+.clear-user-agent-styles tbody,
+.clear-user-agent-styles tfoot,
+.clear-user-agent-styles tr,
+.clear-user-agent-styles th,
+.clear-user-agent-styles td {
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-collapse: inherit;
+    border-spacing: 0;
+    border-color: inherit;
+    vertical-align: inherit;
+    text-align: left;
+    font-weight: inherit;
+    -webkit-border-horizontal-spacing: 0;
+    -webkit-border-vertical-spacing: 0;
+}
+/*th, td {
+    display: inline;
+}*/
+
+
+
+.MainMenuBtn {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    position: relative;
+    float:left;
+    cursor: pointer;
+}
+
+
+    .MainMenuBtn img {
+        width: 16px;
+        height: 16px;
+        position: absolute;
+        top: 18px;
+        left: 16px;
+    }
+
+
+.MainMenu {
+    position: absolute;
+    top: 55px;
+    left: 5px;
+    background-color: white;
+    padding: 10px;
+    box-shadow: 0 1px 15px rgba(0,0,0,.4);
+  
+}
+
+.MainMenuArrow {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 48px;
+    left: 17px;
+    background: white;
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+
+.MmSection {
+    display: inline-block;
+    float: left;
+    width: 90px;
+    height: 90px;
+    
+    margin: 6px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+    
+    
+  
+}
+
+    .MmSection:hover {
+        -moz-animation-name: pulse-animated2;
+        -o-animation-name: pulse-animated2;
+        -webkit-animation-name: pulse-animated2;
+        animation-name: pulse-animated2;
+        -moz-animation-duration: 150ms;
+        -o-animation-duration: 150ms;
+        -webkit-animation-duration: 150ms;
+        animation-duration: 150ms;
+    }
+
+    .MmSection img {
+        width: 48px;
+        height: 48px;
+        
+        margin-top: 5px;
+        
+    }
+
+    .MmSection div {
+        white-space: normal;
+        color: white;
+        text-align:center;
+         word-break: break-all;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+    }
+
+
+    .MmSectionSmall {
+    display: inline-block;
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 6px;
+    padding: 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .MmSectionSmall:hover {
+        -moz-animation-name: pulse-animated2;
+        -o-animation-name: pulse-animated2;
+        -webkit-animation-name: pulse-animated2;
+        animation-name: pulse-animated2;
+        -moz-animation-duration: 150ms;
+        -o-animation-duration: 150ms;
+        -webkit-animation-duration: 150ms;
+        animation-duration: 150ms;
+    }
+
+    .MmSectionSmall img {
+        width: 33px;
+        height: 32px;
+        
+    }
+
+    .MmSectionSmall div[c-type=text] {
+        display:none;
+    }
+
+
+.AltMenuBtn {
+     width: 50px;
+    height: 40px;
+    margin-right: 20px;
+    position: relative;
+    cursor: pointer;
+    display: none;
+    float:left;
+}
+
+
+
+.AltMenuBtn img {
+     position:absolute;
+     left: 17px;
+     top: 12px;
+}
+
+
+.NavigationBar {
+    height: 40px;
+    display: inline-block;
+}
+
+.NavigationString {
+    height: 40px;
+    display:inline-block;
+    
+}
+
+.NavFrame {
+    height: 40px;
+     line-height: 40px;
+    display:inline-block;
+    
+    padding:0 10px 0 10px;
+
+}
+
+.NavArrow {
+    position:relative;
+    height: 20px;
+    width: 15px;
+    
+    display:inline-block;
+}
+
+.NavArrow img {
+    height: 30px;
+    width: 30px;
+    left: -6px;
+    position: absolute;
+    
+    
+    
+    
+
+}
+
+.BackBtn {
+    
+    height: 40px;
+   font-size : 0.85em;
+   _font-weight:bold;
+    position: relative;
+    cursor: pointer;
+    display: inline-block;
+        border-right: 1.7px solid #144d93;
+}
+
+
+
+.BackBtn img {
+     position:absolute;
+     width: 25px;
+     height: 25px;
+     left: 12px;
+     top: 7px;
+}
+
+.BackBtn span {
+     margin: 0 10px 0 0;
+     line-height: 40px;
+}
+
+.BackBtn div {
+     width: 0;
+     height: 26px;
+     margin-left: 50px;
+     
+     display: inline-block;
+}
+
+.SectionCaption {
+    color:white;
+    font-size: 0.95em;
+    display:inline-block;
+    width: 235px;
+    padding-left: 15px;
+    padding-top: 8px;
+    float:left;
+    height: 32px;
+    position: relative;
+}
+
+.TreeOpenIcon  {
+    width: 16px;
+    height: 16px;
+    left: 190px;
+    top: 12px;
+    position: absolute;
+   
+}
+
+.TreeCaption svg {
+    left: 220px;
+    top: 18px;
+    position: absolute;
+   
+}
+
+.TreeCaption svg[id='treeCloseArr'] {
+    left: 220px;
+    top: 15px;
+    position: absolute;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.Logo {
+    color:white;
+    font-size: 1.85em;
+    display:inline-block;
+    margin-right: 10px;
+    position: relative;
+    line-height: 48px;
+}
+.Logo img {
+    width: 49px;
+    height: 35px;
+    position: relative;
+    
+    top: 10px;
+}
+
+
+.SettingsBtn {
+    position: relative;
+    display:inline-block;
+    width: 50px;
+    height: 50px;
+    _float: right;
+    
+    cursor: pointer;
+    border-right: 1.7px solid  #144d93;
+}
+
+
+
+.SettingsBtn img {
+    position: absolute;
+    top: 10px;
+    left: 9px;
+    width: 32px;
+    height: 32px;
+}
+
+
+
+.LoginPanel:hover, .SettingsBtn:hover, .BackBtn:hover, .AltMenuBtn:hover,  .MainMenuBtn:hover, /*.NavFrame:hover,*/ .SectionCaption:hover   {
+     background: #0072c6;
+}
+
+.UserMenu {
+    position: absolute;
+    top: 63px;
+    left: 100%;
+    padding-top: 10px;
+    
+    background-color: white;
+   
+    box-shadow: 0 1px 15px rgba(0,0,0,.4);
+  
+}
+
+.UserMenuArrow {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    top: 55px;
+     left: 100%;
+    
+    margin-left: -35px;
+    background: white;
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+}
+
+
+
+
+
+ .UserMenuItem
+ {
+      height:40px;
+      padding:0 50px 0 20px;
+      line-height: 40px;
+      cursor: pointer;
+ }
+
+ .UserMenuItemSelected
+ {
+      background: #BADDE9 !important;
+ }
+
+ .UserMenuItem:hover
+
+ {
+     background: #DCEEF4;
+ }
+
+ .UserMenuItemDis
+ {
+      height:40px;
+      padding:0 50px 0 20px;
+      line-height: 40px;
+      cursor: default;
+      color: #aaaaaa;
+ }
+
+ .NameUserMenuItem
+ {
+     font-weight:bold;
+     height:35px;
+      font-size: 1.15em;
+      line-height: 35px;
+      padding:0 50px 0 50px;
+      text-align: center;
+ }
+
+ .FormHint 
+ {
+    margin: 0 0 0 20px;
+ }
+
+.GridHint 
+{
+    margin: 0 0 0 20px;
+    padding: 5px 0 5px 0;
+}

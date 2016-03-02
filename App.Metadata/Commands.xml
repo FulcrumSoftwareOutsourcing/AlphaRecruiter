@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+  <!-- Common commands -->
+  <command id="New"
+           text="New"
+           image_id="Command_New"
+           operation_code="I"
+           display_order="20"
+           hidden_when_disabled="true"
+           application_scope="Silverlight"
+           sl_handler_class_id="DefaultSlCommandHandler"
+           command_type="Edit"
+  />
+
+  <!--windows_handler_class_id="CRMEntityDialog"-->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="Delete"
+           text="Delete"
+           image_id="Command_Delete"
+           operation_code="D"
+           is_entity_instance_required="true"
+           confirmation_text="Delete selected %single_caption%(s)?"
+           sl_handler_batch="true"
+           sl_handler_class_id="DefaultSlCommandHandler"
+           application_scope="Silverlight"
+           display_order="50"
+           begin_group="true"
+           hidden_when_disabled="true"
+           windows_handler_class_id="DefaultCommandHandler"
+           command_type="Edit"
+           multiple="true"
+  />
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!-- Web commands -->
+  <command id="Edit"
+           text="Edit"
+           operation_code="U"
+           image_id="Command_Edit"
+           is_entity_instance_required="true"
+           application_scope="Silverlight"
+           sl_handler_class_id="DefaultSlCommandHandler"
+           hidden_when_disabled="true"
+           command_type="Edit"
+           
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="View"
+           text="View"
+           operation_code="V"
+           image_id="Command_View"
+           is_entity_instance_required="true"
+           command_type="View"
+           is_default="true"
+           hidden_when_disabled="true"
+           application_scope="Silverlight"
+           windows_handler_class_id="DefaultCommandHandler"
+           sl_handler_class_id="DefaultSlCommandHandler"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+
+
+  <command id="Localization_ResetCache"
+          text="Reset Cache"
+          unique_id="300"
+          menu_category="Entity"
+          display_order="130"
+          hidden_when_disabled="true"
+          sl_handler_class_id="Sl_LocalizationCommandHandler"
+          begin_group="true"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="Localization_ExportNotTranslated"
+           text="Export Non-Translated Items"
+           unique_id="301"
+           menu_category="Entity"
+           display_order="110"
+           hidden_when_disabled="true"
+           sl_handler_class_id="Sl_LocalizationCommandHandler"
+           
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <command id="Localization_ImportTranslated"
+           text="Import Translated Items"
+           unique_id="302"
+           menu_category="Entity"
+           display_order="120"
+           hidden_when_disabled="true"
+           sl_handler_class_id="Sl_LocalizationCommandHandler"
+           refresh_page="true"
+  />
+  
+  
+</commands>

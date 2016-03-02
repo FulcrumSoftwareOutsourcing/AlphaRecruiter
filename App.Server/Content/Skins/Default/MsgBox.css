@@ -1,0 +1,34 @@
+﻿.MsgIcon {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.MsgIcon img {
+    width: 48px;
+    height: 48px;
+}
+
+.MsgText {
+    font-weight: bold;
+    white-space: nowrap !important;
+    
+
+    
+}
+
+.MsgText textarea {
+   
+    word-break: break-all;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+}
+
+.MsgText div {
+   
+    word-break: break-all;
+    word-wrap: break-word;
+    -ms-word-wrap: break-word;
+    
+}

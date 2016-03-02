@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="HR_Speciality">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Speciality"
+          single_caption="Speciality"
+          plural_caption="Specialities"
+          operations="iuvd"
+          filter_enabled="true"
+          entity_class_id="SlEntity"
+          db_object="HR_Speciality"
+          sl_filter_on_start="true"
+          in_security="true"
+          >
+    <sql_select>
+      <![CDATA[
+          select *,
+              (select stuff((
+                    select N', ' + SkillName as [text()]
+                      from (
+                            select s.SkillName
+                              from HR_SpecialitySkill ss,
+                                   HR_Skill s
+                              where ss.SpecialityCd = sp.SpecialityCd
+                                and s.SkillId = ss.SkillId
+                           ) as D for xml path('')
+                    ), 1,2,N'')) as Skills
+            from HR_Speciality sp
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="SpecialityCd"
+                 caption="Speciality Code"
+                 type="string"
+                 primary_key="true"
+                 sl_control_placement="pnGeneral"
+                 nullable="false"
+                 read_only_for_update="true"
+                 editable="true"
+                 visible="false"
+      />
+
+      <!-- *******************    pnPersonalInfo  -->
+      <attribute id="SpecialityName"
+                 display_name="true"
+                 caption="Speciality"
+                 grid_width="300"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 sl_control_placement="pnGeneral"
+                 sorting="asc"                 
+                 
+      />
+      <attribute id="SpecialityIconCd"
+                 caption="Icon"
+                 type="string"
+                 max_length="50"
+                 nullable="true"
+                 visible="false"
+      />
+      <attribute id="Skills"
+                 caption="Skills"
+                 type="string"
+                 storable="false"
+                 read_only="true"
+      />
+    </attributes>
+    <commands>
+      <command id="New"
+               entity_usage_id="HR_Speciality_New"
+      />
+      <command id="View"
+               entity_usage_id="HR_Speciality"
+      />
+      <command id="Edit"
+               entity_usage_id="HR_Speciality_Edit"
+      />
+    </commands>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Speciality"
+                entity_id="HR_Speciality"
+                sl_edit_frame_id="HR_Speciality_Frame"
+                sl_filter_on_start="true">
+    <attribute_usages>
+      <attribute_usage id="Skill_1"
+                 caption="Skill"
+                 type="int"
+                 storable="false"
+                 filter_operation="Equal"
+                 enabled_filter_operations="Equal"
+                 row_source_id="HR_SkillWithArea_Lookup"
+                 visible="false">
+        <filter_condition>
+          <![CDATA[
+            SpecialityCd in ( select SpecialityCd
+                                from HR_SpecialitySkill
+                               where SkillId = :f_Skill_1_0)
+          ]]>
+        </filter_condition>
+      </attribute_usage>
+    </attribute_usages>
+    <filter_order>
+      SpecialityName
+      Skill_1
+    </filter_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Speciality_New"
+                sl_edit_frame_id="HR_Speciality_New_Frame"
+                post_create_command_id="View"
+                entity_id="HR_Speciality">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Speciality_Edit"
+                sl_edit_frame_id="HR_Speciality_Edit_Frame"
+                entity_id="HR_Speciality">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_SpecialityForLookup"
+                cached="true"
+                entity_id="HR_Speciality">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_Speciality_Lookup"
+              entity_usage_id="HR_SpecialityForLookup"
+              />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

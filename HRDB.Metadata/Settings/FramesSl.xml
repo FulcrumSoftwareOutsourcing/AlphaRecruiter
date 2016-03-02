@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Speciality_New_Frame"
+            entity_usage_id="HR_Speciality_New"
+            rows_height="auto"
+            rows_count="1">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="3"
+              text="General"
+              />
+  </sl_frame>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Speciality_Edit_Frame"
+            entity_usage_id="HR_Speciality_Edit"
+            rows_height="auto"
+            rows_count="1">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="3"
+              text="General"
+              />
+  </sl_frame>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_Speciality_Frame"
+            entity_usage_id="HR_Speciality">
+
+    <!-- -*-*-*-*-*-*-*-*-*-* -->
+    <!--     T A B S  main    -->
+    <sl_tab_control id="tcMain"
+                    row="0" >
+      <!--     T A B  main 1   -->
+      <sl_tab id="tbDefault"
+              text="General"
+              rows_height="auto"
+              rows_count="1">
+        <sl_panel id="pnGeneral"
+                  row="0"
+                  columns_count="3"
+                  text="General"
+                  />
+
+        <!-- -*-*-*-*-*-*-*-*-*-* -->
+        <!--   T A B S  children  -->
+        <sl_tab_control id="tcSpecialityChildLists"
+                        row="1" >
+          <!--   tab  Skils  (child) -->
+          <sl_tab id="tHR_SpecialityChildLists_Result"
+                  rows_height="300"
+                  text="Skils">
+
+            <sl_frame id="fr_Speciality_Result"
+                      text="Skils"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="Hr_Skill_Child_Of_Speciality" />
+          </sl_tab>
+
+        </sl_tab_control>
+      </sl_tab>
+
+    </sl_tab_control>
+  </sl_frame>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_ActivityType_New_Frame"
+            entity_usage_id="HR_ActivityType_New"
+            rows_height="auto"
+            rows_count="1">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="1"
+              text="General"
+              />
+  </sl_frame>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_ActivityType_Edit_Frame"
+            entity_usage_id="HR_ActivityType_Edit"
+            rows_height="auto"
+            rows_count="1">
+    <sl_panel id="pnGeneral"
+              row="0"
+              columns_count="1"
+              text="General"
+              />
+  </sl_frame>
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="HR_ActivityType_Frame"
+            entity_usage_id="HR_ActivityType">
+
+    <!-- -*-*-*-*-*-*-*-*-*-* -->
+    <!--     T A B S  main    -->
+    <sl_tab_control id="tcMain"
+                    row="0" >
+      <!--     T A B  main 1   -->
+      <sl_tab id="tbDefault"
+              text="General"
+              rows_height="auto"
+              rows_count="8">
+        <sl_panel id="pnGeneral"
+                  row="0"
+                  columns_count="1"
+                  text="General"
+              />
+        <!-- -*-*-*-*-*-*-*-*-*-* -->
+        <!--   T A B S  children  -->
+        <sl_tab_control id="tcActivityTypeChildLists"
+                        row="1" >
+          <!--   tab  Result  (child) -->
+          <sl_tab id="tHR_ActivityTypeChildLists_Result"
+                  rows_count="1"
+                  rows_height="300"
+                  text="Result">
+
+            <sl_frame id="fr_ActivityType_Result"
+                      text="Result"
+                      column="0"
+                      row="0"
+                      frame_class_id="CxGridFrame"
+                      entity_usage_id="HR_ActivityResult_Child_Of_Type" />
+          </sl_tab>
+
+        </sl_tab_control>
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+
+
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</sl_frames>

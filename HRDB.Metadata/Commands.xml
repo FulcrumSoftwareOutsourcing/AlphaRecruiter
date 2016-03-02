@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<commands>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--                                Commands                             -->
+  <command id="Check_LastName_FirstName"
+           text="Check if Email for LastName and FirstName Exists?"
+           _is_entity_instance_required="true"
+           image_id="Applicant_Search_All"
+           refresh_page="true"
+           available_on_editform="true">
+    <sql_command>
+      <![CDATA[
+          declare @Email nvarchar(150)
+          declare @Message nvarchar(200)
+
+          SELECT @Email = STUFF((SELECT ' || ' + LTRIM(RTRIM(Email)) FROM HR_Applicant 
+							where LastName = :LastName AND FirstName = :FirstName
+							 FOR XML PATH('')),1, 1, '') 
+
+          if (@Email IS NOT NULL)
+          begin
+		        Set @Message = 'Applicants with same LastName and FirstName already present in DB! Email: ' + @Email		
+            Raiserror(@Message, 16, 1)
+        end
+        else
+        begin
+          Raiserror('New Applicant!', 16, 1)
+        end        ]]>
+    </sql_command>
+  </command>
+
+  <!--<command id="Edit1"
+             text="Edit Activity for Attachment"
+             entity_usage_id="HR_Activity"
+             target_command_id="Edit"
+                 />-->
+
+  <command id="Dummy"
+         text="Dummy"
+         hidden_when_disabled="false"
+         entity_usage_id="HR_Interview"
+         command_type="Edit"
+           
+  />
+  
+</commands>

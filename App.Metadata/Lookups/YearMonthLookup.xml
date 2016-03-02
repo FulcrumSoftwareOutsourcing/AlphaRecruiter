@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:row_sources xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Months_Number_Lookup">
+    <rows>
+      <row key="1"  value="1"  />
+      <row key="2"  value="2"  />
+      <row key="3"  value="3"  />
+      <row key="4"  value="4"  />
+      <row key="5"  value="5"  />
+      <row key="6"  value="6"  />
+      <row key="7"  value="7"  />
+      <row key="8"  value="8"  />
+      <row key="9"  value="9"  />
+      <row key="10" value="10" />
+      <row key="11" value="11" />
+      <row key="12" value="12" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Months_Name_Lookup">
+    <rows>
+      <row key="1"  value="January"   />
+      <row key="2"  value="February"   />
+      <row key="3"  value="March" />
+      <row key="4"  value="April"   />
+      <row key="5"  value="May"   />
+      <row key="6"  value="June"   />
+      <row key="7"  value="July"   />
+      <row key="8"  value="August"   />
+      <row key="9"  value="September"   />
+      <row key="10" value="October"   />
+      <row key="11" value="November"   />
+      <row key="12" value="December"   />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Months_Name_with_Total_Lookup">
+    <rows>
+      <row key="0"  value="&lt;B&gt;Year Total&lt;/B&gt;"   />
+      <row key="1"  value="January"   />
+      <row key="2"  value="February"   />
+      <row key="3"  value="March" />
+      <row key="4"  value="April"   />
+      <row key="5"  value="May"   />
+      <row key="6"  value="June"   />
+      <row key="7"  value="July"   />
+      <row key="8"  value="August"   />
+      <row key="9"  value="September"   />
+      <row key="10" value="October"   />
+      <row key="11" value="November"   />
+      <row key="12" value="December"   />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="MonthDay_Lookup">
+    <rows>
+      <row key="1"  value="1"   />
+      <row key="2"  value="2"   />
+      <row key="3"  value="3" />
+      <row key="4"  value="4"   />
+      <row key="5"  value="5"   />
+      <row key="6"  value="6"   />
+      <row key="7"  value="7"   />
+      <row key="8"  value="8"   />
+      <row key="9"  value="9"   />
+      <row key="10" value="10"   />
+
+      <row key="11" value="11"   />
+      <row key="12" value="12"   />
+      <row key="13" value="13" />
+      <row key="14" value="14"   />
+      <row key="15" value="15"   />
+      <row key="16" value="16"   />
+      <row key="17" value="17"   />
+      <row key="18" value="18"   />
+      <row key="19" value="19"   />
+      <row key="20" value="20"   />
+
+      <row key="21" value="21"   />
+      <row key="22" value="22"   />
+      <row key="23" value="23" />
+      <row key="24" value="24"   />
+      <row key="25" value="25"   />
+      <row key="26" value="26"   />
+      <row key="27" value="27"   />
+      <row key="28" value="28"   />
+      <row key="29" value="29"   />
+      <row key="30" value="30"   />
+      <row key="31" value="31"   />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Years70"
+          entity_class_id="BASE_ENTITY"
+          cached="true"
+          in_security="false"
+          >
+    <sql_select>
+      <![CDATA[
+        with CurrentYear as
+          (
+            select YEAR(getdate()) as y
+          )
+        select CurrentYear.y - n + 1 as year
+          from f_GetNumbersTable(1, 70),
+               CurrentYear 
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="Year"
+                 type="int"
+                 primary_key="true"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Years70"
+                entity_id="Years70">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Years70_Lookup"
+              entity_usage_id="Years70"/>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Years5"
+                entity_id="Years70">
+    <sql_select>
+      <![CDATA[
+        with CurrentYear as
+          (
+            select YEAR(getdate()) as y
+          )
+        select CurrentYear.y - n + 1 as year
+          from f_GetNumbersTable(1, 5),
+               CurrentYear 
+      ]]>
+    </sql_select>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Years5_Lookup"
+              entity_usage_id="Years5"/>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:row_sources>

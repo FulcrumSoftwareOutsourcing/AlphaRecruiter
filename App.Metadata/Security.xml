@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<security>
+  <objects>
+    <subsystem>
+      <permission_groups>
+        <permission_group id="View" text="View Permission" is_default="true">
+          <permission id="Allow" text="Allow" rule_id="Allow" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true"
+								auto_set_permission_group_id="Edit" auto_set_permission_id="DENY" />
+        </permission_group>
+
+        <permission_group id="Edit" text="Edit Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow"
+								auto_set_permission_group_id="View" auto_set_permission_id="ALLOW" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true" />
+        </permission_group>
+      </permission_groups>
+    </subsystem>
+
+    <entity>
+      <permission_groups>
+        <permission_group id="View" text="View Permission" is_default="true">
+          <permission id="Allow" text="Allow" rule_id="Allow" />
+          <permission id="Owner" text="Allow for Owner" rule_id="Owner" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true"
+								auto_set_permission_group_id="Edit" auto_set_permission_id="DENY" />
+          <permission id="Custom" text="Custom" rule_id="Custom" />
+        </permission_group>
+
+        <permission_group id="Edit" text="Edit Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow"
+								auto_set_permission_group_id="View" auto_set_permission_id="ALLOW" />
+          <permission id="Owner" text="Allow for Owner" rule_id="Owner" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true" />
+          <permission id="Custom" text="Custom" rule_id="Custom" />
+        </permission_group>
+
+        <permission_group id="Attribute" text="Attribute Access">
+          <permission id="Allow" text="Default" rule_id="Allow" is_default="true" />
+          <permission id="Custom" text="Custom" rule_id="Custom" />
+        </permission_group>
+      </permission_groups>
+    </entity>
+
+    <command>
+      <permission_groups>
+        <permission_group id="Execute" text="Execute Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Owner" text="Allow for Owner" rule_id="Owner" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="View">
+          <condition command_type="View" />
+        </entity_group>
+        <entity_group id="Edit" />
+      </entity_groups>
+    </command>
+
+    <attribute>
+      <permission_groups>
+        <permission_group id="View" text="View Permission" is_default="true">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Deny" text="Deny" rule_id="Deny"
+								auto_set_permission_group_id="Edit" auto_set_permission_id="DENY" />
+        </permission_group>
+        <permission_group id="Edit" text="Edit Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true"
+								auto_set_permission_group_id="View" auto_set_permission_id="ALLOW" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="Attribute" />
+      </entity_groups>
+    </attribute>
+
+    <portal>
+      <permission_groups>
+        <permission_group id="Access" text="Access Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true" />
+        </permission_group>
+      </permission_groups>
+    </portal>
+
+    <tree_item>
+      <permission_groups>
+        <permission_group id="Access" text="Access">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="View" />
+      </entity_groups>
+    </tree_item>
+
+    <tab>
+      <permission_groups>
+        <permission_group id="Access" text="Access">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Owner" text="Allow for Owner" rule_id="Owner" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="View" />
+      </entity_groups>
+    </tab>
+
+    <sl_section>
+      <permission_groups>
+        <permission_group id="Access" text="Access Permission">
+          <permission id="Allow" text="Allow" rule_id="Allow" />
+          <permission id="Deny" text="Deny" rule_id="Deny" is_default="true" />
+        </permission_group>
+      </permission_groups>
+    </sl_section>
+
+    <sl_tree_item>
+      <permission_groups>
+        <permission_group id="Access" text="Access">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="View" />
+      </entity_groups>
+    </sl_tree_item>
+    
+    <sl_skin>
+      <permission_groups>
+        <permission_group id="Access" text="Access">
+          <permission id="Allow" text="Allow" rule_id="Allow" is_default="true" />
+          <permission id="Deny" text="Deny" rule_id="Deny" />
+        </permission_group>
+      </permission_groups>
+
+      <entity_groups>
+        <entity_group id="View" />
+      </entity_groups>
+    </sl_skin>
+
+  </objects>
+
+  <rules>
+    <rule id="Allow" allow="true" />
+    <rule id="Deny" allow="false" is_default="true" />
+    <rule id="Custom" />
+  </rules>
+</security>

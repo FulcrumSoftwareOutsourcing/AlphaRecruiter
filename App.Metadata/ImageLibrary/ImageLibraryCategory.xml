@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="ImageLibraryCategory"
+          plural_caption="Categories"
+          single_caption="Category"
+          operations="iudv"
+          entity_class_id="IMAGE_LIBRARY_CATEGORY_ENTITY"
+          db_object="ImageLibraryCategory"
+          file_lib_category_code_attribute_id="Code">
+    <sql_select>
+      <![CDATA[
+        select t.*,
+               (select top 1 cast(1 as bit)
+                  from ImageLibraryCategory t1 with (noLock)
+                 where t1.ParentId = t.CategoryId) as f_has_children
+          from ImageLibraryCategory t
+      ]]>
+    </sql_select>
+    <attributes>
+      <attribute id="CategoryId"
+                 primary_key="true"
+                 visible="false"
+                 editable="false"
+                 default="=@sequence"
+                 type="int"
+                 max_length="10"
+                 nullable="false"
+      />
+      <attribute id="Code"
+                 caption="Code"
+                 type="string"
+                 max_length="50"
+                 visible="false"
+      />
+      <attribute id="Name"
+                 caption="Name"
+                 type="string"
+                 max_length="150"
+                 nullable="false"
+                 sorting="asc"
+                 display_name="true"
+                 grid_width="300"
+      />
+      <attribute id="ParentId"
+                 caption="Parent Category"
+                 type="int"
+                 max_length="10"
+                 row_source_id="ImageLibraryCategory_Lookup"
+                 default="=PARENT.ImageLibraryCategory.ParentId"
+                 visible="false"
+                 editable="true"
+      />
+      <attribute id="F_HAS_CHILDREN"
+                 type="boolean"
+                 visible="false"
+                 storable="false"
+      />
+      <attribute id="FullId" 
+                 type="string"
+                 default="zzz"
+                 visible="false"
+                 editable="false"
+      />
+      
+
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="ImageLibraryCategory"
+                entity_id="ImageLibraryCategory"
+                self_reference_attr_id="ParentId">
+  </entity_usage>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="ImageLibraryCategoryPlainList"
+                entity_id="ImageLibraryCategory"
+                self_reference_attr_id="ParentId"
+                sl_edit_frame_id="ImageLibraryCategory">
+
+   
+    <attribute_usages>
+      <attribute_usage id="ParentId"
+                 visible="false"
+                 editable="false"/>
+      
+    </attribute_usages>
+
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="ImageLibraryCategory_Lookup"
+                entity_id="ImageLibraryCategory"
+                self_reference_attr_id="ParentId">
+   <grid_order>
+      CategoryId, Name
+    </grid_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="ImageLibraryCategory_Lookup"
+              entity_usage_id="ImageLibraryCategory_Lookup"
+              hierarchical="true"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>
+

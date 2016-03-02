@@ -1,0 +1,307 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.LoginForm {
+	background-color: #fff;
+    font-family: "Roboto", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    line-height: 18px;
+    color: #999;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    background:url(images/framework/login-image.jpg) no-repeat fixed;  
+  	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+}
+
+
+
+
+/**
+ * FRAMEWORK
+ */
+/* .cf (clearfix) - clear floats */
+ .cf:before,
+.cf:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.cf:after {
+  clear: both;
+}
+.ie6 .cf {
+  zoom: 1;
+}
+
+ /* .pull-left/right */
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+
+/* .clickable - hand cursor on clickable elements */
+ .clickable,
+label,
+input[type=button],
+input[type=submit],
+input[type=file],
+button { cursor: pointer; }
+
+
+/* -- login page styles -- */
+
+.LoginForm a{color: #999}
+.LoginForm a:hover{ text-decoration: none;}
+.LoginForm a:active{color: #000;}
+ #login-column{
+	float: right;
+	width: 550px;
+	position: relative;
+	background-color: #fff;
+    position: absolute;
+}
+/* -- center alignment -- */
+ #center-holder {
+    width: 100%;
+    height: 100%;
+	display: table;
+
+}
+ .center-holder-middle{
+	display: table-cell;
+	vertical-align: middle;
+}
+/* -- logo -- */
+ #logo{
+	margin: 30px auto 0;
+	width: 217px;
+	height: 50px;
+	background: url(images/framework/logo2.png) no-repeat;
+	text-indent: -9999px;
+	overflow: hidden;
+}
+/* -- login-form-holder  -- */
+.login-form-holder {
+	overflow: hidden;
+	padding: 50px 50px 200px;
+    position: relative;
+}
+.form-row{
+	overflow: hidden;
+	padding: 0 0 20px;
+     position: relative;
+}
+.login-form-holder input[type="text"],
+.login-form-holder input[type="password"]  {
+	width: 87%;
+	display: block;
+	border: 1px solid #d3d3d3;
+	padding: 10px 30px 10px 10px;
+	background-color: #f7f6f6;
+	font-size: 14px;
+	line-height: 18px;
+    margin: 0;
+}
+.error-msg{
+	display: block;
+	color: #f30;
+	padding-bottom: 10px;
+}
+.validation-error .error-msg{display: block;}
+.login-form-holder .validation-error input[type="text"],
+.login-form-holder .validation-error input[type="password"]{
+	border-color: #ff7011;	
+}
+.input-holder{
+	position: relative;
+}
+.login-form-holder .form-element-icon {
+    position: absolute;
+    top:50%;
+    left:100%;
+    width: 16px;
+    height: 16px;
+    margin-left: -40px;
+    margin-top: -8px;
+}
+.login-form-holder input.user-name+.form-element-icon { background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABAUlEQVQ4T6WTwRGCMBBFCRSgJWgFWoIdSAdqBWoFYgVqBViCJcgRuEgHlhAKAHzrIBMURWVnMgnZ/S/ZP0FZHUN11FsqiqIxkN6foFSFYegi9hijHyGJ6ASgWcyLopgrpaZfQgLq9gxfAIWIAKyYhkCWnyDUHWzbvjD7UlcBSsiRZEBS6C++AF+Qm5CbPQ6pAcrNC5B1nucnA5Ky52ZZtgEigCqaAAHFYqoFRG4i4bGny++a2c8tmP1prutxoph8B7Fev22hqb8mM6kTWGKaqKU/rrcjIY+qNRCfHcfZik8qjuMJ5viQB61KowDIFcji/pQR938RP2qB6O4/0z8nm5ob6AqNKuXXU08AAAAASUVORK5CYII="); }
+.login-form-holder input.password+.form-element-icon{ background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABA0lEQVQ4T6WTzRGCMBCFzTDDmQ60A8mBn5uUQCfSgdABJVgCdoA3fi5Ygh1gAUx8y4QMEzMRxxx33377dlnYzvC6rvOFEBekEpmuGWNFGIaDLmd6oO/7ZJqmKwqyKIoqyrdtmwJYrmNL3QcA4hHCRO8mXdWu6x4456MRILtncRynptGapqkcxymDIKiNAAgydPdgPTcB4C7HKCMalEYACShhA+h5tQOyD7owdTbFsKM7xRUA3TcXSxdzrRUAQ89ZxNhed4Ex7QAU35avAXe09dMa8hUAcbEsUy6XLlO9LYABIi4vkU74+CvgAYD/D0CNgAOj/+D8qwPrSWzZgQ3wAsAjwRvmfJMRUMaYswAAAABJRU5ErkJggg=="); }
+.LoginForm textarea:focus, input:focus{
+    outline: 0;
+
+}
+.login-form-holder input[type="text"]:focus,
+.login-form-holder input[type="password"]:focus {
+	background-color: #fff;
+	border-color: #a7a7a7;
+	color: #000;
+}
+/*-- hide placeholder text --*/
+.login-form-holder input[type="text"]::-webkit-input-placeholder,
+.login-form-holder input[type="password"]::-webkit-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]::-moz-placeholder,
+.login-form-holder input[type="password"]::-moz-placeholder{opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:-moz-placeholder,
+.login-form-holder input[type="password"]:-moz-placeholder{opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:-ms-input-placeholder,
+.login-form-holder input[type="password"]:-ms-input-placeholder {opacity: 1; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus::-webkit-input-placeholder,
+.login-form-holder input[type="password"]:focus::-webkit-input-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus::-moz-placeholder,
+.login-form-holder input[type="password"]:focus::-moz-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus:-moz-placeholder,
+.login-form-holder input[type="password"]:focus:-moz-placeholder {opacity: 0; transition: opacity 0.3s ease;}
+.login-form-holder input[type="text"]:focus:-ms-input-placeholder,
+.login-form-holder input[type="password"]:focus:-ms-input-placeholder {opacity: 0; transition: opacity 0.3s ease;} 
+.login-form-holder input[type="checkbox"] {
+	float: left;
+	margin:0 8px 0 0;
+	width: 15px;
+	height: 15px;
+	display: inline-block;
+}
+.login-form-holder label{
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.login-form-holder .button {
+	margin-top: 16px;
+	border: none;
+	background: #39b54a;
+	color: #fff;
+	text-align: center;
+	width: 110px;
+	height: 34px;
+	
+}
+.login-form-holder .button:hover{background-color: #44c456;}
+.login-form-holder .button:active{background-color: #009444;}
+.login-form-holder .button.gray-button{ background-color: #999;}
+.login-form-holder .button.gray-button:hover{ background-color: #a8a8a8;}
+.forgot-password{
+	position: absolute;
+	bottom: 229px;
+	left: 50px;
+	z-index: 100;
+}
+
+/*-- mobile-info --*/
+.mobile-info{
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	width: 550px;
+}
+.mobile-info-holder {
+	background-color: #39b54a;
+	border:1px solid #a1a1a1;
+	padding:36px 80px 47px 42px;
+	color: #fff;
+	overflow: hidden; 
+}
+.mobile-info-images{
+	float: left;
+	width: 153px;
+	margin-right: 14px;
+}
+.mobile-info-images img{max-width: 100%;}
+.mobile-info-holder .text-holder{
+	overflow: hidden;
+}
+@media screen and ( max-height: 660px ){
+	.mobile-info-holder {
+		padding: 25px 50px;
+	}
+	.mobile-info-images{
+		width: 80px;
+	}
+    .forgot-password{
+    	display: inline-block;
+    	position: static;
+    	left: auto;
+    	bottom: auto;
+    	margin-top: 30px;
+    }
+}
+@media screen and ( max-height: 550px ){
+	.login-form-holder {padding-bottom: 100px;}
+}
+@media screen and ( max-height: 510px ){
+	#login-column {overflow-y:auto;} 
+	.mobile-info {
+		visibility: hidden;
+		height: 0;
+		right: -9999px;
+	}
+}
+@media screen and ( max-width: 1440px ){
+	#login-column{width: 425px;}
+	.mobile-info{width: 425px;}
+}
+@media screen and ( max-width: 1024px ){
+	.login-form-holder .button{
+		font-size: 18px;
+		width: 150px;
+		height: 45px;
+		line-height: 45px;
+	}
+	.login-form-holder input[type="text"],
+	.login-form-holder input[type="password"]{
+		padding-top:13px;
+		padding-bottom: 13px;
+	}
+	.mobile-info-holder {
+		visibility: hidden;
+		height: 0;
+	}
+}
+@media screen and ( max-width: 400px ){
+	.loginForm{background: #fff;}
+	#login-column{
+		width: 100%;
+	}
+	.login-form-holder{
+		padding: 20px;
+	}
+	.login-form-holder .button{
+		width: 100%;
+
+	}
+	.forgot-password{
+		width: 100%;
+		left: 0;
+		bottom: 40px;
+		text-align: center;
+	}
+
+}
+@media screen and ( max-width: 320px ){
+	#login-column{
+		width: 320px;
+	}
+}

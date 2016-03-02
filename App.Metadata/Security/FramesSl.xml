@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sl_frames>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="UserDetails_Layout" rows_height="auto, 300" rows_count="2">
+    <sl_panel id="pnDefault" text="General" columns_count="2" row="0" />
+    <sl_tab_control id="tcChildren"
+                    row="1" >
+      <sl_tab id="tbRoles"
+              text="Roles">
+        <sl_frame id="frRoles"
+              frame_class_id="CxGridFrame"
+              entity_usage_id="UserRole_ChildOf_User" row="0" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_frame id="RoleDetails_Layout" rows_height="auto, 450" rows_count="2">
+    <sl_panel id="pnDefault" text="General" columns_count="2" />
+    <sl_tab_control id="tcChildren"
+                    row="1" >
+      <sl_tab id="tbSubsystemPermissions"
+              text="Subsystem Permissions">
+        <sl_frame id="frSubsystemPermissions"
+              frame_class_id="CxGridFrame"
+              entity_usage_id="SubsystemPermission" />
+      </sl_tab>
+      <sl_tab id="tbEntityPermissions"
+              text="Entity Permissions">
+        <sl_frame id="frEntityPermissions"
+              frame_class_id="CxGridFrame"
+              entity_usage_id="EntityPermission" />
+      </sl_tab>
+      <sl_tab id="tbUsers"
+              text="Users">
+        <sl_frame id="frUsers"
+              frame_class_id="CxGridFrame"
+              entity_usage_id="UserRole_ChildOf_Role" />
+      </sl_tab>
+      <sl_tab id="tbRoleWorkspace"
+              text="Workspaces">
+        <sl_frame id="frWorkspace"
+              frame_class_id="CxGridFrame"
+              entity_usage_id="RoleWorkspace_ChildOf_Role" />
+      </sl_tab>
+    </sl_tab_control>
+  </sl_frame>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</sl_frames>

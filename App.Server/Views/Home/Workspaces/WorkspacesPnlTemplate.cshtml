@@ -1,0 +1,25 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+
+<!--css file: WorkspacesPnl.css-->
+
+<script type="text/html" id="Workspaces/WorkspacesPnlTemplate">
+
+    <div class="WorkspacesPnl" data-bind="click: OnClick">
+        <span data-bind="text: GetTxt('Workspace') + ':'"></span>
+        <div class="WorkspacePnlBtn">
+            <div data-bind="text: SelectedWorkspace().Name"></div>
+            <svg width="7" height="7"   >
+                <path d="M0 0 l7 0 L3.5 5 z"  />
+            </svg>
+        </div>
+    </div>
+    
+    
+
+</script>
+

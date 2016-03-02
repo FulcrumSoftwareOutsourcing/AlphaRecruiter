@@ -1,0 +1,269 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:sl_sections xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <js_app_properties
+          app_name="AlphaRecruiter"
+          logo_image1_id="logo"
+          logo_image2_id="logo2"
+          logo_image3_id="logo_back"
+          app_logo_text="AlphaRecruiter"/>
+  
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section_override id="Administration" text="Advanced Settings"
+                       image_id="iso32_advanced_settings">
+  </sl_section_override>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--  P O R T A L:  Activities                                           -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="HR_Applicants"
+              text="Applicants and Activities"
+              image_id="iso32_applicants_and_activities"
+              display_order="100"
+              >
+
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <!--                             Open Activities                         -->
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <tree_item id="HR_OpenedActivities_Folder"
+                text="Open Activities"
+                expanded="true"
+               _image_id="ico32_bd_calendar_up"
+               __image_id="ico32_bd_calendar">
+
+
+      <tree_item id="HR_OpenedActivities"
+             entity_usage_id="HR_ActivityOpened"
+             text="All Open"
+             
+               />
+
+      <tree_item id="OpenActivities_Today"
+             entity_usage_id="HR_ActivityOpened_Today"
+             text="Today"
+             _image_id="ico32_bd_calendar"
+               />
+
+
+      <tree_item id="OpenActivities_Expired"
+             entity_usage_id="HR_ActivityOpened_Expired"
+             text="Expired"
+             _image_id="ico32_bd_calendar_down"
+               />
+
+
+      <tree_item id="OpenActivities_My"
+             entity_usage_id="HR_ActivityOpened_My"
+             text="Assigned to me"
+             _image_id="ico32_bd_calendar_preferences"
+               />
+
+
+
+    </tree_item>
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <!--                             New Applicant                           -->
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->    
+    <tree_item id="New_Applicants"
+                  text="Add New Applicant"
+                  expanded="true"
+                 _image_id="ico32_bd_businessman_add"
+               >
+
+      <tree_item id="HR_Applicant_New"
+                 entity_usage_id="HR_Applicant_SearchAndAdd"
+                 
+                 _image_id="ico32_bd_businessman_view"
+                 text="Search and Add" />
+    </tree_item>
+
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <!--                             Search Applicant                        -->
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+    <tree_item id="AllApplicants"
+                  text="Search"
+                  expanded="true"
+                _image_id="Applicant_Search_All"
+               >
+
+      <tree_item id="AllApplicants_Search"
+                     entity_usage_id="HR_Applicant_Search"
+                 default_selected="true"                 
+                     text="Search Applicants" 
+                />
+
+      <!--<tree_item id="AllApplicants_CustomFrameExample"
+                   entity_usage_id="HR_Applicant_Custom_Frame_Example"
+                   text="Custom Frame Example"
+                  frame_class_id="GridWithExtraFind"
+                />-->
+
+      <tree_item id="Applicants_LinkedToVacancy"
+                     entity_usage_id="HR_Applicant_LindedTo_Vacancy"
+                     text="Linked to Vacancy" />
+
+
+      <tree_item id="HR_Applicant_Employed"
+                     entity_usage_id="HR_Applicant_Employed"
+                     text="Employed" />
+
+
+      
+
+
+    </tree_item>
+
+    <tree_item id="AdvancedSearch"
+                  text="Advanced"
+                  expanded="false"
+               _image_id="ico32_bd_cabinet">
+
+      <tree_item id="HR_Applicant_BlackList"
+                 entity_usage_id="HR_Applicant_BlackList"
+                 text="Black List" />
+
+      <tree_item id="HR_Applicant_Deleted"
+                     entity_usage_id="HR_Applicant_Deleted"
+                     text="Deleted Applicants" />
+    </tree_item>
+    </sl_section>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--  P O R T A L:  Vacancies                                            -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="HR_Vacancy"
+              text="Vacancies"
+              image_id="iso32_vacancies"
+              display_order="200">
+
+    <tree_item id="Root_Vacancies"
+               frame_class_id="LinkedFrame"
+               text="Vacancies"
+               __image_id="Applicants"
+               expanded="true">
+
+      <tree_item id="Vacancies"
+                 entity_usage_id="HR_Vacancy"
+                 __image_id="ActivitiTypes"
+                 default_selected="true"
+                 text="All Vacancies" />
+
+    </tree_item>
+  </sl_section>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--  P O R T A L:  Management                                           -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="HR_Reports"
+               text="Management &amp; Marketing"
+               display_order="200"
+              image_id="iso32_management">
+    <!-- -*-*-*-   Activity   -*-*-*- -->
+    <tree_item id="Root_Reports"
+               frame_class_id="LinkedFrame"
+               text="Reports"
+               expanded="true">
+      <tree_item id="Reports_Applicants_by_Years"
+               entity_usage_id="Reports_Applicants_by_Years"
+               text="Applicants by Years" />
+      <tree_item id="Reports_Applicants_by_Week_days"
+               entity_usage_id="Reports_Applicants_by_Week_days"
+               text="Applicants by Week Days" />
+      <tree_item id="Reports_Applicants_by_Ads"
+               entity_usage_id="Reports_Applicants_by_Ads"
+               text="Applicants by Advertising" />
+      <tree_item id="Reports_Activities_by_Month_Day"
+               entity_usage_id="Reports_Activities_by_Month_Day"
+               text="Activities by Month/Day" />
+      <tree_item id="Reports_Activities_by_Users"
+               entity_usage_id="Reports_Activities_by_Users"
+               text="Major Activities by Users" />
+    </tree_item>
+    <tree_item id="Root_ManagementSettingss"
+               frame_class_id="LinkedFrame"
+               text="Settings"
+               expanded="true">
+      <tree_item id="AdTypes"
+               entity_usage_id="HR_AdvertisingType"
+               text="Advertising" />
+    </tree_item>
+  </sl_section>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--  P O R T A L:  Customization                                        -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="HR_Seettings"
+               text="Customization"
+              image_id="iso32_customization"
+               display_order="200">
+
+    <!-- -*-*-*-   Activity   -*-*-*- -->
+    <tree_item id="Root_Settings"
+               frame_class_id="LinkedFrame"
+               text="Activity"
+               expanded="true">
+      <tree_item id="ActivityTypes"
+                 entity_usage_id="HR_ActivityType"
+                 text="Activity Types" />
+      <tree_item id="ActivityResults"
+                 entity_usage_id="HR_ActivityResult"
+                 text="Activity Results" />
+    </tree_item>
+    
+    <!-- -*-*-*-   Enterprise Customization   -*-*-*- -->
+    <tree_item id="Root_Settings2"
+               frame_class_id="LinkedFrame"
+               text="Enterprise Customization"
+               expanded="true">
+      <tree_item id="Specialities"
+                 entity_usage_id="HR_Speciality"
+                 default_selected="true"
+                 text="Specialities" />
+      <tree_item id="AttachmentTypes"
+                 entity_usage_id="HR_AttachmentType"
+                 text="Attachment Types" />
+      <tree_item id="SkillAreas"
+                 entity_usage_id="HR_SkillArea"
+                 text="Skill Areas" />
+      <tree_item id="Skills"
+                 entity_usage_id="HR_Skill4List"
+                 text="Skills" />
+    </tree_item>
+
+  </sl_section>
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <!--  P O R T A L:  Security                                             -->
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <sl_section id="HR_Users"
+               text="Security"
+              image_id="iso32_security"
+               display_order="300">
+
+
+    <tree_item id="HR_Security"
+               _image_id="TreeItem_Security"
+               text="Users and Roles"
+               frame_class_id="LinkedFrame"
+               display_order="50"
+               expanded="true">
+
+      <tree_item id="HR_User"
+                 entity_usage_id="User_Edit"
+                 _image_id="TreeItem_Users"
+                 sl_is_default="true"
+                 default_selected="true"
+                 text="Users"/>
+      <tree_item id="HR_Role"
+                 entity_usage_id="Role"
+                 _image_id="TreeItem_Roles"
+                 text="Roles"/>
+
+    </tree_item>
+  </sl_section>
+
+    <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:sl_sections>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<assemblies>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="HRDB.Silverlight.Client"
+            namespace="HRDB.Silverlight.Client"
+            sl_plugin_path = "HR"
+            file_name="HRDB.Silverlight.Client.dll"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <assembly id="HRDB.Silverlight.Server"
+            namespace="HRDB.Silverlight.Server"
+            file_name="HRDB.Silverlight.Server.dll"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</assemblies>

@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!--css file: AutoLayoutFrame.css-->
+
+<script type="text/html" id="AutoLayoutFrame/AutoLayoutFrameTemplate">
+    @*<div class="TreeCaption"  data-bind="text: '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' + Caption(),  visible: $root.GetIsFrameCaptionVisible($root)"></div>*@
+    <div data-bind="attr: {id: 'commandsBar_' + TempId }" class="CommandsBar"></div>
+    <div class="AutoLayoutFrame" data-bind="attr: {id: 'layout_root_' + TempId }, template:{ name: 'LayoutTemplate', foreach: Layout }   "></div>
+   
+
+    <div class="AdtCommands AdtCommandsBottom"  data-bind="visible: $root.SaveAndStayCmdDescr.Visible() || $root.SaveAndCloseCmdDescr.Visible() || $root.CancelCmdDescr.Visible() ">
+        <div class="CmdBtn SaveCmd CmdBtnBottom" data-bind="click: function(data){ $root.AdtCommandClick('SaveAndStay', $root)  }, visible: $root.SaveAndStayCmdDescr.Visible()">
+            <img data-bind="attr:{ src: $root.SaveAndStayCmdImageUrl }, visible: $root.SaveAndStayCmdImageUrl">
+            <div data-bind="visible: $root.SaveAndStayCmdImageUrl"></div>
+            <div class="NoImg" data-bind="visible: !$root.SaveAndStayCmdImageUrl"></div>
+            <span data-bind="text: GetTxt('Save')"></span>
+        </div>
+        <div class="CmdBtn SaveCmd CmdBtnBottom" data-bind="click: function(data){ $root.AdtCommandClick('SaveAndClose', $root)  }, visible: $root.SaveAndCloseCmdDescr.Visible()">
+            <img data-bind="attr:{ src: $root.SaveAndCloseCmdImageUrl }, visible: $root.SaveAndCloseCmdImageUrl">
+            <div data-bind="visible: $root.SaveAndCloseCmdImageUrl"></div>
+            <div class="NoImg" data-bind="visible: !$root.SaveAndCloseCmdImageUrl"></div>
+            <span data-bind="text: GetTxt('Save and Close')"></span>
+        </div>
+        <div class="CmdBtn CmdBtnBottom" data-bind="click: function(data){ $root.AdtCommandClick('Cancel', $root)  }, visible: $root.CancelCmdDescr.Visible()">
+            <img data-bind="attr:{ src: $root.CancelCmdImageUrl }, visible: $root.CancelCmdImageUrl">
+            <div data-bind="visible: $root.CancelCmdImageUrl"></div>
+            <div class="NoImg" data-bind="visible: !$root.CancelCmdImageUrl"></div>
+            <span data-bind="text: GetTxt('Cancel')"></span>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="LayoutTemplate">
+
+    <!-- ko if: Type == 'frame' -->
+
+        <!-- ko if: App.Utils.IsStringNullOrWhitespace(FrameClassId )  -->
+        <table data-bind="attr: {id: 'layoutTable_' + $root.EntityUsage.Id + $root.TempId},  foreach: $root.GetLayoutTableRows($data, $parent) "  style="width:100% ">
+            <tr c-type="layout-tr" data-bind="foreach: Columns" >
+                <td data-bind="template:{ name: 'LayoutTemplate', foreach: $root.GetChildrenForColumn(LayoutElement, RowObj.Index, Index) } " ></td>
+            </tr>
+        </table>
+        <!-- /ko -->
+        <!-- ko if: !App.Utils.IsStringNullOrWhitespace(FrameClassId ) || !App.Utils.IsStringNullOrWhitespace(SlAutoLayoutFrameId ) -->
+        <div data-bind="attr: { id:  'child_frame_holder_' + $root.TempId + EntityUsageId  } " class="ChildFrameHolder" >
+            <div data-bind="attr: { id:  $root.AddChildFrame($data, $root) }" style="display: none;"></div>
+        </div>
+        <!-- /ko -->
+    <!-- ko if: !App.Utils.IsStringNullOrWhitespace(SlAutoLayoutFrameId )  -->
+    @*<div data-bind="attr: { id:  'child_frame_holder_' + $root.TempId + EntityUsageId  } " class="ChildFrameHolder">
+        <div data-bind="attr: { id:  $root.AddChildFrame($data, $root, 'x') }" style="display: none;"></div>
+    </div>*@
+    <!-- /ko -->
+
+    <!-- /ko -->
+
+    <!-- ko if: Type == 'tab_control' -->
+    <div data-bind="foreach: $root.GetChildrenForTabControl($data, 'forGrips') " >
+        <!-- ko if: TabLevel == 1 -->
+        <div data-bind="text: LayoutElement.Text, attr:{id: 'tab_' + LayoutElement.Id}, css: Selected() ? 'TabGrip TabGripSelected' : 'TabGrip', click: function() {$root.TabClick($data, $root) } ">
+        </div>
+        <!-- /ko -->
+        <!-- ko if: TabLevel > 1 -->
+        <div data-bind="text: LayoutElement.Text, attr:{id: 'tab_' + LayoutElement.Id}, css: Selected() ? 'TabGrip TabGripSelected TabGripSelected_Child' : 'TabGrip', click: function() {$root.TabClick($data, $root) } ">
+        </div>
+        <!-- /ko -->
+    </div>
+    <div data-bind="template:{ name: 'LayoutTemplate', foreach: $root.GetChildrenForTabControl($data, 'forContent') }" c-type="tabsContent">
+    </div>
+    <!-- /ko -->
+
+    <!-- ko if: Type == 'tab' -->
+    
+   
+    <div class="TabContent" style="width:100% !important" data-bind="attr:{id: 'tab_content_' + LayoutElement.Id + $root.TempId}, visible: Selected, template:{ name: 'LayoutTemplate', foreach: LayoutElement.Children }, style:{width: RowsHeight} ">
+    </div>
+   
+    <!-- /ko -->
+
+    <!-- ko if: Type == 'hint' -->
+        
+    <span class="FormHint" data-bind="text: GetTxt( Text )"></span>
+    <!-- /ko -->
+
+
+    <!-- ko if: Type == 'panel' -->
+        <!-- ko if: !App.Utils.IsStringNullOrWhitespace( ControlClassId ) -->
+        <div data-bind=""></div>
+        <!-- /ko -->
+        <!-- ko if: App.Utils.IsStringNullOrWhitespace( ControlClassId ) -->
+        <div  data-bind="css: IsBorderVisible ? 'FieldSet' : 'FieldSetNoBorder' ">
+            <span class="FieldSetText" data-bind="text: Text, visible: IsBorderVisible "></span>
+            <table data-bind="foreach: $root.GetPanelTableRows($data, $parent, $root.OpenMode)" class="PanelTable" >
+                <tr data-bind="foreach: Columns">
+                    <!-- ko if: ColumnType == 'empty' -->
+                        @*<td class="EmptyLayoutCol" ></td>*@
+                    <!-- /ko -->
+                    <!-- ko if: ColumnType == 'label'  -->
+                        <td data-bind="template: {name: 'EditorLabel'}"></td>
+                    <!-- /ko -->
+                    <!-- ko if: ColumnType == 'control' -->
+                        <td  data-bind="attr: {colspan: ColSpan, width: Width }, template:{name: $root.GetControlTemplateName(Attr, $root.OpenMode, $data) }"  class="ControlColumn" ></td>
+                    <!-- /ko -->
+                  
+                    <!-- ko if: ColumnType == 'child_layout' -->
+                    <td data-bind="template:{ name: 'LayoutTemplate', foreach: Children }"  >
+                      
+                    </td>
+                    <!-- /ko -->
+
+                </tr>
+            </table>
+        </div>
+        <!-- /ko -->
+       
+
+    <!-- /ko -->
+
+
+   
+
+</script>
+
+
+
+    <script type="text/html" id="EditorLabel">
+        
+        <div class="EditorLabel">
+            <span data-bind="text: Text"></span>
+            <span data-bind="visible: IsRequired" class="RequiredStar" >*</span>
+        </div>
+       
+    </script>
+

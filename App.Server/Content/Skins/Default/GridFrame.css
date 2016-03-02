@@ -1,0 +1,218 @@
+﻿.DataGridHolder 
+{
+   overflow:auto;
+   
+   background-color:white;
+   
+}
+
+.PagingPnlRoot 
+{
+       height: 34px;
+   width: 100%;
+
+   background: #27538c; /* Old browsers */
+background: -moz-linear-gradient(top,  #27538c 0%, #204c84 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#27538c), color-stop(100%,#204c84)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  #27538c 0%,#204c84 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  #27538c 0%,#204c84 100%); /* IE10+ */
+background: linear-gradient(to bottom,  #27538c 0%,#204c84 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#27538c', endColorstr='#204c84',GradientType=0 ); /* IE6-9 */
+
+   line-height: 1px;
+
+}
+
+
+
+.PagingPnl 
+{
+     height: 34px;
+     line-height: 1px;
+   width:100%;
+   float: left;
+ 
+}
+
+    /*.PagingPnl .CmdBtn {
+        height: 23px !important;
+        margin-top: 2px;
+       line-height: 1px;
+    }*/
+
+.PagingPnl span
+{
+     color:white;
+     margin-right: 30px;
+}
+
+
+.RsPaging
+{
+    position: relative;
+    border:1px solid transparent;
+     border-radius:4px;
+     color: white;
+     display: inline;
+     padding: 2px 6px 2px 6px;
+}
+
+.RsPaging:hover
+{
+    border:1px solid white;
+     border-radius:4px;
+    
+}
+
+.RsPaging path
+{
+     fill: white;
+}
+
+.RsPaging div
+{
+    width: 18px;
+    
+    display: inline-block;
+    
+}
+
+.RsPaging img
+{
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    top: 2px;
+    
+}
+
+.RsPaging span
+{
+    
+    
+    margin: 0;
+    padding: 0;
+    color:white;
+}
+
+.RsPagingPopup {
+    position:absolute;
+    left: 0;
+    top: -172px;
+    background-color: white;
+    overflow:auto;
+     border:1px solid #c6c6c6;
+     padding:3px 3px 0 3px;
+     width: 98% !important;
+     z-index: 99999;
+   
+}
+
+ .RsPagingPopup .RsPagingItem  {
+
+     height:20px;
+       margin-bottom:5px; 
+     padding: 3px 10px 3px 10px;
+        
+         line-height:20px;  
+        border: 1px solid transparent;
+       border-radius:4px;
+       display:block;
+       width:auto !important;
+      
+    }
+
+  .RsPagingPopup .RsPagingItem span {
+      color: black;
+    }
+ 
+
+  .RsPagingPopup .RsPagingItem:hover {
+      
+
+
+           background: rgb(241,248,252); /* Old browsers */
+        background: -moz-linear-gradient(top,  rgba(241,248,252,1) 0%, rgba(216,239,251,1) 100%); /* FF3.6+ */
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(241,248,252,1)), color-stop(100%,rgba(216,239,251,1))); /* Chrome,Safari4+ */
+        background: -webkit-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(216,239,251,1) 100%); /* Chrome10+,Safari5.1+ */
+        background: -o-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(216,239,251,1) 100%); /* Opera 11.10+ */
+        background: -ms-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(216,239,251,1) 100%); /* IE10+ */
+        background: linear-gradient(to bottom,  rgba(241,248,252,1) 0%,rgba(216,239,251,1) 100%); /* W3C */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f8fc', endColorstr='#d8effb',GradientType=0 ); /* IE6-9 */
+
+        border: 1px solid #99defd;
+        border-radius:4px;
+    }
+
+    .RsPagingPopup .selected {
+        background: rgb(241,248,252); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(241,248,252,1) 0%, rgba(157,219,249,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(241,248,252,1)), color-stop(100%,rgba(157,219,249,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(157,219,249,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(157,219,249,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(241,248,252,1) 0%,rgba(157,219,249,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(241,248,252,1) 0%,rgba(157,219,249,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f1f8fc', endColorstr='#9ddbf9',GradientType=0 ); /* IE6-9 */
+
+
+            border: 1px solid #58bffb;
+            border-radius:4px;
+    }
+
+.PangRightPart 
+{
+    float:right;
+}
+
+.PangRightPart span
+{
+    color: white;
+}
+
+.PagingBtn {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    display: inline-block;
+     border: 1px solid transparent;
+            border-radius:4px;
+            margin: 0 5px 0 5px;
+}
+
+.PagingBtn:hover {
+     border: 1px solid white;
+            
+}
+
+
+.PagingBtn, .DisabledCmd:hover {
+     border: 1px solid transparent;
+
+}
+
+
+.PagingBtn img {
+    margin-top: 6px;
+}
+
+.TotalCell
+{
+    font-weight:bold;
+    position:relative;
+}
+
+.TotalCell span
+{
+    position: absolute;
+    left: -15px;
+    
+}
+
+.TotalRow {
+   
+}
+
+.TotalRow:hover {
+    
+}

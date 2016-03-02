@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entity_usages xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+  group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="SubsystemPermission"
+                entity_id="ObjectPermission"
+                single_caption="Subsystem Permission"
+                plural_caption="Subsystem Permissions"
+                SECURITY_OBJECT="subsystem"
+                image_id="TreeItem_Roles">
+
+    <!--<commands>
+      <command id="Open"
+               entity_usage_id="SubsystemPermission_View"
+      />
+    </commands>-->
+
+    <grid_visible_order>
+      ObjectId,
+      ObjectName,
+      ObjectCount,
+      GroupId_View,
+      GroupOverrideCount_View,
+      GroupId_Edit,
+      GroupOverrideCount_Edit
+    </grid_visible_order>
+
+    <edit_order>
+      ObjectId,
+      ObjectName,
+      ObjectCount,
+      GroupId_View,
+      GroupOverrideCount_View,
+      GroupId_Edit,
+      GroupOverrideCount_Edit
+    </edit_order>
+
+    <attribute_usages>
+      <attribute_usage id="GroupId_View"
+                       row_source_id="AllowDeny_Lookup"
+                       nullable="false"
+                       new_line="true"
+      />
+      <attribute_usage id="GroupId_Edit"
+                       row_source_id="AllowDeny_Lookup"
+                       nullable="false"
+      />
+    </attribute_usages>
+  </entity_usage>
+
+</fw:entity_usages>

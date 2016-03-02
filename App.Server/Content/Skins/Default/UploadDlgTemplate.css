@@ -1,0 +1,45 @@
+﻿.UploadDlg {
+    height: 120px;
+    width: 320px;
+    overflow:auto;
+     
+     padding:10px;
+}
+
+.UploadDlg div {
+    height: 25px;
+    
+    
+}
+
+.UploadProgress {
+    width: 310px;
+    height: 25px;
+    position: relative;
+    border: 1px solid #808080;
+    margin-bottom:15px;
+}
+
+.UploadProgressColorBar {
+    height: 25px;
+    
+    left: 0;
+    top: 0;
+    position: absolute;
+    background-color: #BADDE9;
+}
+
+.FileName
+{
+    width: 100%;
+    height: 25px;
+    text-align:center;
+}
+
+.UploadPercent
+{
+    position: absolute;
+    left: 140px;
+    vertical-align:bottom;
+    text-align:center;
+}

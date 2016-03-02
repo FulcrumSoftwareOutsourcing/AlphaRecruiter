@@ -1,0 +1,662 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+	group_name="QuestionsAnsvers">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Interview"
+          single_caption="Interview"
+          plural_caption="Interviews"
+          operations="ivfud"
+          sl_save_and_stay="true"
+          sl_edit_frame_id="InterviewAnswer_Layout"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_Interview"
+          >
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from (
+                select i.*,
+                       app.FullName + ' PHONE: (' + ISNULL(Phone,'') + ') EMAIL: ' + ISNULL(Email,'') As ContactData, 
+                       a.ActivityDate,
+                       a.IsComplete,
+                       app.FullName,
+                       app.ApplicantId,
+                       app.LastName,
+                       app.FirstName,
+                       app.InterviewTextResults,
+                       app.PayAttention
+                  from HR_Interview   i,
+                       HR_Activity    a,
+                       v_HR_Applicant app 
+                 where a.ActivityId = i.ActivityId
+                   and app.ApplicantId = a.ApplicantId
+               ) as t
+      ]]>
+    </sql_select>
+    <sql_insert>
+      <![CDATA[
+        insert into HR_Interview (ActivityId, Comments )
+        values (:ActivityId, :Comments)
+        
+        update HR_Activity
+           set ActivityDate = :ActivityDate
+         where ActivityId = :ActivityId
+      ]]>
+    </sql_insert>
+    <sql_update>
+      <![CDATA[
+        update HR_Interview 
+           set Comments = :Comments
+         where ActivityId = :ActivityId
+        
+        update HR_Activity
+           set ActivityDate = :ActivityDate
+         where ActivityId = :ActivityId
+         
+        update HR_Applicant
+           set PayAttention = :PayAttention
+         where ApplicantId = :ApplicantId
+      ]]>
+    </sql_update>
+    <sql_delete>
+      <![CDATA[
+        delete 
+          from HR_Interview 
+         where ActivityId = :ActivityId
+        
+        delete 
+          from HR_Assessment 
+         where ActivityId = :ActivityId
+      ]]>
+    </sql_delete>
+    
+    <parent_entities>
+      <parent_entity id="HR_Activity"
+                     entity_usage_id="HR_Activity">
+        <where_clause>
+          ActivityId = :ActivityId
+        </where_clause>
+      </parent_entity>
+    </parent_entities>
+    
+    <attributes>
+
+      <attribute id="ApplicantId"
+            caption="Applicant Id"
+            type="int"
+            visible="false"
+      />
+      
+      <attribute id="FullName"
+                 caption="Full Name"
+                 type="string"
+                 max_length="101"
+                 storable="false"
+                 filterable="false"
+                 grid_width="100"
+                 read_only="true"
+                 visible="false"
+      />
+
+      <attribute id="ContactData"
+           type="string"
+           display_name="true"
+      />
+
+      <attribute id="LastName"
+           caption="Last Name"
+           type="string"
+           max_length="50"
+           nullable="true"
+           
+      />
+      <attribute id="FirstName"
+                 caption="First Name"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+      />
+
+      <attribute id="ActivityId"
+                 caption="Activity Code"
+                 type="int"
+                 read_only="true"
+                 primary_key="true"
+                 image_id="Interview_Phone"
+          
+      />
+      <attribute id="Comments"
+                 caption="Comment"
+                 type="string"
+                 max_length="2000"
+                 sl_control_width="3"
+                 grid_width="200"
+                 __sl_control="memo"
+                 default="=SQL.select N'Интервью создано ' + convert(nvarchar(50), getdate(), 103) + '.'" 
+                 __control_height="60"
+      />
+
+      <attribute id="PayAttention"
+         caption="Pay Attention"
+         type="string"
+         max_length="50"
+         nullable="true"
+         filter_advanced="true"
+      />
+      
+      <attribute id="AverageResult"
+                 caption="Interview Score"
+                 type="float"
+                 read_only="true" 
+                 />
+      <attribute id="ActivityDate"
+                 caption="Interview Date"
+                 type="datetime"
+                 default="=@NOW"
+                 nullable="true"
+                 />
+
+      <attribute id="InterviewTextResults"
+           caption="Interview Results"
+           type="string"
+           control_height="100"
+           sl_control="memo"
+           grid_width="250"
+           max_length="20000"
+           filter_advanced="true"
+       />
+      
+      <attribute id="IsComplete"
+                 caption="Closed"
+                 type="boolean"
+                 storable="false"
+                 read_only="true" 
+      />
+
+      <attribute id="IsLast"
+           caption="Is Last Phone Interview"
+           type="string"
+           control_height="100"
+           grid_width="100"
+     />
+      
+    </attributes>
+    
+    <commands>
+      <!--
+      <command id="Dummy" text="PHONE INTERVIEWS" image_id = "Interview_Phone" >
+        <disable_conditions>
+          <condition expression="1=1" />
+        </disable_conditions>
+      </command>-->
+      
+      <command id="View" text="View Interview" />
+      <command id="Edit" text="Edit Interview ">
+        <disable_conditions>
+          <condition expression="IsNull(:IsComplete, 0) = 1"
+                     error_text="Operation is not allowed! Activity already Closed!!"
+                 />
+        </disable_conditions>
+      </command>
+    </commands>
+    
+    <edit_order>
+      ,Comments
+      ,AverageResult
+      ,ActivityDate
+    </edit_order>
+    <grid_visible_order>
+      ,ActivityId
+      ,Comments
+      ,AverageResult
+      ,ActivityDate
+    </grid_visible_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Interview"
+                entity_id="HR_Interview">
+    <where_clause>
+      ActivityId = :ActivityId
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Phone_Interview_All"
+                entity_id="HR_Interview"
+                single_caption="All Phone Interview"
+                plural_caption="All Phone Interviews"
+                image_id="Interview_Phone">
+    <attribute_usages>
+      
+        <attribute id="IsComplete"
+          row_source_id="Boolean_Lookup"
+          read_only="false" 
+        />
+        <attribute id="InterviewTextResults"
+          caption="General Impression"
+          grid_width="1000"
+        />
+      
+      </attribute_usages>
+    <grid_visible_order>
+      ,PayAttention
+      ,LastName
+      ,FirstName
+      ,ActivityDate
+      ,AverageResult
+      ,IsLast
+      ,IsComplete   
+      ,InterviewTextResults
+    </grid_visible_order>
+    <command_order>
+       View
+      ,Edit
+    </command_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Interview_Applicant"
+                read_only="true" 
+                filter_enabled="false"
+                entity_id="HR_Interview">
+    <where_clause>
+      <![CDATA[
+        ActivityId in ( select i.ActivityId
+                        from HR_Activity  a,
+                             HR_Interview i
+                       where a.ApplicantId = :ApplicantId
+                         and i.ActivityId = a.ActivityId )
+      ]]>
+    </where_clause>
+    <command_order>
+      ,Dummy
+      ,View
+      ,Edit
+    </command_order>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- --><!--
+  <entity_usage id="HR_Interview_Last"
+                read_only="true" 
+                entity_id="HR_Interview">
+    <where_clause>
+      <![CDATA[
+        ActivityId = ( select max(i.ActivityId)
+                        from HR_Activity  a,
+                             HR_Interview i
+                       where a.ApplicantId = :ApplicantId
+                         and i.ActivityId = a.ActivityId )
+      ]]>
+    </where_clause>
+    <command_order>
+      View
+    </command_order>
+  </entity_usage>-->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_Office_Interview_All"
+        single_caption="All Office Interview"
+        plural_caption="All Office Interviews"
+        operations="ivfud"
+        sl_multiple_grid_edit="true"
+        image_id="InterviewOffice"  
+        filter_enabled="true"
+        entity_class_id="BASE_ENTITY"
+          >
+    <sql_select>
+      <![CDATA[
+      select t.* 
+          from (
+                select 
+                       a.ActivityDate,
+                       a.IsComplete,
+                       app.ApplicantId,
+                       app.PayAttention,
+                       app.FullName,
+                       app.LastName,
+                       app.FirstName,
+					             app.InterviewTextResults,
+					             a.ActivityId
+                  from 
+                       HR_Activity    a,
+                       v_HR_Applicant app 
+                 where 
+                  app.ApplicantId = a.ApplicantId
+				  and ActivityTypeCD = 'INTERVIEW_Office'
+         ) as t       ]]>
+    </sql_select>
+
+    <sql_update>
+      <![CDATA[
+        update HR_Applicant
+           set PayAttention = :PayAttention
+         where ApplicantId = :ApplicantId
+      ]]>
+    </sql_update>
+    
+    <attributes>
+
+      <attribute id="ActivityDate"
+                 caption="Interview Date"
+                 type="datetime"
+                 nullable="true"
+              />
+
+
+      <attribute id="LastName"
+          caption="Last Name"
+          type="string"
+          max_length="50"
+          nullable="true"
+      />
+
+      <attribute id="ApplicantId"
+       caption="Applicant Id"
+       type="int"
+       visible="false"
+      />
+      
+      <attribute id="PayAttention"
+        caption="Pay Attention"
+        type="string"
+        max_length="50"
+        nullable="true"
+      />
+
+      <attribute id="FirstName"
+        caption="First Name"
+        type="string"
+        max_length="50"
+        nullable="false"
+      />
+
+
+      <attribute id="InterviewTextResults"
+          caption="Interview Results"
+          type="string"
+          control_height="100"
+          sl_control="memo"
+          grid_width="500"
+          max_length="20000"
+       />
+
+      <attribute id="ActivityId"
+                  caption="Activity Code"
+                  type="int"
+                  read_only="true"
+                  primary_key="true"
+                  image_id="InterviewOffice"
+      />
+      
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_Office_Interview_All"
+                entity_id="HR_Office_Interview_All">
+    <grid_visible_order>
+      PayAttention
+      ,LastName
+      ,FirstName
+      ,ActivityDate
+      ,InterviewTextResults
+    </grid_visible_order>
+  </entity_usage>
+ 
+   
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="HR_InterviewAnswer"
+          single_caption="Interview's Answer"
+          plural_caption="Interview's Answers"
+          operations="ud"
+          sl_refresh_parent_after_save="true"
+          sl_multiple_grid_edit="true"
+          entity_class_id="BASE_ENTITY"
+          db_object="HR_InterviewAnswer"
+          image_id=""
+          >
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from (
+                select q.HR_QuestionId,
+                       q.Question,
+                       q.PossibleAnswer,
+                       ia.Result,
+                       ia.Comments,
+                       :ActivityId as ActivityId,
+                       q.DisplayOrder,
+                       c.DisplayOrder as CatDisplayOrder,
+                       c.Name as CatName,
+                       c.SLImageId,
+                       q.HR_QuestionCategoryCd,
+                       q.IsActive,
+                       cast(case when ia.HR_QuestionId is null
+                                   then 0
+                                   else 1
+                                 end as bit) as IsAsked  
+                  from HR_Question q
+                    left join HR_InterviewAnswer ia on (ia.HR_QuestionId = q.HR_QuestionId and 
+                                                        ia.ActivityId = :ActivityId)
+                    left join HR_QuestionCategory c on (c.HR_QuestionCategoryCd = q.HR_QuestionCategoryCd)
+                ) t
+      ]]>
+    </sql_select>
+    <sql_update>
+      <![CDATA[
+        if exists (select 1
+                     from HR_InterviewAnswer
+                    where HR_QuestionId = :HR_QuestionId 
+                      and ActivityId = :ActivityId )
+          begin
+            update HR_InterviewAnswer
+               set Result = :Result,
+                   Comments = :Comments
+             where HR_QuestionId = :HR_QuestionId 
+               and ActivityId = :ActivityId
+          end
+        else  
+          begin
+            insert into HR_InterviewAnswer (HR_QuestionId, ActivityId, Result, Comments)
+            values (:HR_QuestionId, :ActivityId, :Result, :Comments)
+          end
+          
+            update HR_Activity
+           set ActivityDate = GetDate()
+         where ActivityId = :ActivityId
+      ]]>
+    </sql_update>
+    <sql_delete>
+      <![CDATA[
+            delete 
+              from HR_InterviewAnswer
+             where HR_QuestionId = :HR_QuestionId 
+               and ActivityId = :ActivityId
+      ]]>
+    </sql_delete>
+    <attributes>
+      <attribute id="ActivityId"
+                 caption="ActivityId"
+                 type="int"
+                 primary_key="true"
+                 max_length="50"
+      />
+      <attribute id="HR_QuestionId"
+                 caption="HR_QuestionId"
+                 type="int"
+                 primary_key="true"
+                 max_length="50"
+      />
+      <attribute id="CatName"
+                 caption="Category"
+                 type="string"
+                 grid_width="60"
+                 read_only="true" 
+      />
+      <attribute id="Question"
+                 caption="Question"
+                 sl_control="memo"
+                 type="string"
+                 grid_width="500"
+                 read_only="true" 
+      />
+      <attribute id="PossibleAnswer"
+                 caption="Possible Answer"
+                 type="string"
+                 sl_control="memo"
+                 grid_width="500"
+                 read_only="true" 
+      />
+      <attribute id="Comments"
+                 caption="Comments"
+                 type="string"
+                 max_length="2000"
+                 sl_control="memo"
+                 grid_width="200"
+                 control_height="100"
+      />
+      <attribute id="Result"
+                 caption="Result"
+                 type="int"
+                 nullable="true"
+                 row_source_id="HR_AnswerResult_Lookup"
+                 />
+      <attribute id="CatDisplayOrder"
+                 caption="Cath. Order"
+                 type="int"
+                 sort_order="1"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="100"
+                 />
+      <attribute id="DisplayOrder"
+                 caption="Quest. Order"
+                 type="int"
+                 sort_order="2"
+                 sorting="asc"
+                 nullable="false"
+                 grid_width="60"
+                 />
+      <attribute id="HR_QuestionCategoryCd"
+                 caption="Category"
+                 type="string"
+                 max_length="50"
+                 row_source_id="HR_QuestionCategory_Lookup"
+                 nullable="false"
+                 read_only_for_update="true"
+                 grid_width="110"
+      />
+      <attribute id="IsAsked"
+                 caption="Is Asked"
+                 type="boolean"
+                 grid_width="70"
+                 read_only="true" 
+      />
+      <attribute id="IsActive"
+           caption="Is Active"
+           type="boolean"
+           grid_width="80"
+           read_only="true"
+           filter_default="true" 
+      />
+    </attributes>
+    <commands>
+      <command id="Edit"/>
+      <command id="Delete" text="Clear"/>
+    </commands>
+    <grid_visible_order>
+      ,HR_QuestionCategoryCd
+      ,Question
+      ,PossibleAnswer
+      ,Result
+      ,Comments
+      ,IsActive
+      ,CatDisplayOrder
+      ,DisplayOrder
+    </grid_visible_order>
+    <filter_order>
+      ,HR_QuestionCategoryCd
+      ,IsActive
+      ,Result
+      ,IsAsked
+    </filter_order>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_InterviewAnswer"
+                entity_id="HR_InterviewAnswer">
+    <where_clause>
+      ActivityId = :ActivityId
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="HR_InterviewAnswer_Last"
+                read_only="true"
+                read_only_attributes="true"
+                entity_id="HR_InterviewAnswer">
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from (
+                select q.HR_QuestionId,
+                       q.Question,
+                       q.PossibleAnswer,
+                       ia.Result,
+                       ia.Comments,
+                       ia.ActivityId,
+                       q.DisplayOrder,
+                       c.DisplayOrder as CatDisplayOrder,
+                       c.Name as CatName,
+                       q.HR_QuestionCategoryCd,
+                       q.IsActive,
+                       cast(case when ia.HR_QuestionId is null
+                                   then 0
+                                   else 1
+                                 end as bit) as IsAsked  
+                  from HR_Question q
+                    left join HR_InterviewAnswer ia on (ia.HR_QuestionId = q.HR_QuestionId)
+                    left join HR_QuestionCategory c on (c.HR_QuestionCategoryCd = q.HR_QuestionCategoryCd)
+                ) t
+      ]]>
+    </sql_select>
+
+    <attribute_usages>
+      <attribute_usage id= "IsActive"
+      caption="Is Active"
+      type="boolean"
+      grid_width="80"
+      read_only="true"
+      filter_default=""                 
+      />
+    </attribute_usages>
+    
+    <grid_visible_order>
+      ,HR_QuestionCategoryCd
+      ,Question
+      ,Result
+      ,Comments
+      ,CatDisplayOrder
+      ,DisplayOrder
+    </grid_visible_order>
+    <command_order>
+      View
+    </command_order>
+    <where_clause>
+      <![CDATA[
+        ActivityId = ( select max(i.ActivityId)
+                        from HR_Activity  a,
+                             HR_Interview i
+                       where a.ApplicantId = :ApplicantId
+                         and i.ActivityId = a.ActivityId )
+      ]]>
+    </where_clause>
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="HR_AnswerResult_Lookup"
+              key_type="int">
+    <rows>
+      <row key="2" value="2-nothing"  />
+      <row key="3" value="3-low"  />
+      <row key="4" value="4-middle"  />
+      <row key="5" value="5-well"  />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+ 	           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	           xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+             group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Role"
+          plural_caption="Roles"
+          single_caption="Role"
+          in_security="true"
+          filter_enabled="false"
+          entity_class_id="BASE_ENTITY"
+          operations="ivud"
+          db_object="Framework_Roles"
+          image_id="TreeItem_Roles">
+
+    <sql_select>
+      <![CDATA[
+        select t.* 
+          from Framework_Roles t
+      ]]>
+    </sql_select>
+
+    <attributes>
+      <attribute id="RoleId"
+                 type="int"
+                 primary_key="true"
+                 visible="false"
+                 storable="false"
+                 max_length="10"
+      />
+      <attribute id="Name"
+                 type="string"
+                 alternative_key="true"
+                 caption="Name"
+                 max_length="50"
+                 nullable="false"
+                 sorting="asc"
+                 grid_width="150"
+                 read_only_condition="ISNULL(LEN(:SpecialCategory), 0) > 0"
+      />
+      <attribute id="Description"
+                 type="string"
+                 caption="Description"
+                 max_length="2000"
+                 grid_width="300"
+                 win_control="memo"
+                 control_width="2"
+      />
+      <attribute id="SpecialCategory"
+                 type="string"
+                 caption="Special Category"
+                 max_length="50"
+                 visible="false"
+                 storable="false"
+                 editable="false"
+      />
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Role"
+                sl_edit_frame_id="RoleDetails_Layout"
+                entity_id="Role">
+    <!--<child_entity_usages>
+      <child_entity_usage id="EntityPermission"
+                          entity_usage_id="EntityPermission"
+      />
+      <child_entity_usage id="SubsystemPermission"
+                          entity_usage_id="SubsystemPermission"
+      />
+    </child_entity_usages>-->
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Role_Lookup"
+                entity_id="Role">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="Role_Lookup"
+              entity_usage_id="Role_Lookup"
+  />
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>

@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:row_sources xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd"
+  group_name="Administration">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="AllowOwnerDenyCustom_Lookup">
+    <rows>
+      <row key="ALLOW"  value="Allow"        image_id="green_circle" />
+      <row key="OWNER"  value="Record Based" image_id="cyan_circle" />
+      <row key="DENY"   value="Deny"         image_id="red_circle" />
+      <row key="CUSTOM" value="Custom"       image_id="yellow_circle" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="AllowOwnerDeny_Lookup">
+    <rows>
+      <row key="ALLOW"  value="Allow"        image_id="green_circle" />
+      <row key="OWNER"  value="Record Based" image_id="cyan_circle" />
+      <row key="DENY"   value="Deny"         image_id="red_circle" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="AllowDeny_Lookup">
+    <rows>
+      <row key="ALLOW"  value="Allow"        image_id="green_circle" />
+      <row key="DENY"   value="Deny"         image_id="red_circle" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <row_source id="AllowCustom_Lookup">
+    <rows>
+      <row key="ALLOW"  value="All"          image_id="green_circle" />
+      <row key="CUSTOM" value="Limited"      image_id="yellow_circle" />
+    </rows>
+  </row_source>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:row_sources>

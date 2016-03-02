@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<classes>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <class id="Hr_ImageProvider"
+         assembly_id="HRDB.Silverlight.Client"
+         name="CxImageProvider"
+  />
+
+  <!--<class id="GridWithExtraFind"
+         name="GridWithExtraFind"/>-->
+
+  
+
+</classes>

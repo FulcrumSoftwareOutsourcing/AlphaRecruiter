@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<fw:entities xmlns:fw="http://www.fulcrumweb.com/framework"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.fulcrumweb.com/framework ..\FrameworkMetaData.xsd">
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity id="Languages"
+          plural_caption="Languages"
+          single_caption="Language"
+          operations="oiudvtcpf"
+          entity_class_id="BASE_ENTITY"
+          db_object="Framework_Languages"
+          group_name="Administration">
+
+    <sql_select>
+      <![CDATA[
+        select t.*
+          from Framework_Languages t
+      ]]>
+    </sql_select>
+
+
+    <attributes>
+      <attribute id="LanguageCd"
+                 caption="Language Code"
+                 type="string"
+                 primary_key="true"
+                 max_length="3"
+                 nullable="false"
+                 visible="true"
+      />
+      <attribute id="Name"
+                 caption="Language Name"
+                 type="string"
+                 max_length="50"
+                 nullable="false"
+                 visible="true"
+                 
+      />
+      <attribute id="IsDefault"
+                 caption="Is Default"
+                 type="boolean"
+                 default="false"
+                 nullable="false"
+                
+      />
+
+    </attributes>
+  </entity>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+  <entity_usage id="Languages"
+                entity_id="Languages">
+  </entity_usage>
+  <!-- -*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*-*- -->
+</fw:entities>
