@@ -59,7 +59,7 @@ namespace App.Server.Controllers
 
                 var paramsArr = (object[])state;
                 CxDbConnection con = (CxDbConnection)paramsArr[0];
-                
+
                 using (con)
                 {
 
@@ -91,13 +91,13 @@ namespace App.Server.Controllers
 
                 }
             },
-            new object[] { conn}
+            new object[] { conn }
                 );
 
 
             task.Start();
 
-           
+
         }
 
         private void UpdateKey(int keyId, object value, CxDbConnection conn)
@@ -105,11 +105,11 @@ namespace App.Server.Controllers
             conn.ExecuteCommand(@"
                 UPDATE Framework_UserSettings
                 SET [Value] = '" + value + @"'
-                WHERE UserSettingId = " + keyId );
+                WHERE UserSettingId = " + keyId);
         }
 
         private void CreateKey(int groupId, string key, int userId, object value, CxDbConnection conn)
-       {
+        {
             int newId = conn.GetNextId();
             conn.ExecuteCommand(@"
 
@@ -130,7 +130,7 @@ namespace App.Server.Controllers
                        ,'" + Convert.ToString(mHolder.SlSections.JsAppProperties["app_name"]) + @"'
                        ,'" + value + "' )");
 
-            
+
         }
 
         private int CreateSettingsGroup(string groupName, CxDbConnection conn, int userId)
@@ -166,11 +166,16 @@ namespace App.Server.Controllers
             else
                 return (int)result;
 
-            
+
         }
 
-        private int? GetKeyId(int groupId, string key, int userId, CxDbConnection conn )
+        private int? GetKeyId(int groupId, string key, int userId, CxDbConnection conn)
         {
+            if (!mHolder.SlSections.JsAppProperties.ContainsKey("app_name"))
+            {
+                return -1;
+            }
+
             string app = Convert.ToString(mHolder.SlSections.JsAppProperties["app_name"]);
 
             var result = conn.ExecuteScalar(@"SELECT top 1
@@ -191,19 +196,19 @@ namespace App.Server.Controllers
         private List<object> GetSettings(string groupKey, string key)
         {
             List<object> result = new List<object>();
-            if (mHolder.SlSections.JsAppProperties.Count == 0)
+            if (mHolder.SlSections.JsAppProperties.Count == 0 || !mHolder.SlSections.JsAppProperties.ContainsKey("app_name"))
                 return result;
 
-            string app = Convert.ToString( mHolder.SlSections.JsAppProperties["app_name"] );
-            
+            string app = Convert.ToString(mHolder.SlSections.JsAppProperties["app_name"]);
+
 
 
             using (CxDbConnection conn = CxDbConnections.CreateEntityConnection())
             {
-                
+
 
                 string individualKeyWhere = "";
-                if( !string.IsNullOrWhiteSpace (key) )
+                if (!string.IsNullOrWhiteSpace(key))
                 {
                     individualKeyWhere = " AND us.OptionKey = '" + key + "' ";
                 }
@@ -223,19 +228,19 @@ namespace App.Server.Controllers
                     );
 
 
-                
+
                 while (reader.Read())
                 {
                     result.Add(new { Group = groupKey, Key = reader[0], Value = reader[1] });
                 }
                 return result;
-               
+
             }
 
 
         }
 
-      
+
 
     }
 }
